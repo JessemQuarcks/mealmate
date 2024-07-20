@@ -1,6 +1,16 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import HeaderTop from "@/components/HeaderTop";
+import HeaderMain from "@/components/HeaderMain";
+import Navbar from "@/components/Navbar";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import MobNavbar from "@/components/MobNavbar";
+import NewProducts from "@/components/NewProducts";
+import Hero from "@/components/Hero";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,9 +24,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+ 
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+
+      <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAebH2YjT8g-C572_d7H5wc9aHLgJg1iv8&loading=async">
+       </script>
+      </head>
+      <body className={inter.className}>
+
+        <HeaderTop />
+        <HeaderMain/>
+        <Navbar />
+        <MobNavbar/>
+        {children}
+        </body>
     </html>
   );
 }
