@@ -6,6 +6,7 @@ import { saveAs } from 'file-saver'
 import { IoIosRestaurant } from 'react-icons/io'
 import Image from 'next/image'
 import { error } from 'console'
+import MobNavbar from '@/components/MobNavbar'
 
 
 interface FinalDestinationContextProp {
@@ -82,6 +83,7 @@ formattedData.map((point, index) => (
     <Image src={point.google_map_src} alt='Image' width={50} height={30} priority/>
     {/* <IoIosRestaurant size={200}/> */}
    </AdvancedMarker>
+   
 )
 
 )
@@ -162,6 +164,8 @@ useEffect(() => {
     }
   )()
 }, [setCurrentUserPosition, currentUserPosition, navigator.geolocation])
+
+
   return <></>
 }
 export default Discover

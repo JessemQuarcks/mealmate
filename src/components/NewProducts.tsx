@@ -16,6 +16,7 @@ const NewProducts = () => {
             desc={item.category}
             rating={item.ratings}
             price={"8km Away"}
+            id={item.id}
           />
         ))}
       </div>

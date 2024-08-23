@@ -1,3 +1,4 @@
+// src/components/HeaderMain.tsx
 "use client";
 import React from 'react';
 import { BiUser } from 'react-icons/bi';
@@ -6,14 +7,20 @@ import { FiHeart } from 'react-icons/fi';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
 import Link from 'next/link';
 import { signIn } from "next-auth/react";
+// import { useCart } from '../components/Cartcontext';
+import { useAppSelector } from '@/lib/hook';
+import dynamic from 'next/dynamic';
 
-const HeaderMain = () => {
+const HeaderMainComponent = () => {
+  // const { totalItems } = useCart();
+  const cartItems=useAppSelector(state=>state.cart.quantity);
+
   const handleSignIn = async () => {
-     try {
+    try {
       await signIn('google');
     } catch (error) {
-       console.error("Error signing in:", error);
-     }
+      console.error("Error signing in:", error);
+    }
   };
 
   return (
@@ -44,7 +51,7 @@ const HeaderMain = () => {
             <Link href="/Checkout">
               <HiOutlineShoppingBag />
               <div className="bg-red-600 rounded-full absolute top-0 right-0 w-[18px] h-[18px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1">
-                0
+                {cartItems}
               </div>
             </Link>
           </div>
@@ -53,5 +60,7 @@ const HeaderMain = () => {
     </div>
   );
 };
+
+const HeaderMain=dynamic(()=>Promise.resolve(HeaderMainComponent),{ssr:false});
 
 export default HeaderMain;

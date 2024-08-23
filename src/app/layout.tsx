@@ -10,7 +10,12 @@ import "slick-carousel/slick/slick-theme.css";
 import MobNavbar from "@/components/MobNavbar";
 import NewProducts from "@/components/NewProducts";
 import Hero from "@/components/Hero";
+import StoreProvider from "./StoreProvider";
 
+
+
+    
+ 
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,14 +39,18 @@ export default function RootLayout({
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAebH2YjT8g-C572_d7H5wc9aHLgJg1iv8&loading=async">
        </script>
       </head>
+      <StoreProvider>
       <body className={inter.className}>
-
-        <HeaderTop />
+      
+            <HeaderTop />
         <HeaderMain/>
         <Navbar />
         <MobNavbar/>
         {children}
+          
+        
         </body>
+      </StoreProvider>
     </html>
   );
 }
