@@ -42,9 +42,9 @@ const MealCard: React.FC<PropsType> = ({
           <Image
             src={img}
             alt={title}
-            layout="fill"
-            objectFit="cover"
             className="rounded-t-xl"
+            fill
+            sizes="100"
           />
         </div>
         <div className="h-1/2 flex flex-col justify-center items-start p-4">

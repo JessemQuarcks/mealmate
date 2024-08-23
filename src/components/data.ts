@@ -1,8 +1,8 @@
 const data = [
     {
       "products": [
-      { id: '1',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '2',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '1',name: 'Meal 1', price: 1, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '2',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 1,  
       "google_map_url" : "https://www.google.com/maps/place/Super-Mc+Restaurant/data=!4m7!3m6!1s0xfdb951f621c441d:0x3456322b136bd981!8m2!3d6.6784484!4d-1.5874826!16s%2Fg%2F11s95myt93!19sChIJHUQcYh-V2w8RgdlrEysyVjQ?authuser=0&hl=en&rclk=1",
@@ -24,8 +24,8 @@ const data = [
 {
     
   "products": [
-      { id: '3',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '4',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '3',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '4',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
   "id": 2,      
   "google_map_url": "https://www.google.com/maps/place/Super-Mc+Restaurant/data=!4m7!3m6!1s0xfdb951f621c441d:0x3456322b136bd981!8m2!3d6.6784484!4d-1.5874826!16s%2Fg%2F11s95myt93!19sChIJHUQcYh-V2w8RgdlrEysyVjQ?authuser=0&hl=en&rclk=1",
@@ -46,8 +46,8 @@ const data = [
     },
     {
       "products": [
-      { id: '5',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '6',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '5',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '6',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 3,  
       "google_map_url": "https://www.google.com/maps/place/Aca+Poco+Sports+Pub+%26+Restaurant/data=!4m7!3m6!1s0xfdb957cc331f42f:0xdcca944e787f528a!8m2!3d6.686329!4d-1.5781168!16s%2Fg%2F11h3z4wy3n!19sChIJL_Qxw3yV2w8RilJ_eE6Uytw?authuser=0&hl=en&rclk=1",
@@ -68,8 +68,8 @@ const data = [
     },
     {
       "products": [
-      { id: '7',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '8',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '7',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '8',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 4,  
       "google_map_url": "https://www.google.com/maps/place/Chick%27N+Billy/data=!4m7!3m6!1s0xfdb958483d34713:0x50fb892c85064caa!8m2!3d6.6726918!4d-1.558649!16s%2Fg%2F11qpxk8ryb!19sChIJE0fTg4SV2w8RqkwGhSyJ-1A?authuser=0&hl=en&rclk=1",
@@ -90,8 +90,8 @@ const data = [
     },
     {
       "products": [
-      { id: '9',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '10',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '9',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '10',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 5,  
       "google_map_url": "https://www.google.com/maps/place/Acuzzi+Pub+and+Restaurant/data=!4m7!3m6!1s0xfdb9463fc80e599:0x40c00a970b6eba42!8m2!3d6.6770645!4d-1.5638874!16s%2Fg%2F1td6hvfk!19sChIJmeWA_GOU2w8RQrpuC5cKwEA?authuser=0&hl=en&rclk=1",
@@ -112,8 +112,8 @@ const data = [
     },
     {
       "products": [
-      { id: '11',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '12',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '11',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '12',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 6,  
       "google_map_url": "https://www.google.com/maps/place/Picco+Restaurant/data=!4m7!3m6!1s0xfdb95b4374f51c1:0x5e3d25a4ebb6894a!8m2!3d6.6878151!4d-1.57657!16s%2Fg%2F11j3066bh0!19sChIJwVFPN7SV2w8RSom266QlPV4?authuser=0&hl=en&rclk=1",
@@ -134,8 +134,8 @@ const data = [
     },
     {
       "products": [
-      { id: '13',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '14',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '13',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '14',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 7,  
       "google_map_url": "https://www.google.com/maps/place/Gilcity+Restaurant/data=!4m7!3m6!1s0xfdb95beab7bb1c9:0x2e807e395e9392de!8m2!3d6.6642672!4d-1.55903!16s%2Fg%2F11y6bdd32g!19sChIJybF7q76V2w8R3pKTXjl-gC4?authuser=0&hl=en&rclk=1",
@@ -156,8 +156,8 @@ const data = [
     },
     {
       "products": [
-      { id: '15',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '16',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '15',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '16',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 8,  
       "google_map_url": "https://www.google.com/maps/place/Abusua+Restaurant/data=!4m7!3m6!1s0xfdb97dd152fd6ab:0xefde4cc9674479f9!8m2!3d6.6742239!4d-1.6021852!16s%2Fg%2F11h3c4xy12!19sChIJq9YvFd2X2w8R-XlEZ8lM3u8?authuser=0&hl=en&rclk=1",
@@ -178,8 +178,8 @@ const data = [
     },
     {
       "products": [
-      { id: '17',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '18',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '17',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '18',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 9,  
       "google_map_url": "https://www.google.com/maps/place/Zone+Bar+and+Restaurant/data=!4m7!3m6!1s0xfdb9492379c9107:0x7b4a583d4616cb5c!8m2!3d6.6786646!4d-1.5480558!16s%2Fg%2F11b_03bh6l!19sChIJB5GcN5KU2w8RXMsWRj1YSns?authuser=0&hl=en&rclk=1",
@@ -201,8 +201,8 @@ const data = [
     },
     {
       "products": [
-      { id: '19',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '20',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '19',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '20',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 10,  
       "google_map_url": "https://www.google.com/maps/place/Orlando%27s+Cafe+And+Grill/data=!4m7!3m6!1s0xfdb95aee183e389:0x1be0ba9fc1aad4e0!8m2!3d6.6683183!4d-1.5401526!16s%2Fg%2F11ryrhbbt4!19sChIJieOD4a6V2w8R4NSqwZ-64Bs?authuser=0&hl=en&rclk=1",
@@ -220,8 +220,8 @@ const data = [
     },
     {
       "products": [
-      { id: '21',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '22',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '21',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '22',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 11,  
       "google_map_url": "https://www.google.com/maps/place/Fritz+Restaurant/data=!4m7!3m6!1s0xfdb95007dd888bd:0xede010df6f5c0696!8m2!3d6.6752753!4d-1.5631725!16s%2Fg%2F11y6bg24vp!19sChIJvYjYfQCV2w8RlgZcb98Q4O0?authuser=0&hl=en&rclk=1",
@@ -243,8 +243,8 @@ const data = [
     },
     {
       "products": [
-      { id: '23',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '24',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '23',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '24',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 12,  
       "google_map_url": "https://www.google.com/maps/place/Let%27s+Eat+Good+Restaurant/data=!4m7!3m6!1s0xfdb95cd7e75ad31:0xff44b1f02b5ad1d!8m2!3d6.6693986!4d-1.5607295!16s%2Fg%2F11svn4kx20!19sChIJMa11fs2V2w8RHa21Ah9L9A8?authuser=0&hl=en&rclk=1",
@@ -265,8 +265,8 @@ const data = [
     },
     {
       "products": [
-      { id: '25',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '26',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '25',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '26',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 13,  
       "google_map_url": "https://www.google.com/maps/place/Gard%27n+of+Eat%27n/data=!4m7!3m6!1s0xfdb95927b3adac7:0x4d2a97bf383830ce!8m2!3d6.6885812!4d-1.5792609!16s%2Fg%2F11s3zvxmt4!19sChIJx9o6e5KV2w8RzjA4OL-XKk0?authuser=0&hl=en&rclk=1",
@@ -287,8 +287,8 @@ const data = [
     },
     {
       "products": [
-      { id: '27',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '28',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '27',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '28',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 14,  
       "google_map_url": "https://www.google.com/maps/place/Aboude+Fast+Food/data=!4m7!3m6!1s0xfdb96995995c60b:0xf10828ac95df25d4!8m2!3d6.68756!4d-1.6037107!16s%2Fg%2F11b6sqkpt6!19sChIJC8aVWZmW2w8R1CXflawoCPE?authuser=0&hl=en&rclk=1",
@@ -310,8 +310,8 @@ const data = [
     },
     {
       "products": [
-      { id: '29',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '30',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '29',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '30',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 15,  
       "google_map_url": "https://www.google.com/maps/place/Sophia%27s+Kitchen/data=!4m7!3m6!1s0xfdb959f2feb35b5:0x972a7e79136205ae!8m2!3d6.6744963!4d-1.5719423!16s%2Fg%2F11q3_qhv6x!19sChIJtTXrL5-V2w8RrgViE3l-Kpc?authuser=0&hl=en&rclk=1",
@@ -332,8 +332,8 @@ const data = [
     },
     {
       "products": [
-      { id: '31',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '32',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '31',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '32',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 16,  
       "google_map_url": "https://www.google.com/maps/place/Sanbra+Kitchen/data=!4m7!3m6!1s0xfdb957e8e1d2ba7:0xe1a302233bc6b53f!8m2!3d6.672314!4d-1.5727525!16s%2Fg%2F11f66byqyg!19sChIJpysdjn6V2w8RP7XGOyMCo-E?authuser=0&hl=en&rclk=1",
@@ -354,8 +354,8 @@ const data = [
     },
     {
       "products": [
-      { id: '33',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '34',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '33',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '34',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 17,  
       "google_map_url": "https://www.google.com/maps/place/Helenus+Foods/data=!4m7!3m6!1s0xfdb946391a209ab:0xfd9ca0c168cb8161!8m2!3d6.6756025!4d-1.5637282!16s%2Fg%2F1hdz4xmsm!19sChIJqwmikWOU2w8RYYHLaMGgnP0?authuser=0&hl=en&rclk=1",
@@ -376,8 +376,8 @@ const data = [
     },
     {
       "products": [
-      { id: '35',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '36',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '35',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '36',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 18,  
       "google_map_url": "https://www.google.com/maps/place/Mummy%27s+Kitchen/data=!4m7!3m6!1s0xfdb943f2ea03817:0x33bf1aff709e564a!8m2!3d6.68768!4d-1.5810492!16s%2Fg%2F11c2qtb_dd!19sChIJFzigLj-U2w8RSlaecP8avzM?authuser=0&hl=en&rclk=1",
@@ -398,8 +398,8 @@ const data = [
     },
     {
       "products": [
-      { id: '37',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '38',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '37',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '38',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 19,  
       "google_map_url": "https://www.google.com/maps/place/Uptown+Foods/data=!4m7!3m6!1s0xfdb95fe93e23d75:0x1fa6fc59310aeac0!8m2!3d6.6785281!4d-1.587386!16s%2Fg%2F11k41myqgr!19sChIJdT3ik_6V2w8RwOoKMVn8ph8?authuser=0&hl=en&rclk=1",
@@ -421,8 +421,8 @@ const data = [
     },
     {
       "products": [
-      { id: '39',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '40',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '39',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '40',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 20,  
       "google_map_url": "https://www.google.com/maps/place/Marasab+Restaurant/data=!4m7!3m6!1s0xfdb950073b034f1:0x4928b21785ddd3a!8m2!3d6.6700313!4d-1.5900809!16s%2Fg%2F11vwwym0m9!19sChIJ8TSwcwCV2w8ROt1deCGLkgQ?authuser=0&hl=en&rclk=1",
@@ -443,8 +443,8 @@ const data = [
     },
     {
       "products": [
-      { id: '41',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '42',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '41',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '42',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 21,  
       "google_map_url": "https://www.google.com/maps/place/Rakho+Food+Joint/data=!4m7!3m6!1s0xfdb956cbead8693:0xaac4e25f62dc0100!8m2!3d6.6697875!4d-1.5550824!16s%2Fg%2F11h5ncjhr9!19sChIJk4atvmyV2w8RAAHcYl_ixKo?authuser=0&hl=en&rclk=1",
@@ -466,8 +466,8 @@ const data = [
     },
     {
       "products": [
-      { id: '43',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '44',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '43',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '44',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 22,  
       "google_map_url": "https://www.google.com/maps/place/Ramakos+Restaurant/data=!4m7!3m6!1s0xfdb96a22e26fa05:0x1c323aa52add8073!8m2!3d6.680366!4d-1.6038374!16s%2Fg%2F11bx9xyjfh!19sChIJBfomLqKW2w8Rc4DdKqU6Mhw?authuser=0&hl=en&rclk=1",
@@ -489,8 +489,8 @@ const data = [
     },
     {
       "products": [
-      { id: '45',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '46',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '45',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '46',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 23,  
       "google_map_url": "https://www.google.com/maps/place/Pizzaman+Chickenman+-+Knust/data=!4m7!3m6!1s0xfdb954fb98c3013:0x9aaa3f755b7a8e27!8m2!3d6.6786173!4d-1.5591368!16s%2Fg%2F11h6m3q430!19sChIJEzCMuU-V2w8RJ456W3U_qpo?authuser=0&hl=en&rclk=1",
@@ -511,8 +511,8 @@ const data = [
     },
     {
       "products": [
-      { id: '47',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '48',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '47',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '48',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 24,  
       "google_map_url": "https://www.google.com/maps/place/Dimlite+Restaurant/data=!4m7!3m6!1s0xfdb943ecc1d57f3:0x89e4193ddf1c76cd!8m2!3d6.6877756!4d-1.5822819!16s%2Fg%2F11hc_z_9gl!19sChIJ81cdzD6U2w8RzXYc3z0Z5Ik?authuser=0&hl=en&rclk=1",
@@ -533,8 +533,8 @@ const data = [
     },
     {
       "products": [
-      { id: '49',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '50',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '49',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '50',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 25,  
       "google_map_url": "https://www.google.com/maps/place/Tasty+Wheels+Restaurant/data=!4m7!3m6!1s0xfdb9799c216ad31:0x4a2bd7505697a969!8m2!3d6.680073!4d-1.6031481!16s%2Fg%2F11tspcdb0l!19sChIJMa0WwpmX2w8RaamXVlDXK0o?authuser=0&hl=en&rclk=1",
@@ -555,8 +555,8 @@ const data = [
     },
     {
       "products": [
-      { id: '51',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '52',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '51',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '52',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 26,  
       "google_map_url": "https://www.google.com/maps/place/Richangel+Food+Court,+KNUST+Branch/data=!4m7!3m6!1s0xfdb9586d2fb26a5:0x631493b1e7f73ff7!8m2!3d6.6787691!4d-1.5738084!16s%2Fg%2F11pwwm03hw!19sChIJpSb70oaV2w8R9z_357GTFGM?authuser=0&hl=en&rclk=1",
@@ -578,8 +578,8 @@ const data = [
     },
     {
       "products": [
-      { id: '53',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '54',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '53',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '54',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 27,  
       "google_map_url": "https://www.google.com/maps/place/Gingerz+Bistro/data=!4m7!3m6!1s0xfdb97b8fffd45b1:0x7a1c939715bb5e87!8m2!3d6.677199!4d-1.6038669!16s%2Fg%2F11tnf57z2l!19sChIJsUX9_7iX2w8Rh167FZeTHHo?authuser=0&hl=en&rclk=1",
@@ -601,8 +601,8 @@ const data = [
     },
     {
       "products": [
-      { id: '55',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '56',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '55',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '56',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 28,  
       "google_map_url": "https://www.google.com/maps/place/The+Dish+Restaurant+and+Spot/data=!4m7!3m6!1s0xfdb9766fc93d569:0x5767b37893152b3c!8m2!3d6.6831096!4d-1.6035409!16s%2Fg%2F11r36hp6n_!19sChIJadWT_GaX2w8RPCsVk3izZ1c?authuser=0&hl=en&rclk=1",
@@ -623,8 +623,8 @@ const data = [
     },
     {
       "products": [
-      { id: '57',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '58',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '57',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '58',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 29,  
       "google_map_url": "https://www.google.com/maps/place/Meatman+Ghana/data=!4m7!3m6!1s0xfdb955ab021bed7:0xc5fe416be66b0fed!8m2!3d6.6815934!4d-1.5943148!16s%2Fg%2F11rqkv8kbz!19sChIJ174hsFqV2w8R7Q9r5mtB_sU?authuser=0&hl=en&rclk=1",
@@ -645,8 +645,8 @@ const data = [
     },
     {
       "products": [
-      { id: '59',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '60',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '59',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '60',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 30,  
       "google_map_url": "https://www.google.com/maps/place/Cravings+Pizza+%26+Foods/data=!4m7!3m6!1s0xfdb9528e6da1399:0xf50542cea7d6a126!8m2!3d6.6723698!4d-1.5729482!16s%2Fg%2F11q2rt_zq7!19sChIJmRPa5iiV2w8RJqHWp85CBfU?authuser=0&hl=en&rclk=1",
@@ -667,8 +667,8 @@ const data = [
     },
     {
       "products": [
-      { id: '61',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '62',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '61',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '62',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
       "id": 31,  
       "google_map_url": "https://www.google.com/maps/place/DE-LUNCH+CUISINE/data=!4m7!3m6!1s0xfdb95004e2d9f71:0x8daeb7e3ee8a2505!8m2!3d6.6611716!4d-1.5588982!16s%2Fg%2F11vrrdy44w!19sChIJcZ8tTgCV2w8RBSWK7uO3ro0?authuser=0&hl=en&rclk=1",
@@ -691,8 +691,8 @@ const data = [
    
 {
   "products": [
-      { id: '63',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '64',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '63',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '64',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
   "id": 32,  
   "google_map_url": "https://www.google.com/maps/place/Akwaaba+Restaurant/data=!4m7!3m6!1s0xfdb96a3d7baedf3:0xa5035bb11c5cb06a!8m2!3d6.6793863!4d-1.6032853!16s%2Fg%2F11g9fkrtn2!19sChIJ8-2616OW2w8RarBcHLFbA6U?authuser=0&hl=en&rclk=1",
@@ -713,8 +713,8 @@ const data = [
 },
 {
   "products": [
-      { id: '65',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '66',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '65',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '66',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
   "id": 33,  
   "google_map_url": "https://www.google.com/maps/place/BAMBICUP/data=!4m7!3m6!1s0xfdb956b9a8ad643:0x39379868987b243c!8m2!3d6.6758725!4d-1.5566648!16s%2Fg%2F11ts0drmm3!19sChIJQ9aKmmuV2w8RPCR7mGiYNzk?authuser=0&hl=en&rclk=1",
@@ -736,8 +736,8 @@ const data = [
 },
 {
   "products": [
-      { id: '67',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-      { id: '68',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+      { id: '67',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+      { id: '68',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
     ],
   "id": 34,  
   "google_map_url": "https://www.google.com/maps/place/indomie/data=!4m7!3m6!1s0xfdb95a25a8fbf6d:0x2da3cd5535389a45!8m2!3d6.6772649!4d-1.5935976!16s%2Fg%2F11l_h88n7d!19sChIJbb-PWqKV2w8RRZo4NVXNoy0?authuser=0&hl=en&rclk=1",
@@ -758,8 +758,8 @@ const data = [
 }
 // {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// //
 // "id": 1,     
 // // "google_map_url": "https://www.google.com/maps/place/KNUST+Poolside+Bite/data=!4m7!3m6!1s0xfdb9560e7d8fcef:0xa72a0bdcb3e88544!8m2!3d6.6826897!4d-1.5686879!16s%2Fg%2F11rgpk7rnl!19sChIJ7_zY52CV2w8RRIXos9wLKqc?authuser=0&hl=en&rclk=1",
@@ -776,8 +776,8 @@ const data = [
 // // // },
 // // // {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Amariya+mini+waakye+restaurant/data=!4m7!3m6!1s0xfdb938e154c4aa7:0xe48b1a15aa93b58b!8m2!3d6.6599031!4d-1.5804448!16s%2Fg%2F11ptphhszj!19sChIJp0pMFY6T2w8Ri7WTqhUai-Q?authuser=0&hl=en&rclk=1",
@@ -794,8 +794,8 @@ const data = [
 // // // },
 // // // {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/The+Chow+Gh/data=!4m7!3m6!1s0xfdb9731a7e70bd1:0x12a777e8a214dbbe!8m2!3d6.6838306!4d-1.5782529!16s%2Fg%2F11n5d2lcbn!19sChIJ0QvnpzGX2w8RvtsUouh3pxI?authuser=0&hl=en&rclk=1",
@@ -812,8 +812,8 @@ const data = [
 // // // },
 // // // {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Sky+Bar+Kumasi/data=!4m7!3m6!1s0xfdb95d523cc6403:0x7b48343044070237!8m2!3d6.6882678!4d-1.5790118!16s%2Fg%2F11t0rbqwy5!19sChIJA2TMI9WV2w8RNwIHRDA0SHs?authuser=0&hl=en&rclk=1",
@@ -830,8 +830,8 @@ const data = [
 // // // },
 // // // {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Queen%27s+Gate+Pub+and+Restaurant,+Stadium/data=!4m7!3m6!1s0xfdb97a1282cb23b:0xe41793fc8cf925df!8m2!3d6.6825222!4d-1.6041699!16s%2Fg%2F11rxmcyjjp!19sChIJO7IsKKGX2w8R3yX5jPyTF-Q?authuser=0&hl=en&rclk=1",
@@ -848,8 +848,8 @@ const data = [
 // // // },
 // // // {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Seluclinton+Joints/data=!4m7!3m6!1s0xfdb93f8807fe6f5:0x25b22809e7533a89!8m2!3d6.6610737!4d-1.5910828!16s%2Fg%2F11gggb25r0!19sChIJ9eZ_gPiT2w8RiTpT5wkosiU?authuser=0&hl=en&rclk=1",
@@ -866,8 +866,8 @@ const data = [
 // // // },
 // // // {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Casa+Nostra+Restaurant/data=!4m7!3m6!1s0xfdb958eedca31b5:0x7f34752b934e7c43!8m2!3d6.6788489!4d-1.5603392!16s%2Fg%2F11ptnk13yl!19sChIJtTHK7Y6V2w8RQ3xOkyt1NH8?authuser=0&hl=en&rclk=1",
@@ -885,8 +885,8 @@ const data = [
 
 // // //  {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/New+Vintage+Restaurant/data=!4m7!3m6!1s0xfdb95d8f536e1a9:0x16be60556f5c4f61!8m2!3d6.6778056!4d-1.5563146!16s%2Fg%2F11s47f1cml!19sChIJqeE29diV2w8RYU9cb1VgvhY?authuser=0&hl=en&rclk=1",
@@ -903,8 +903,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Sankies+Restaurant/data=!4m7!3m6!1s0xfdb95424bc98385:0x8af534dd796c2db1!8m2!3d6.6830514!4d-1.576181!16s%2Fg%2F11fj8l1yv4!19sChIJhYPJS0KV2w8RsS1sed009Yo?authuser=0&hl=en&rclk=1",
@@ -921,8 +921,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Joekina+Fast+food/data=!4m7!3m6!1s0xfdb950673ad3d81:0x18a30dad834978c!8m2!3d6.6736409!4d-1.5622722!16s%2Fg%2F11n96c5vs_!19sChIJgT2tcwaV2w8RjJc02NowigE?authuser=0&hl=en&rclk=1",
@@ -939,8 +939,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Acapoco+restaurant/data=!4m7!3m6!1s0xfdb95cd8e77ab15:0xa37e5e8d0b0927aa!8m2!3d6.6852135!4d-1.5789993!16s%2Fg%2F11n2kvx22h!19sChIJFat3js2V2w8RqicJC41efqM?authuser=0&hl=en&rclk=1",
@@ -957,8 +957,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/KCCR+Restaurant/data=!4m7!3m6!1s0xfdb94725a3c06cd:0x1cbf74f2ee474539!8m2!3d6.6701166!4d-1.5762156!16s%2Fg%2F11fxzj9fx3!19sChIJzQY8WnKU2w8ROUVH7vJ0vxw?authuser=0&hl=en&rclk=1",
@@ -975,8 +975,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Bujeez+Bar+and+Grill/data=!4m7!3m6!1s0xfdb958dce10118b:0xde16d68074a2b4e6!8m2!3d6.6868926!4d-1.5790489!16s%2Fg%2F11tdqx4y59!19sChIJixEQzo2V2w8R5rSidIDWFt4?authuser=0&hl=en&rclk=1",
@@ -993,8 +993,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Pice+Pizza+And+Restaurant+Tech+Junction/data=!4m7!3m6!1s0xfdb94438cf21f17:0xd45bb41dc12d0c06!8m2!3d6.6874705!4d-1.57274!16s%2Fg%2F11fy7b02k9!19sChIJFx_yjEOU2w8RBgwtwR20W9Q?authuser=0&hl=en&rclk=1",
@@ -1011,8 +1011,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Grill+%26+Bake+Cuisine/data=!4m7!3m6!1s0xfdb95df03f226ed:0x488ae13e87ce6d90!8m2!3d6.688004!4d-1.5978524!16s%2Fg%2F11p0g1d8_y!19sChIJs1f5cEqV2w8R5juyj2T29oc?authuser=0&hl=en&rclk=1",
@@ -1029,8 +1029,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/JK+Burger+And+Shawarma+Joint/data=!4m7!3m6!1s0xfdb95cf5e2d2853:0x4d82632eb7dc4d28!8m2!3d6.675878!4d-1.5773765!16s%2Fg%2F11j1rbm7yd!19sChIJswhliS2V2w8RGYPuWPL6nNs?authuser=0&hl=en&rclk=1",
@@ -1047,8 +1047,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Joe's+Pizza+And+Restaurant/data=!4m7!3m6!1s0xfdb955c2a0e9a91:0xa122408ef363ea!8m2!3d6.684382!4d-1.573248!16s%2Fg%2F11j1pbn8c3!19sChIJN7hr10SV2w8Rg9VFDgUwA8Y?authuser=0&hl=en&rclk=1",
@@ -1065,8 +1065,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Heavy+Do+Chop+Bar/data=!4m7!3m6!1s0xfdb95ce10807cc3:0xfb70e7e60b5e15a8!8m2!3d6.6804042!4d-1.5681232!16s%2Fg%2F11gvhqmqz2!19sChIJJYN_jEOV2w8RP6eFYHyv6Ug?authuser=0&hl=en&rclk=1",
@@ -1083,8 +1083,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/A+&+J+Pizza+and+grill+joint/data=!4m7!3m6!1s0xfdb94c769e22bc7:0x6c78df9b90e3f97e!8m2!3d6.6661963!4d-1.573697!16s%2Fg%2F11jybm4gjd!19sChIJp9iC0HWV2w8RwvfNV4O-b2s?authuser=0&hl=en&rclk=1",
@@ -1101,8 +1101,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Pin-nochio%27s+Pizza+joint/data=!4m7!3m6!1s0xfdb95d025d1aa8b:0xeb79e4efc5d9f915!8m2!3d6.6841551!4d-1.5717615!16s%2Fg%2F11kbl5yrdd!19sChIJa4By1MmV2w8Re_GxtKPm9Cs?authuser=0&hl=en&rclk=1",
@@ -1119,8 +1119,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Katanka+Kitchen/data=!4m7!3m6!1s0xfdb95ca75f8c83b:0xb9fcde26570747db!8m2!3d6.6791197!4d-1.5706685!16s%2Fg%2F11jz6bpxkw!19sChIJ41fGg8mV2w8ROo_p56etbmE?authuser=0&hl=en&rclk=1",
@@ -1137,8 +1137,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Palms+Cuisine/data=!4m7!3m6!1s0xfdb94b7e1d0b06d:0x648a49127c95b3c0!8m2!3d6.6616248!4d-1.5842168!16s%2Fg%2F11cnpjfqcm!19sChIJR2mvgI6U2w8RY4IR2vCka2A?authuser=0&hl=en&rclk=1",
@@ -1155,8 +1155,8 @@ const data = [
 // // //     },
 // // //      {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//             
 // // "google_map_url": "https://www.google.com/maps/place/Pat+%26+Lee+Restaurant/data=!4m7!3m6!1s0xfdb958310fe22ef:0x988e88d1f40061b4!8m2!3d6.6726462!4d-1.5543677!16s%2Fg%2F11h0h1kzl2!19sChIJ7yL-EIOV2w8RtGEA9NGIjpg?authuser=0&hl=en&rclk=1",
@@ -1173,8 +1173,8 @@ const data = [
 // // //         },
 // // //         {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//             
 // // "google_map_url": "https://www.google.com/maps/place/El-Shaddai+Fast+Food/data=!4m7!3m6!1s0xfdb969ec01eb34f:0x63cc3338e29fca41!8m2!3d6.6865515!4d-1.6020525!16s%2Fg%2F11f61t6k41!19sChIJT7MewJ6W2w8RQcqf4jgzzGM?authuser=0&hl=en&rclk=1",
@@ -1191,8 +1191,8 @@ const data = [
 // // //         },
 // // //         {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//             
 // // "google_map_url": "https://www.google.com/maps/place/Freddy%27s+Kitchen/data=!4m7!3m6!1s0xfdb943fc5d7ade1:0x6c840a23be19359!8m2!3d6.6818592!4d-1.5821364!16s%2Fg%2F1hdz_d_r0!19sChIJ4a3XxT-U2w8RWZPhO6JAyAY?authuser=0&hl=en&rclk=1",
@@ -1209,8 +1209,8 @@ const data = [
 // // //         },
 // // //         {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//             
 // // "google_map_url": "https://www.google.com/maps/place/EatOut+Kitchen/data=!4m7!3m6!1s0xfdb95b15cda1075:0x8299cdb6fd6eb425!8m2!3d6.675161!4d-1.5523904!16s%2Fg%2F11sv7yd8bb!19sChIJdRDaXLGV2w8RJbRu_bbNmYI?authuser=0&hl=en&rclk=1",
@@ -1227,8 +1227,8 @@ const data = [
 // // //         },
 // // //         {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//             
 // // "google_map_url": "https://www.google.com/maps/place/Summer+Fields/data=!4m7!3m6!1s0xfdb944025131393:0xa11f54cc5532b4be!8m2!3d6.6831925!4d-1.5771936!16s%2Fg%2F11cn9lxxpp!19sChIJkxMTJUCU2w8RvrQyVcxUH6E?authuser=0&hl=en&rclk=1",
@@ -1245,8 +1245,8 @@ const data = [
 // // //         },
 // // //         {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//             
 // // "google_map_url": "https://www.google.com/maps/place/Its+My+Kitchen+Restaurant/data=!4m7!3m6!1s0xfdb9698dee0107d:0xeb0b4fdebfe7dd7a!8m2!3d6.6836333!4d-1.6037408!16s%2Fg%2F1td54sxp!19sChIJfRDg3piW2w8Ret3nv95PC-s?authuser=0&hl=en&rclk=1",
@@ -1263,8 +1263,8 @@ const data = [
 // // //         },
 // // //         {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//             
 // // "google_map_url": "https://www.google.com/maps/place/The+Place+Restaurant+%26+Pub/data=!4m7!3m6!1s0xfdb93f7fc92ccdb:0xcd5e576a42f37726!8m2!3d6.6610625!4d-1.5881971!16s%2Fg%2F11cp5r4t2c!19sChIJ28yS_PeT2w8RJnfzQmpXXs0?authuser=0&hl=en&rclk=1",
@@ -1281,8 +1281,8 @@ const data = [
 // // //         },
 // // //         {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//             
 // // "google_map_url": "https://www.google.com/maps/place/Safiano%27s+Pub/data=!4m7!3m6!1s0xfdb96a5bccad097:0x7be574cea5709216!8m2!3d6.6735196!4d-1.605017!16s%2Fg%2F11f50c51br!19sChIJl9DKvKWW2w8RFpJwpc505Xs?authuser=0&hl=en&rclk=1",
@@ -1299,8 +1299,8 @@ const data = [
 // // //         },
 // // //         {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//             
 // // "google_map_url": "https://www.google.com/maps/place/Asantewaa+food+joint/data=!4m7!3m6!1s0xfdb95db40d9ff7d:0xa2b274e51e1c6797!8m2!3d6.6663125!4d-1.5898125!16s%2Fg%2F11r3lbcn23!19sChIJff_ZQNuV2w8Rl2ccHuV0sqI?authuser=0&hl=en&rclk=1",
@@ -1317,8 +1317,8 @@ const data = [
 // // //         },
 // // //         {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//             
 // // "google_map_url": "https://www.google.com/maps/place/PAPPY%27S+FOODS/data=!4m7!3m6!1s0xfdb951ccb6e670d:0xd680e011956fa12!8m2!3d6.6784069!4d-1.5693035!16s%2Fg%2F11tf3l9pk8!19sChIJDWduyxyV2w8REvpWGQEOaA0?authuser=0&hl=en&rclk=1",
@@ -1337,8 +1337,8 @@ const data = [
 
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/BAZAAR%27S+LOUNGE+AND+RESTAURANT/data=!4m7!3m6!1s0xfdb93007fa30b6f:0xc526314cb066286d!8m2!3d6.6594681!4d-1.5983803!16s%2Fg%2F11ldhjs7zb!19sChIJbwujfwCT2w8RbShmsEwxJsU?authuser=0&hl=en&rclk=1",
@@ -1355,8 +1355,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Session+Restaurant/data=!4m7!3m6!1s0xfdb956af526a0f5:0x3b009d01a4462aaf!8m2!3d6.6750202!4d-1.5539259!16s%2Fg%2F11h27x7zcp!19sChIJ9aAm9WqV2w8RrypGpAGdADs?authuser=0&hl=en&rclk=1",
@@ -1373,8 +1373,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Ama+Achiaa+Efiee+Fufuo/data=!4m7!3m6!1s0xfdb969f607dec7f:0xc503143b578efdd8!8m2!3d6.6827733!4d-1.6020515!16s%2Fg%2F11cs017rqr!19sChIJf-x9YJ-W2w8R2P2OVzsUA8U?authuser=0&hl=en&rclk=1",
@@ -1391,8 +1391,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Pico+Restaurant/data=!4m7!3m6!1s0xfdb9699eb34730d:0x9ce6f7384708d189!8m2!3d6.6868335!4d-1.6068983!16s%2Fg%2F11fz9wyjy1!19sChIJDXM065mW2w8RidEIRzj35pw?authuser=0&hl=en&rclk=1",
@@ -1409,8 +1409,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Let%27s+Eat+Good/data=!4m7!3m6!1s0xfdb956a10ec20cf:0x38b727822c68859!8m2!3d6.661509!4d-1.5632031!16s%2Fg%2F11h58ml3bg!19sChIJzyDsEGqV2w8RWYjGInhyiwM?authuser=0&hl=en&rclk=1",
@@ -1427,8 +1427,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/BigDaddy%27s+Restaurant/data=!4m7!3m6!1s0xfdb96ae5d4650fd:0x249f455c48b82c79!8m2!3d6.667784!4d-1.6065147!16s%2Fg%2F11gbk43z25!19sChIJ_VBGXa6W2w8ReSy4SFxFnyQ?authuser=0&hl=en&rclk=1",
@@ -1445,8 +1445,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/GADeF+Food+Palace/data=!4m7!3m6!1s0xfdb93b617b387e9:0x374d674658639fd9!8m2!3d6.660374!4d-1.5826069!16s%2Fg%2F11jmxbq2cy!19sChIJ6YezF7aT2w8R2Z9jWEZnTTc?authuser=0&hl=en&rclk=1",
@@ -1463,8 +1463,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Shrimp+place+1/data=!4m7!3m6!1s0xfdb95197f7ac3cd:0x40573dd6c98f3209!8m2!3d6.6869838!4d-1.5729253!16s%2Fg%2F11spdfww_x!19sChIJzcN6fxmV2w8RCTKPydY9V0A?authuser=0&hl=en&rclk=1",
@@ -1481,8 +1481,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Jest+bite+fast+food/data=!4m7!3m6!1s0xfdb94413b4da3fd:0x25c62303dd531515!8m2!3d6.6874206!4d-1.5771355!16s%2Fg%2F11c605w9zz!19sChIJ_aNNO0GU2w8RFRVT3QMjxiU?authuser=0&hl=en&rclk=1",
@@ -1499,8 +1499,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Best+in+town+Dishes/data=!4m7!3m6!1s0xfdb9463b9c34ddd:0x530d96d886064c70!8m2!3d6.6642719!4d-1.5590928!16s%2Fg%2F11b7q1dgsr!19sChIJ3U3DuWOU2w8RcEwGhtiWDVM?authuser=0&hl=en&rclk=1",
@@ -1517,8 +1517,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/1999+lounge/data=!4m7!3m6!1s0xfdb97a669236f61:0x82d955e6222ce075!8m2!3d6.6728298!4d-1.60687!16s%2Fg%2F11r2jq_p12!19sChIJYW8jaaaX2w8RdeAsIuZV2YI?authuser=0&hl=en&rclk=1",
@@ -1535,8 +1535,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Pice+pizza+and+Restaurant+Ayeduase+Branch/data=!4m7!3m6!1s0xfdb9539cc1ef849:0x3577db384bf044f3!8m2!3d6.6759887!4d-1.5612726!16s%2Fg%2F11nn0zfh18!19sChIJSfgezDmV2w8R80TwSzjbdzU?authuser=0&hl=en&rclk=1",
@@ -1553,8 +1553,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Tasty+Pinto+Ga+Kenkey/data=!4m7!3m6!1s0xfdb959fd15b21eb:0xb7ba887366d443a6!8m2!3d6.6857662!4d-1.5953631!16s%2Fg%2F11qmrsymmn!19sChIJ6yFb0Z-V2w8RpkPUZnOIurc?authuser=0&hl=en&rclk=1",
@@ -1571,8 +1571,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Decassa+Restaurant+%26Bar/data=!4m7!3m6!1s0xfdb97cd7b3e82fb:0x282517ab44334ae9!8m2!3d6.6782013!4d-1.6022948!16s%2Fg%2F11sh10vx14!19sChIJ-4I-e82X2w8R6UozRKsXJSg?authuser=0&hl=en&rclk=1",
@@ -1589,8 +1589,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Mardot+Restuarant+And+Catering+Services/data=!4m7!3m6!1s0xfdb94651c67ecc9:0x6d37f5ae5b29355!8m2!3d6.6738137!4d-1.5670406!16s%2Fg%2F11f2sgnl0v!19sChIJyexnHGWU2w8RVZOy5Vp_0wY?authuser=0&hl=en&rclk=1",
@@ -1607,8 +1607,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Pagoda+Restaurant+And+Bar/data=!4m7!3m6!1s0xfdb9597d92d50eb:0xad873b72ac70182c!8m2!3d6.6896869!4d-1.5526091!16s%2Fg%2F11gk8pfv69!19sChIJ61At2ZeV2w8RLBhwrHI7h60?authuser=0&hl=en&rclk=1",
@@ -1625,8 +1625,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Calabash+restaurant/data=!4m7!3m6!1s0xfdb9595c6d3a099:0x6b1feccf185b8dca!8m2!3d6.6758645!4d-1.5560321!16s%2Fg%2F11g4fcq8qm!19sChIJmaDTxpWV2w8Ryo1bGM_sH2s?authuser=0&hl=en&rclk=1",
@@ -1643,8 +1643,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Homiez+Foods,+Abele,+Pizzarro/data=!4m7!3m6!1s0xfdb956629eeb4f3:0x490cc2ff3edd385!8m2!3d6.6660169!4d-1.5578062!16s%2Fg%2F11t6355mlj!19sChIJ87TuKWaV2w8RhdPt8y_MkAQ?authuser=0&hl=en&rclk=1",
@@ -1661,8 +1661,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Nyame+Na+Aye/data=!4m7!3m6!1s0xfdb941e2413a481:0x263bc0504132c1be!8m2!3d6.6790029!4d-1.5980283!16s%2Fg%2F11g0fsljsh!19sChIJgaQTJB6U2w8RvsEyQVDAOyY?authuser=0&hl=en&rclk=1",
@@ -1679,8 +1679,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Bush+Canteen/data=!4m7!3m6!1s0xfdb946473b43687:0x1f85b5af2f6d1cce!8m2!3d6.6757753!4d-1.5648928!16s%2Fg%2F1v7pzv6m!19sChIJhza0c2SU2w8RzhxtL6-1hR8?authuser=0&hl=en&rclk=1",
@@ -1697,8 +1697,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Trubite+Restaurant/data=!4m7!3m6!1s0xfdb95e13ab07875:0xaac482fcb9efc4ed!8m2!3d6.6839997!4d-1.5825916!16s%2Fg%2F11y2npghll!19sChIJdXiwOuGV2w8R7cTvufyCxKo?authuser=0&hl=en&rclk=1",
@@ -1715,8 +1715,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Biegya+Foods/data=!4m7!3m6!1s0xfdb9496aaaaaaab:0xda19c86b62f99c38!8m2!3d6.6776667!4d-1.5631508!16s%2Fg%2F11f06lkhtz!19sChIJq6qqqpaU2w8ROJz5YmvIGdo?authuser=0&hl=en&rclk=1",
@@ -1733,8 +1733,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/1999/data=!4m7!3m6!1s0xfdb95c52b5e38fd:0x987e33a5cd4e4e41!8m2!3d6.6831668!4d-1.5785533!16s%2Fg%2F11h_wn_84f!19sChIJ_TheK8WV2w8RQU5OzaUzfpg?authuser=0&hl=en&rclk=1",
@@ -1751,8 +1751,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/The+Quee+Joint/data=!4m7!3m6!1s0xfdb958dd85c349b:0x7cdcedd1cf1f02c6!8m2!3d6.6869256!4d-1.5570784!16s%2Fg%2F11hf4mvt_6!19sChIJmzRc2I2V2w8RxgIfz9Ht3Hw?authuser=0&hl=en&rclk=1",
@@ -1769,8 +1769,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/CALIFORNIA+RESTAURANT/data=!4m7!3m6!1s0xfdb95212788842f:0xe32e71c1ebcf5ee2!8m2!3d6.6758089!4d-1.5603015!16s%2Fg%2F11j2lsq_vp!19sChIJL4SIJyGV2w8R4l7P68FxLuM?authuser=0&hl=en&rclk=1",
@@ -1787,8 +1787,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Sweet+Mummy%27s+Kitchen/data=!4m7!3m6!1s0xfdb959dd70ae91d:0xa159f33384742c66!8m2!3d6.6782478!4d-1.5541004!16s%2Fg%2F11h0jqwdw9!19sChIJHekK152V2w8RZix0hDPzWaE?authuser=0&hl=en&rclk=1",
@@ -1805,8 +1805,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Tasty+Treats+Restaurant/data=!4m7!3m6!1s0xfdb95851be8f491:0xf719887ba8658d11!8m2!3d6.688721!4d-1.5791309!16s%2Fg%2F11rq95b2p2!19sChIJkfToG4WV2w8REY1lqHuIGfc?authuser=0&hl=en&rclk=1",
@@ -1823,8 +1823,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Saint%E2%80%99s+Palace+Restaurant+GH/data=!4m7!3m6!1s0xfdb95ac5b48ddc9:0x975bbe79f2eaeff4!8m2!3d6.6762217!4d-1.5577516!16s%2Fg%2F11s63njzj7!19sChIJyd1IW6yV2w8R9O_q8nm-W5c?authuser=0&hl=en&rclk=1",
@@ -1841,8 +1841,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Superbakes+Caf%C3%A9/data=!4m7!3m6!1s0xfdb95d318cec5d7:0x5397e81b2d5db4f3!8m2!3d6.6868657!4d-1.5834357!16s%2Fg%2F11vds44tx2!19sChIJ18XOGNOV2w8R87RdLRvol1M?authuser=0&hl=en&rclk=1",
@@ -1859,8 +1859,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/KFC+Knust/data=!4m7!3m6!1s0xfdb9580688cc187:0xadb90f1470f69221!8m2!3d6.6840926!4d-1.5739234!16s%2Fg%2F11vcdg5321!19sChIJh8GMaICV2w8RIZL2cBQPua0?authuser=0&hl=en&rclk=1",
@@ -1877,8 +1877,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Mckeown+Restaurant/data=!4m7!3m6!1s0xfdb96a5eda84659:0xdfcec5083fd7cfc4!8m2!3d6.6727539!4d-1.6042881!16s%2Fg%2F11c71byrb_!19sChIJWUao7aWW2w8RxM_XPwjFzt8?authuser=0&hl=en&rclk=1",
@@ -1895,8 +1895,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Food+island/data=!4m7!3m6!1s0xfdb9725108dceef:0x5f08a389c692ec02!8m2!3d6.6693497!4d-1.6030115!16s%2Fg%2F11tj_dbvgt!19sChIJ786NECWX2w8RAuySxomjCF8?authuser=0&hl=en&rclk=1",
@@ -1913,8 +1913,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Pizzaman+Chickenmann/data=!4m7!3m6!1s0xfdb957663a1f339:0x73c731e09c75c41f!8m2!3d6.6755319!4d-1.5975361!16s%2Fg%2F11l5cfkwk0!19sChIJOfOhY3aV2w8RH8R1nOAxx3M?authuser=0&hl=en&rclk=1",
@@ -1931,8 +1931,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Ifoods+Restaurant/data=!4m7!3m6!1s0xfdb95187c3fced9:0xbbe0eb878a9ba91d!8m2!3d6.6715494!4d-1.5586116!16s%2Fg%2F11hkqz1yvl!19sChIJ2c4_fBiV2w8RHambiofr4Ls?authuser=0&hl=en&rclk=1",
@@ -1949,8 +1949,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Adehye%C9%9B+Restaurant/data=!4m7!3m6!1s0xfdb9570c06cb735:0x28af3fb50beca13e!8m2!3d6.6882166!4d-1.5698705!16s%2Fg%2F11j23zc541!19sChIJNbdswHCV2w8RPqHsC7U_ryg?authuser=0&hl=en&rclk=1",
@@ -1967,8 +1967,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/The+Kitchen/data=!4m7!3m6!1s0xfdb95c6de5ff457:0xf7aece9a65554f08!8m2!3d6.6777041!4d-1.5635992!16s%2Fg%2F11g4f1v4v_!19sChIJV_Rf3saV2w8RCE9VZZrOrvc?authuser=0&hl=en&rclk=1",
@@ -1985,8 +1985,8 @@ const data = [
 // // // },
 // // // {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/BEDIDI+FOODS/data=!4m7!3m6!1s0xfdb951c9bf0ddd7:0xc7074e4c2d74daab!8m2!3d6.66114!4d-1.5758992!16s%2Fg%2F11n_ygv890!19sChIJ193wmxyV2w8Rq9p0LUxOB8c?authuser=0&hl=en&rclk=1",
@@ -2003,8 +2003,8 @@ const data = [
 // // // },
 // // // {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Asew+Koko+Special/data=!4m7!3m6!1s0xfdb95d69a6c62d3:0x87f0a70a97dfadff!8m2!3d6.6862964!4d-1.5797505!16s%2Fg%2F11fn65wx2f!19sChIJ02JsmtaV2w8R_63flwqn8Ic?authuser=0&hl=en&rclk=1",
@@ -2021,8 +2021,8 @@ const data = [
 // // // },
 // // // {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Mimi%27s+kitchen/data=!4m7!3m6!1s0xfdb9387cdc13c31:0xfb2b969f7c946a89!8m2!3d6.6610087!4d-1.5959065!16s%2Fg%2F11pvh89pjs!19sChIJMTzBzYeT2w8RiWqUfJ-WK_s?authuser=0&hl=en&rclk=1",
@@ -2039,8 +2039,8 @@ const data = [
 // // // },
 // // // {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Mckeown+Restaurant+%26+Catering+Services/data=!4m7!3m6!1s0xfdb951198e3a88b:0x79a6c1075baeec44!8m2!3d6.6700283!4d-1.5878076!16s%2Fg%2F11nx67vbx1!19sChIJi6jjmBGV2w8RROyuWwfBpnk?authuser=0&hl=en&rclk=1",
@@ -2057,8 +2057,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Atonsu/data=!4m7!3m6!1s0xfdb97f06dab0245:0xd2dcefdfecd10318!8m2!3d6.6797834!4d-1.6016869!16s%2Fg%2F11nnl_6_6x!19sChIJRQKrbfCX2w8RGAPR7N_v3NI?authuser=0&hl=en&rclk=1",
@@ -2075,8 +2075,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/PORK+PALACE+CUISINE/data=!4m7!3m6!1s0xfdb95bcdff5c037:0xd223ef5ccb4b51f5!8m2!3d6.6755949!4d-1.5634133!16s%2Fg%2F11sq1jynvv!19sChIJN8D137yV2w8R9VFLy1zvI9I?authuser=0&hl=en&rclk=1",
@@ -2093,8 +2093,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Maa+%27U%27+Catering+Services/data=!4m7!3m6!1s0xfdecf427ab205f1:0xb952fdc9f7471165!8m2!3d6.6834749!4d-1.5809411!16s%2Fg%2F11h18b6gdz!19sChIJ8QWyekLP3g8RZRFH98n9Urk?authuser=0&hl=en&rclk=1",
@@ -2111,8 +2111,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Ebs+Eateries+%28Pizza+%26+Restaurant%29/data=!4m7!3m6!1s0xfdb956ef554a169:0xdd037d9ffda887b7!8m2!3d6.6687957!4d-1.5559771!16s%2Fg%2F11lt0__djt!19sChIJaaFU9W6V2w8Rt4eo_Z99A90?authuser=0&hl=en&rclk=1",
@@ -2129,8 +2129,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Vasty%27s+Catering+Services/data=!4m7!3m6!1s0xfdb95fbf0564541:0x8bb75e253bd6b4cf!8m2!3d6.6742754!4d-1.5552075!16s%2Fg%2F11q4cbg87p!19sChIJQUVW8PuV2w8Rz7TWOyVet4s?authuser=0&hl=en&rclk=1",
@@ -2147,8 +2147,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Obaa+Paaa+Restaurant/data=!4m7!3m6!1s0xfdb943fcf99e6a7:0x86d39a92dcbab1e4!8m2!3d6.6834535!4d-1.5808829!16s%2Fg%2F1hf1rpd_k!19sChIJp-aZzz-U2w8R5LG63JKa04Y?authuser=0&hl=en&rclk=1",
@@ -2165,8 +2165,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/PAPAYE+FAST+FOOD%27S/data=!4m7!3m6!1s0xfdb95004a03a533:0x90e89d3c964aeae6!8m2!3d6.6617776!4d-1.5922776!16s%2Fg%2F11vw_31w5w!19sChIJM6UDSgCV2w8R5upKljyd6JA?authuser=0&hl=en&rclk=1",
@@ -2183,8 +2183,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Kage+All+Ent./data=!4m7!3m6!1s0xfdb95bd3ec4e9a7:0xdcd0e1dc76390b5f!8m2!3d6.6668764!4d-1.5473479!16s%2Fg%2F11pppxmn1w!19sChIJp-nEPr2V2w8RXws5dtzh0Nw?authuser=0&hl=en&rclk=1",
@@ -2201,8 +2201,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Citi+Cuizine+Restaurant+%26+Lounge/data=!4m7!3m6!1s0xfdb94894d4e2951:0x482db5663c6ad99a!8m2!3d6.6767028!4d-1.5547932!16s%2Fg%2F11g8gxbdxf!19sChIJUSlOTYmU2w8RmtlqPGa1LUg?authuser=0&hl=en&rclk=1",
@@ -2219,8 +2219,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Cheesysteak+restaurant/data=!4m7!3m6!1s0xfdb95101023b857:0x1000e4ffae028df5!8m2!3d6.6847591!4d-1.5683713!16s%2Fg%2F11swfq718g!19sChIJV7gjEBCV2w8R9Y0Crv_kABA?authuser=0&hl=en&rclk=1",
@@ -2237,8 +2237,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Mid+Doy+Restaurant/data=!4m7!3m6!1s0xfdb9502ae418a97:0xc2d9f7b09adbb997!8m2!3d6.669656!4d-1.5408861!16s%2Fg%2F11hyb817y5!19sChIJl4pBrgKV2w8Rl7nbmrD32cI?authuser=0&hl=en&rclk=1",
@@ -2255,8 +2255,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Leo+Restaurant/data=!4m7!3m6!1s0xfdb970069b347f1:0x54e88d3752b2936!8m2!3d6.6714131!4d-1.6054908!16s%2Fg%2F11vz6mjcg1!19sChIJ8UezaQCX2w8RNikrddOITgU?authuser=0&hl=en&rclk=1",
@@ -2273,8 +2273,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Splendor+Pizza/data=!4m7!3m6!1s0xfdb9489816e0509:0x8b8c6872ffcb5532!8m2!3d6.6771502!4d-1.5574431!16s%2Fg%2F1hdzmw3zq!19sChIJCQVugYmU2w8RMlXL_3JojIs?authuser=0&hl=en&rclk=1",
@@ -2291,8 +2291,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Joint+B/data=!4m7!3m6!1s0xfdb95530d283c17:0x47d271080d2235d4!8m2!3d6.6851194!4d-1.5778393!16s%2Fg%2F11h6qxjr27!19sChIJFzwoDVOV2w8R1DUiDQhx0kc?authuser=0&hl=en&rclk=1",
@@ -2309,8 +2309,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Empae+kitchen/data=!4m7!3m6!1s0xfdb95f800c54ba7:0xd9a58757c43f3653!8m2!3d6.6729317!4d-1.5565118!16s%2Fg%2F11kqvqcmg8!19sChIJp0vFAPiV2w8RUzY_xFeHpdk?authuser=0&hl=en&rclk=1",
@@ -2327,8 +2327,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Crunchy+Bites/data=!4m7!3m6!1s0xfdb95e87509472d:0xf97b79480c5b87f!8m2!3d6.6759516!4d-1.5554162!16s%2Fg%2F11t7c1l7b6!19sChIJLUcJdeiV2w8Rf7jFgJS3lw8?authuser=0&hl=en&rclk=1",
@@ -2345,8 +2345,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Patigan+Restaurant,kotei/data=!4m7!3m6!1s0xfdb9481b40e7e9b:0xcf05dec278b3c60c!8m2!3d6.6630117!4d-1.5569417!16s%2Fg%2F11g9q257kv!19sChIJm34OtIGU2w8RDMazeMLeBc8?authuser=0&hl=en&rclk=1",
@@ -2363,8 +2363,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Cravings+Kitchen/data=!4m7!3m6!1s0xfdb955e69165db5:0x30bee8c3b2c65119!8m2!3d6.666422!4d-1.5854396!16s%2Fg%2F11kk6nqgvb!19sChIJtV0WaV6V2w8RGVHGssPovjA?authuser=0&hl=en&rclk=1",
@@ -2381,8 +2381,8 @@ const data = [
 // // //   },
 // // //   {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//     
 // // "google_map_url": "https://www.google.com/maps/place/Sweet+Roses/data=!4m7!3m6!1s0xfdb9136becc57b9:0x950f4731751be62c!8m2!3d6.6597237!4d-1.6006274!16s%2Fg%2F11vc0x5j3g!19sChIJuVfMvjaR2w8RLOYbdTFHD5U?authuser=0&hl=en&rclk=1",
@@ -2418,8 +2418,8 @@ const data = [
 // // // const data = [
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url" : "https://www.google.com/maps/place/Super-Mc+Restaurant/data=!4m7!3m6!1s0xfdb951f621c441d:0x3456322b136bd981!8m2!3d6.6784484!4d-1.5874826!16s%2Fg%2F11s95myt93!19sChIJHUQcYh-V2w8RgdlrEysyVjQ?authuser=0&hl=en&rclk=1",
@@ -2436,8 +2436,8 @@ const data = [
 // // //     },
 // // //     {
 // "products": [
-//       { id: '',name: 'Meal 1', price: 'GHS10', image: '/pizza-with-pineapple-and-thin-crust.webp' },
-//       { id: '',name: 'Meal 2', price: 'GHS12', image: '/nasi-goreng-fried-rice.webp' },
+//       { id: '',name: 'Meal 1', price: 10, image: '/pizza-with-pineapple-and-thin-crust.webp' },
+//       { id: '',name: 'Meal 2', price: 12, image: '/nasi-goreng-fried-rice.webp' },
 //     ],// 
 // "id": 1,//         
 // // "google_map_url": "https://www.google.com/maps/place/Super-Mc+Restaurant/data=!4m7!3m6!1s0xfdb951f621c441d:0x3456322b136bd981!8m2!3d6.6784484!4d-1.5874826!16s%2Fg%2F11s95myt93!19sChIJHUQcYh-V2w8RgdlrEysyVjQ?authuser=0&hl=en&rclk=1",

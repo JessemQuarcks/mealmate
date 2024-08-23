@@ -45,6 +45,14 @@ const MetailDetailsComponent: React.FC<MealPageProps> = ({ params }) => {
   }
 
   const { id, name, category, ratings, google_map_src, products } = meal;
+  const prod = products.map(({id, name, price, image}) => {
+     return {
+      id,
+      name,
+      price: price.toString(),
+      image
+     }
+  })
 
   const generatedRating = (rating: number) => {
     const stars = Array(5)
@@ -66,9 +74,9 @@ const MetailDetailsComponent: React.FC<MealPageProps> = ({ params }) => {
           <Image
             src={google_map_src}
             alt={name}
-            layout="fill"
-            objectFit="cover"
             className="rounded-lg"
+            fill
+            sizes='100'
           />
         </div>
         <h2 className="text-black text-2xl md:text-4xl font-bold mt-4">{name}</h2>
@@ -77,7 +85,7 @@ const MetailDetailsComponent: React.FC<MealPageProps> = ({ params }) => {
         <div className="mt-4 w-full">
           <h3 className="text-xl font-semibold mb-2">Products</h3>
           <div className="grid grid-cols-1 place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {products.map((product) => (
+            {prod.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>

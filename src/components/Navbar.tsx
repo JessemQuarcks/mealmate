@@ -14,8 +14,8 @@ const Navbar = () => {
                 <Link className="navbar_link relative" href='/discover'>
                 DISCOVER
                 </Link>
-                <Link className="navbar_link relative" href='#'>
-                NEARBY
+                <Link className="navbar_link relative" href='/Orders'>
+                ORDERS
                 </Link>
                 {/* <Link className="navbar_link relative" href='#'>
                 BREAKFAST
@@ -26,9 +26,9 @@ const Navbar = () => {
                 <Link className="navbar_link relative" href='#'>
                 HISTORY
                 </Link> */}
-                <Link className="navbar_link relative" href='#'>
+                {/* <Link className="navbar_link relative" href='#'>
                 HELP
-                </Link>
+                </Link> */}
             </div>
         </div>
     </div>

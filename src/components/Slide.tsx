@@ -15,9 +15,12 @@ const Slide: React.FC<propsType> = ({ img, title, mainTitle, price }) => {
         className="w-full h-full object-cover object-center rounded-xl"
         src={img}
         alt="banner"
-        width={1000}
-        height={1000}
-        objectFit="cover"
+        // width={1000}
+        // height={1000}
+        // objectFit="cover"
+        fill
+        priority
+        sizes='1000'
       />
       <div className="absolute inset-0 flex flex-col justify-center items-start p-3 sm:p-6 bg-gradient-to-r from-black/50 via-black/30 to-transparent">
         <h3 className="text-accent text-[20px] lg:text-[24px] mb-1">{title}</h3>
