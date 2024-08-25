@@ -1,12 +1,15 @@
 "use client"
+import { useAppSelector } from '@/lib/hook'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { AiOutlineHome } from 'react-icons/ai'
 import { FiHeart } from 'react-icons/fi'
 import { HiOutlineShoppingBag } from 'react-icons/hi'
 import { IoMenuOutline } from 'react-icons/io5'
+import dynamic from 'next/dynamic'
 
-const MobNavbar = () => {
+const MobNavbarComponent = () => {
+  const cartItems=useAppSelector(state=>state.cart.quantity);
     const [isSidebarOpen, setSidebarOpen] = useState(false);
   
     const toggleSidebar = () => {
@@ -16,27 +19,21 @@ const MobNavbar = () => {
     return (
       <>
         <div className="lg:hidden fixed bottom-0 w-full bg-white left-[50%] -translate-x-[50%]
-        max-w-[500px] mob_navbar px-8">
+        max-w-[500px] mob_navbar px-8 z-50">
           <div className="flex justify-between text-[28px] py-2">
             <IoMenuOutline onClick={toggleSidebar} />
             <div className="relative">
+            <Link href="/Checkout">
               <HiOutlineShoppingBag />
-              <div className="bg-red-600 rounded-full absolute top-0 right-0 w-[18px] h-[18px] text-[12px]
-              text-white grid place-items-center translate-x-1 -translate-y-1">
-                0
+              <div className="bg-red-600 rounded-full absolute top-0 right-0 w-[18px] h-[18px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1">
+                {cartItems}
               </div>
-            </div>
-            <div><AiOutlineHome />
-            <Link className="navbar_link relative py-2" href='/home'>
             </Link>
-            </div>
-            
-            <div className="relative">
-              <FiHeart />
-              <div className="bg-red-600 rounded-full absolute top-0 right-0 w-[18px] 
-              h-[18px] text-[12px] text-white grid place-items-center translate-x-1 -translate-y-1">
-                0
-              </div>
+          </div>
+            <div>
+            <Link className="navbar_link relative py-2" href='/home'>
+            <AiOutlineHome />
+            </Link>
             </div>
           </div>
         </div>
@@ -63,4 +60,5 @@ const MobNavbar = () => {
     );
   }
   
+  const MobNavbar=dynamic(()=>Promise.resolve(MobNavbarComponent),{ssr:false});
   export default MobNavbar

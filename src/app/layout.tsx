@@ -43,9 +43,9 @@ export default function RootLayout({
       <body className={inter.className}>
       
             <HeaderTop />
+        <MobNavbar/>
         <HeaderMain/>
         <Navbar />
-        <MobNavbar/>
         {children}
           
         
