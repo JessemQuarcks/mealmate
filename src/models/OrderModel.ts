@@ -6,6 +6,7 @@ interface IProduct {
   name: string;
   image: string;
   price: number;
+  quantity: number;
 }
 
 interface IOrder extends Document {
@@ -32,6 +33,10 @@ const OrderProductSchema = new mongoose.Schema<IProduct>({
     type: Number,
     required: true,
   },
+  quantity: {
+    type: Number,
+    required: true
+  }
 });
 
 const OrderSchema = new mongoose.Schema<IOrder>(

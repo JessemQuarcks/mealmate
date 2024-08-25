@@ -7,6 +7,7 @@ import { calculateTotal, removeFromCart } from '@/lib/slice';
 import dynamic from 'next/dynamic';
 import PaystackPayment from '../../components/PayStack'; // Ensure the import path is correct
 import { FiTrash2 } from 'react-icons/fi'; // Import the bin icon
+import { saveAs } from 'file-saver';
 
 interface CartItem {
   id: string;
@@ -44,6 +45,9 @@ const CheckOutComponent: React.FC = () => {
     dispatch(removeFromCart(id));
   };
 
+  const saveState = () =>{
+     
+  }
   return (
     <div className="lg:flex max-w-screen-2xl mx-auto">
       <div className="flex-grow m-5 shadow-sm">
@@ -80,9 +84,10 @@ const CheckOutComponent: React.FC = () => {
               onSuccess={handleSuccess}
               onClose={handleClose}
             />
-            {/* <button className="bg-blue-500 text-white py-2 px-4 rounded">
+            <button onClick={saveState} className="bg-blue-500 text-white py-2 px-4 rounded">
               Pay Now
-            </button> */}
+              
+            </button>
           </div>
         )}
         <div className="flex flex-col p-5 space-y-10 bg-white">

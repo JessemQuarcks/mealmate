@@ -54,8 +54,8 @@ const ProductCardAdditon: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div
-      className="flex flex-col md:flex-row items-center bg-white p-4 rounded-lg shadow-md w-full max-w-md"
-      style={{ height: '150px' }}
+      className="flex flex-col md:flex-row items-center  bg-white p-4 rounded-lg shadow-md w-full max-w-md mb-60"
+      style={{ height: '180px' }}
     >
       <div className="w-full md:w-1/2 h-full">
         <Image 
@@ -88,6 +88,7 @@ const ProductCardAdditon: React.FC<ProductCardProps> = ({ product }) => {
         </button>
       </div>
     </div>
+
   );
 };
 
