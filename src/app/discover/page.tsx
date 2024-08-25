@@ -15,7 +15,7 @@ interface FinalDestinationContextProp {
 }
 
 interface CurrentUserContextProp {
-  currentUserPosition: | google.maps.LatLng | google.maps.LatLngLiteral | google.maps.Place | string | undefined;
+  currentUserPosition: | google.maps.LatLng | google.maps.LatLngLiteral | google.maps.Place | any | undefined;
   setCurrentUserPosition : React.Dispatch<React.SetStateAction<| google.maps.LatLng | google.maps.LatLngLiteral | google.maps.Place | string | undefined>>;
 }
 
@@ -42,7 +42,7 @@ const Discover = () => {
 
   return (
     <div className="w-full h-screen">
-    <APIProvider key="AIzaSyAebH2YjT8g-C572_d7H5wc9aHLgJg1iv8">
+    <APIProvider apiKey="AIzaSyAebH2YjT8g-C572_d7H5wc9aHLgJg1iv8">
         <Map mapId="6ad54b3b63d51297" {...cameraProp} onCameraChanged={handleCameraChange}>
           <CurrentUserContext.Provider value={{currentUserPosition, setCurrentUserPosition}}>
           <FinalDestinationContext.Provider value={{finalDestinatioPosition, setFinalDestinationPosition}}>
