@@ -24,8 +24,8 @@ const HeaderMainComponent = () => {
   };
 
   return (
-    <div className="z-50 border-b border-gray-200 py-6">
-      <div className="container sm:flex justify-between items-center">
+    <div className="z-50 border-b border-gray-200 py-6 sm:text-center">
+      <div className="container sm:flex justify-between items-center sm:text-center">
         <Link href="/home" className="text-4xl text-center pb-4 sm:pb-0 text-blackish pl-2">
           <b>Meal</b>mate
         </Link>

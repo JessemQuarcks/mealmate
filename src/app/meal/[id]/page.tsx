@@ -79,11 +79,11 @@ const MetailDetailsComponent: React.FC<MealPageProps> = ({ params }) => {
             sizes='100'
           />
         </div>
-        <h2 className="text-black text-2xl md:text-4xl font-bold mt-4">{name}</h2>
+        <h2 className="text-black text-2xl text-center md:text-4xl font-bold mt-4">{name}</h2>
         <p className="text-gray-700 text-base md:text-lg mt-2">{category}</p>
         <div>{generatedRating(+ratings)}</div>
         <div className="mt-4 w-full container mx-auto p-4">
-          <h3 className="text-xl font-semibold mb-2">Products</h3>
+          <h3 className="text-xl text-center font-semibold mb-2"><b>Products</b></h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {prod.map((product) => (
               <ProductCard key={product.id} product={product} />
