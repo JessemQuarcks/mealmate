@@ -14,8 +14,8 @@ const Navbar = () => {
                 <Link className="navbar_link relative" href='/discover'>
                 DISCOVER
                 </Link>
-                <Link className="navbar_link relative" href='/Orders'>
-                ORDERS
+                <Link className="navbar_link relative" href='/history'>
+                HISTORY
                 </Link>
                 {/* <Link className="navbar_link relative" href='#'>
                 BREAKFAST

@@ -20,7 +20,8 @@ module.exports ={
             protocol: 'https',
             hostname: "map.utoronto.ca",
             pathname: '**',
-          }
+          },
+          
         ],
       },
 }

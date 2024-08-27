@@ -1,8 +1,9 @@
 import mongoose, { Connection } from "mongoose";
 
-let conn: Connection | null = null;
+let conn: typeof mongoose | null = null;
 
-const mongodbConnect = async (): Promise<Connection | null> => {
+
+const mongodbConnect = async (): Promise<typeof mongoose | null> => {
   if (conn) {
     return conn;
   }
@@ -14,7 +15,7 @@ const mongodbConnect = async (): Promise<Connection | null> => {
       throw new Error("MONGO_DB_URL does not exist in environment variable");
     }
 
-    conn = await mongoose.createConnection(mongoUrl).asPromise();
+    conn = await mongoose.connect(mongoUrl);
     console.log("MongoDB connected successfully");
     return conn;
   } catch (error) {

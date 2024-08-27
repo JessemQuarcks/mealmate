@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Product } from '@/Product/types'; // Update with your actual type path
 import formattedData from '@/components/data'; // Import your data.ts
+import { useAppSelector } from '@/lib/hook';
 
 interface Transaction {
   productId: string;
@@ -16,9 +17,28 @@ interface OrderHistoryItem {
   productImage: string;
 }
 
+interface boughtItem {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  image: string;
+}
+
+interface RootState {
+  cart: {
+    boughtItems: boughtItem[];
+  };
+}
+
 const OrderPage: React.FC = () => {
   const [orderHistory, setOrderHistory] = useState<OrderHistoryItem[]>([]);
+ 
   const [loading, setLoading] = useState<boolean>(true);
+
+  // Move the useAppSelector hook inside the function component
+  const Items = useAppSelector((state: RootState) => state.cart.boughtItems);
+  console.log(Items[0])
 
   useEffect(() => {
     // Fetch transaction history from your API or database
@@ -85,6 +105,18 @@ const OrderPage: React.FC = () => {
         </ul>
       ) : (
         <p>No orders found.</p>
+      )}
+
+      {/* Render the Items from useAppSelector */}
+      {Items && (
+        <div>
+          {Items.map((item) => (
+            <div key={item.id}>
+              <p>{item.name}</p>
+              <p>{item.quantity}</p>
+            </div>
+          ))}
+        </div>
       )}
     </div>
   );

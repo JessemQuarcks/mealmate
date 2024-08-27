@@ -1,40 +1,58 @@
 // pages/checkout.tsx or components/CheckOutComponent.tsx
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '@/lib/hook';
-import { calculateTotal, removeFromCart } from '@/lib/slice';
+import { calculateTotal, removeFromCart, addToBought, clearCart } from '@/lib/slice';
 import dynamic from 'next/dynamic';
 import PaystackPayment from '../../components/PayStack'; // Ensure the import path is correct
 import { FiTrash2 } from 'react-icons/fi'; // Import the bin icon
 import { saveAs } from 'file-saver';
+import Order from '@/models/order';
+import { useSelector } from 'react-redux';
+
+
 
 interface CartItem {
   id: string;
   name: string;
   price: number;
   quantity: number;
+  image: string;
 }
 
 interface RootState {
   cart: {
     cartItems: CartItem[];
     totalCost: number;
+    boughtItems: CartItem[];
   };
 }
 
+
+
 const CheckOutComponent: React.FC = () => {
   const cartItems = useAppSelector((state: RootState) => state.cart.cartItems);
+  const boughtProducts = useAppSelector((state: RootState) => state.cart.boughtItems)
   const totalCartCost = useAppSelector((state: RootState) => state.cart.totalCost) || 0;
   const dispatch = useAppDispatch();
 
+  console.log(boughtProducts)
+  console.log(cartItems)
+  
+  
   useEffect(() => {
     dispatch(calculateTotal());
   }, [cartItems, dispatch]);
 
-  const handleSuccess = (reference: string) => {
+ 
+  const handleSuccess = async (reference: string) => {
     console.log('Payment successful, reference:', reference);
-    // Handle post-payment actions (e.g., clear the cart, show a success message, etc.)
+
+    //push cartItems to history
+    dispatch(addToBought(cartItems))
+    
+
   };
 
   const handleClose = () => {
@@ -45,7 +63,23 @@ const CheckOutComponent: React.FC = () => {
     dispatch(removeFromCart(id));
   };
 
-  const saveState = () =>{
+  const saveState = async () =>{
+
+    try { 
+      console.log("cartItems: ",cartItems)
+      const res = await fetch("/api/orders", { method: "POST",headers: {"Content-Type": "application/json"}, body: JSON.stringify({products: cartItems})});
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+      const data = await res.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+    // return res.json();
+    //  const order = await Order.create({
+    //   products: cartItems,
+    //  });
      
   }
   return (
@@ -83,10 +117,11 @@ const CheckOutComponent: React.FC = () => {
               reference={`ref-${Date.now()}`}
               onSuccess={handleSuccess}
               onClose={handleClose}
+
             />
             <button onClick={saveState} className="bg-blue-500 text-white py-2 px-4 rounded">
               Pay Now
-              
+    
             </button>
           </div>
         )}
