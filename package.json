@@ -6,15 +6,18 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.6",
     "@types/google.maps": "^3.55.12",
     "@vis.gl/react-google-maps": "^1.1.0",
     "axios": "^1.7.2",
+    "bcryptjs": "^2.4.3",
     "file-saver": "^2.0.5",
-    "firebase": "^10.12.4",
     "mongoose": "^8.5.1",
     "next": "14.2.4",
     "next-auth": "^4.24.7",
@@ -24,16 +27,21 @@
     "react-paystack": "^5.0.0",
     "react-redux": "^9.1.2",
     "react-slick": "^0.30.2",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/file-saver": "^2.0.7",
+    "@types/bcryptjs": "^2.4.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-slick": "^0.23.13",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "14.2.4",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^2.1.9"
   }
 }
