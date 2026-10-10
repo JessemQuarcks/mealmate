@@ -1,23 +1,11 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Product } from '@/Product/types'; // Update with your actual type path
-import formattedData from '@/components/data'; // Import your data.ts
-import { useAppSelector } from '@/lib/hook';
+"use client";
+import React from "react";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { useAppSelector } from "@/lib/hook";
+import { cartTotal } from "@/lib/money";
 
-interface Transaction {
-  productId: string;
-  // Include any other transaction details you need
-}
-
-interface OrderHistoryItem {
-  restaurantName: string;
-  productName: string;
-  productPrice: number;
-  productImage: string;
-}
-
-interface boughtItem {
+interface BoughtItem {
   id: string;
   name: string;
   price: number;
@@ -27,99 +15,50 @@ interface boughtItem {
 
 interface RootState {
   cart: {
-    boughtItems: boughtItem[];
+    boughtItems: BoughtItem[];
   };
 }
 
-const OrderPage: React.FC = () => {
-  const [orderHistory, setOrderHistory] = useState<OrderHistoryItem[]>([]);
- 
-  const [loading, setLoading] = useState<boolean>(true);
-
-  // Move the useAppSelector hook inside the function component
-  const Items = useAppSelector((state: RootState) => state.cart.boughtItems);
-  console.log(Items[0])
-
-  useEffect(() => {
-    // Fetch transaction history from your API or database
-    const fetchOrderHistory = async () => {
-      try {
-        // Example API endpoint; replace with your actual endpoint
-        const response = await axios.get('/api/products');
-        const transactions: Transaction[] = response.data;
-
-        // Match transactions with products and restaurants
-        const matchedOrderHistory: OrderHistoryItem[] = transactions.flatMap((transaction) => {
-          // Find the restaurant that sells the product
-          const restaurant = formattedData.find(restaurant =>
-            restaurant.products.some(product => product.id === transaction.productId)
-          );
-
-          if (restaurant) {
-            // Find the specific product
-            const product = restaurant.products.find(product => product.id === transaction.productId);
-
-            if (product) {
-              return {
-                restaurantName: restaurant.name,
-                productName: product.name,
-                productPrice: product.price,
-                productImage: product.image,
-              };
-            }
-          }
-
-          return [];
-        });
-
-        setOrderHistory(matchedOrderHistory);
-      } catch (error) {
-        console.error('Failed to fetch order history:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchOrderHistory();
-  }, []);
-
-  if (loading) return <p>Loading...</p>;
+// Order history currently comes from the locally persisted `boughtItems`.
+// TODO(P4): fetch per-user orders from /api/orders once orders are bound to a
+// signed-in user, so history follows the account across devices.
+const OrderHistoryComponent: React.FC = () => {
+  const items = useAppSelector((state: RootState) => state.cart.boughtItems) ?? [];
 
   return (
-    <div className="p-5">
+    <div className="p-5 max-w-screen-md mx-auto">
       <h1 className="text-2xl font-bold mb-4">Order History</h1>
-      {orderHistory.length > 0 ? (
-        <ul>
-          {orderHistory.map((item, index) => (
-            <li key={index} className="mb-4 p-4 border rounded-lg">
-              <h2 className="text-xl font-semibold">{item.restaurantName}</h2>
-              <div className="flex items-center mt-2">
-                <img src={item.productImage} alt={item.productName} className="w-24 h-24 object-cover mr-4" />
-                <div>
-                  <p className="text-lg">{item.productName}</p>
-                  <p className="text-md text-gray-600">Price: GHS {item.productPrice}</p>
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No orders found.</p>
-      )}
 
-      {/* Render the Items from useAppSelector */}
-      {Items && (
-        <div>
-          {Items.map((item) => (
-            <div key={item.id}>
-              <p>{item.name}</p>
-              <p>{item.quantity}</p>
-            </div>
-          ))}
-        </div>
+      {items.length > 0 ? (
+        <>
+          <ul className="space-y-4">
+            {items.map((item) => (
+              <li key={item.id} className="p-4 border rounded-lg flex items-center gap-4">
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  width={96}
+                  height={96}
+                  className="w-24 h-24 object-cover rounded-md"
+                />
+                <div>
+                  <p className="text-lg font-semibold">{item.name}</p>
+                  <p className="text-md text-gray-600">Price: GHS {item.price}</p>
+                  <p className="text-sm text-gray-500">Quantity: {item.quantity}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-6 text-right text-lg">
+            Total spent: <b>GHS {cartTotal(items)}</b>
+          </p>
+        </>
+      ) : (
+        <p>No orders found yet.</p>
       )}
     </div>
   );
 };
 
+const OrderPage = dynamic(() => Promise.resolve(OrderHistoryComponent), { ssr: false });
 export default OrderPage;
