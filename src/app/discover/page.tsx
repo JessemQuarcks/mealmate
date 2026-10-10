@@ -2,11 +2,7 @@
 import React, { useMemo, useState, useEffect, createContext, useContext } from 'react'
 import { AdvancedMarker, APIProvider, Map, MapCameraChangedEvent, MapCameraProps, useMap, useMapsLibrary } from '@vis.gl/react-google-maps'
 import formattedData from '@/components/data'
-import { saveAs } from 'file-saver'
-import { IoIosRestaurant } from 'react-icons/io'
 import Image from 'next/image'
-import { error } from 'console'
-import MobNavbar from '@/components/MobNavbar'
 
 
 interface FinalDestinationContextProp {
@@ -42,7 +38,7 @@ const Discover = () => {
 
   return (
     <div className="w-full h-screen">
-    <APIProvider apiKey="AIzaSyAebH2YjT8g-C572_d7H5wc9aHLgJg1iv8">
+    <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}>
         <Map mapId="6ad54b3b63d51297" {...cameraProp} onCameraChanged={handleCameraChange}>
           <CurrentUserContext.Provider value={{currentUserPosition, setCurrentUserPosition}}>
           <FinalDestinationContext.Provider value={{finalDestinatioPosition, setFinalDestinationPosition}}>
