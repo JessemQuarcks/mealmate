@@ -1,17 +1,12 @@
-// pages/checkout.tsx or components/CheckOutComponent.tsx
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useAppSelector, useAppDispatch } from '@/lib/hook';
 import { calculateTotal, removeFromCart, addToBought, clearCart } from '@/lib/slice';
 import dynamic from 'next/dynamic';
-import PaystackPayment from '../../components/PayStack'; // Ensure the import path is correct
-import { FiTrash2 } from 'react-icons/fi'; // Import the bin icon
-import { saveAs } from 'file-saver';
-import Order from '@/models/order';
-import { useSelector } from 'react-redux';
-
-
+import PaystackPayment from '../../components/PayStack';
+import { FiTrash2 } from 'react-icons/fi';
+import { logger } from '@/lib/http';
 
 interface CartItem {
   id: string;
@@ -29,59 +24,52 @@ interface RootState {
   };
 }
 
-
-
 const CheckOutComponent: React.FC = () => {
   const cartItems = useAppSelector((state: RootState) => state.cart.cartItems);
-  const boughtProducts = useAppSelector((state: RootState) => state.cart.boughtItems)
   const totalCartCost = useAppSelector((state: RootState) => state.cart.totalCost) || 0;
   const dispatch = useAppDispatch();
 
-  console.log(boughtProducts)
-  console.log(cartItems)
-  
-  
   useEffect(() => {
     dispatch(calculateTotal());
   }, [cartItems, dispatch]);
 
- 
-  const handleSuccess = async (reference: string) => {
-    console.log('Payment successful, reference:', reference);
+  // Persist the order only after a successful payment, with the full payload the
+  // orders API now validates (products + total_amount).
+  // TODO(P4): verify `response.reference` server-side before trusting success.
+  const persistOrder = async (items: CartItem[], total: number) => {
+    try {
+      const res = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ products: items, total_amount: total }),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => null);
+        throw new Error(body?.errors?.join(', ') || 'Failed to save order');
+      }
+      return (await res.json()).data;
+    } catch (error) {
+      logger.error('Could not persist order', error);
+      return null;
+    }
+  };
 
-    //push cartItems to history
-    dispatch(addToBought(cartItems))
-    
-
+  const handleSuccess = async (response: any) => {
+    const itemsSnapshot = [...cartItems];
+    const totalSnapshot = totalCartCost;
+    await persistOrder(itemsSnapshot, totalSnapshot);
+    dispatch(addToBought(itemsSnapshot));
+    dispatch(clearCart());
   };
 
   const handleClose = () => {
-    console.log('Payment closed');
+    logger.info('Payment dialog closed by user');
   };
 
   const handleRemoveFromCart = (id: string) => {
     dispatch(removeFromCart(id));
   };
 
-  const saveState = async () =>{
-
-    try { 
-      console.log("cartItems: ",cartItems)
-      const res = await fetch("/api/orders", { method: "POST",headers: {"Content-Type": "application/json"}, body: JSON.stringify({products: cartItems})});
-      if (!res.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      const data = await res.json();
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-    // return res.json();
-    //  const order = await Order.create({
-    //   products: cartItems,
-    //  });
-     
-  }
   return (
     <div className="lg:flex max-w-screen-2xl mx-auto">
       <div className="flex-grow m-5 shadow-sm">
@@ -89,16 +77,24 @@ const CheckOutComponent: React.FC = () => {
           {cartItems && cartItems.length > 0 ? (
             <div className="place-items-center justify-items-center">
               {cartItems.map((item) => (
-                <div key={item.id} className="h-200 w-200 place-content-center place-items-center flex gap-x-10 py-3">
+                <div
+                  key={item.id}
+                  className="h-200 w-200 place-content-center place-items-center flex gap-x-10 py-3"
+                >
                   <div className="flex flex-row items-center ml-1 gap-x-10">
-                    <div className="text-2xl font-extrabold ">{item.name}</div>
+                    <div className="text-2xl font-extrabold">{item.name}</div>
                     <div className="flex-col">
-                    <div className='text-lg'>Price: <b>GHS {item.price}</b> </div>
-                    <div>Quantity: {item.quantity}</div>
+                      <div className="text-lg">
+                        Price: <b>GHS {item.price}</b>
+                      </div>
+                      <div>Quantity: {item.quantity}</div>
                     </div>
                   </div>
                   <div className="flex items-center">
-                    <button onClick={() => handleRemoveFromCart(item.id)}>
+                    <button
+                      aria-label={`Remove ${item.name} from cart`}
+                      onClick={() => handleRemoveFromCart(item.id)}
+                    >
                       <FiTrash2 className="text-red-600" size={24} />
                     </button>
                   </div>
@@ -109,22 +105,22 @@ const CheckOutComponent: React.FC = () => {
             <p className="text-center">Your cart is empty.</p>
           )}
         </div>
+
         {cartItems && cartItems.length > 0 && (
-          <div className="flex flex-col items-center p-5 space-y-10 bg-white">
+          <div className="flex flex-col items-center p-5 space-y-6 bg-white">
+            <div className="text-xl">
+              Total: <b>GHS {totalCartCost}</b>
+            </div>
             <PaystackPayment
-              email="emmanueljessequarcoo@gmail.com" // Replace with the customer's email
-              amount={totalCartCost} // Amount in kobo
+              email="customer@example.com" // TODO(P1): use the authenticated user's email
+              amount={totalCartCost}
               reference={`ref-${Date.now()}`}
               onSuccess={handleSuccess}
               onClose={handleClose}
-
             />
-            <button onClick={saveState} className="bg-blue-500 text-white py-2 px-4 rounded">
-              Pay Now
-    
-            </button>
           </div>
         )}
+
         <div className="flex flex-col p-5 space-y-10 bg-white">
           <h1 className="text-3xl border-b pb-4 text-center">Your Cart List</h1>
         </div>
@@ -133,6 +129,8 @@ const CheckOutComponent: React.FC = () => {
   );
 };
 
-const ClientSideCheckOutComponent = dynamic(() => Promise.resolve(CheckOutComponent), { ssr: false });
+const ClientSideCheckOutComponent = dynamic(() => Promise.resolve(CheckOutComponent), {
+  ssr: false,
+});
 
 export default ClientSideCheckOutComponent;
