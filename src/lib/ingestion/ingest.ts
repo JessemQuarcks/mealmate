@@ -65,7 +65,14 @@ export async function ingestFrom(
               delivery: r.services?.delivery ?? false,
             },
             location: { type: "Point", coordinates: r.coordinates },
-            menu: r.menu ?? [],
+            menu: (r.menu ?? []).map((m) => ({
+              id: m.externalId ?? crypto.randomUUID(),
+              externalId: m.externalId,
+              name: m.name,
+              price: m.price,
+              image: m.image,
+              available: true,
+            })),
           },
         },
         { upsert: true }
