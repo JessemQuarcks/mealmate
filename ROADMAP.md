@@ -105,12 +105,14 @@ Ordered by dependency, not strictly by calendar; several overlap (see §4). Dura
 - ⚠️ **Bootstrap:** admin is never self-assignable. Promote the first admin once by setting `role: "admin"` on their user document in MongoDB (see README).
 - **Exit:** a user has a durable account and role ✅; protected routes reject the wrong role end to end (middleware + server guards) ✅.
 
-### P2 · Real restaurant data & geosearch — *Weeks 5–10*
-- Design the real restaurant/menu schema; migrate off `data.ts`.
-- Build the ingestion pipeline from a licensed source with scheduled refresh.
-- Store geolocation as GeoJSON; implement `$near` proximity queries.
-- Deduplicate, clean encoding, QA ingested records.
-- **Exit:** restaurants load from the database by real proximity to the user, refreshed on a schedule.
+### P2 · Real restaurant data & geosearch — *Weeks 5–10* ✅ **largely complete**
+- ✅ Real geospatial `Restaurant` schema with GeoJSON `location`, a `2dsphere` index, embedded menu, claim/owner field and status (`src/models/restaurant.ts`). The UI no longer imports `data.ts` — it is now only an ingestion source.
+- ✅ Pluggable ingestion pipeline (`src/lib/ingestion/`): a **local** source (normalises the 127 legacy records and repairs their mojibake encoding) and a **Google Places** source, behind one `RestaurantSource` interface. Upserts dedupe by `externalId`, so re-runs are idempotent.
+- ✅ Scheduled refresh entry point: `POST /api/admin/ingest`, authorised by admin session or an `INGEST_SECRET` bearer token for cron.
+- ✅ `$near` proximity search (`GET /api/restaurants?lat&lng&radius&q`) and detail (`GET /api/restaurants/:id`); discover, meal detail and HOT OFFERS all read from the DB by real proximity.
+- ✅ Encoding cleanup, rating normalisation and geo-query building are unit-tested.
+- ⬜ **Remaining:** a licensed production data source + its legal review, geocoding of addresses that lack coordinates, and QA dashboards for ingest health. Menu CRUD is intentionally deferred to P3.
+- **Exit:** restaurants load from the database by real proximity to the user ✅; refreshable on a schedule ✅.
 
 ### P3 · Vendor portal — *Weeks 9–15*
 - Listing claim & verification; menu/item CRUD with images and categories.
