@@ -2,10 +2,18 @@ import mongodbConnect from "@/utils/mongoConnect";
 import mongoose, { Model, Document } from "mongoose";
 
 export interface IMenuItem {
+  /** Stable id for cart/ordering; generated on create. */
+  id: string;
   externalId?: string;
   name: string;
+  description?: string;
+  category?: string;
   price: number;
+  /** 0–100 percentage discount; the effective price is computed in lib/pricing. */
+  discountPercent?: number;
   image?: string;
+  /** Sold-out toggle. */
+  available: boolean;
 }
 
 export interface IRestaurant extends Document {
@@ -27,17 +35,28 @@ export interface IRestaurant extends Document {
   /** GeoJSON Point: coordinates are [longitude, latitude]. */
   location: { type: "Point"; coordinates: [number, number] };
   menu: IMenuItem[];
-  /** Set once a vendor claims the listing (Phase 3). */
+  /** Set once a vendor claims the listing. */
   ownerUserId?: string;
   status: "active" | "hidden";
+  // --- Vendor-controlled storefront signals (feed ranking in Phase 6) ---
+  isOpen: boolean;
+  acceptingOrders: boolean;
+  prepTimeMinutes: number;
+  deliveryFee: number;
+  promotion?: { label?: string; percentOff: number; active: boolean };
 }
 
 const MenuItemSchema = new mongoose.Schema<IMenuItem>(
   {
+    id: { type: String, required: true, default: () => crypto.randomUUID() },
     externalId: String,
     name: { type: String, required: true },
+    description: String,
+    category: String,
     price: { type: Number, required: true },
+    discountPercent: { type: Number, min: 0, max: 100 },
     image: String,
+    available: { type: Boolean, default: true },
   },
   { _id: false }
 );
@@ -70,6 +89,15 @@ const RestaurantSchema = new mongoose.Schema<IRestaurant>(
     menu: { type: [MenuItemSchema], default: [] },
     ownerUserId: { type: String, index: true },
     status: { type: String, enum: ["active", "hidden"], default: "active" },
+    isOpen: { type: Boolean, default: true },
+    acceptingOrders: { type: Boolean, default: true },
+    prepTimeMinutes: { type: Number, default: 30 },
+    deliveryFee: { type: Number, default: 0 },
+    promotion: {
+      label: String,
+      percentOff: { type: Number, min: 0, max: 100, default: 0 },
+      active: { type: Boolean, default: false },
+    },
   },
   { timestamps: true }
 );
