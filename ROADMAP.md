@@ -114,12 +114,16 @@ Ordered by dependency, not strictly by calendar; several overlap (see §4). Dura
 - ⬜ **Remaining:** a licensed production data source + its legal review, geocoding of addresses that lack coordinates, and QA dashboards for ingest health. Menu CRUD is intentionally deferred to P3.
 - **Exit:** restaurants load from the database by real proximity to the user ✅; refreshable on a schedule ✅.
 
-### P3 · Vendor portal — *Weeks 9–15*
-- Listing claim & verification; menu/item CRUD with images and categories.
-- Pricing, discounts and promotions; availability and open/closed/sold-out controls.
-- Prep-time and speed signals captured for ranking.
-- Vendor order dashboard (accept/reject) + basic storefront analytics.
-- **Exit:** a verified vendor self-manages a storefront, menu, prices and availability without engineering help.
+### P3 · Vendor portal — *Weeks 9–15* ✅ **largely complete**
+- ✅ Listing **claim** flow: an active (admin-verified) vendor searches and claims an unowned restaurant, which sets ownership (`/vendor/claim`, `POST /api/vendor/claim`).
+- ✅ **Menu management** with name, category, description, price, per-item discount, image and a sold-out toggle (`/vendor/menu`, `PUT /api/vendor/restaurants/:id/menu`).
+- ✅ **Pricing & discounts** (per-item percent off, restaurant-level promotion) and **availability** controls — open/closed, accepting-orders, sold-out (`/vendor/settings`).
+- ✅ **Prep-time** and delivery-fee captured as storefront signals (feed ranking in P6).
+- ✅ **Order dashboard** with accept/reject/preparing/ready, guarded by a validated status state machine (`/vendor/orders`, `src/lib/orderStatus.ts`), plus basic **analytics** (orders, pending, revenue, menu count).
+- ✅ Every vendor API enforces active-vendor + per-restaurant ownership (`src/lib/vendor.ts`); pricing and status logic are unit-tested.
+- ⬜ **Remaining:** real image uploads (items take an image URL today), vendor-initiated image/storefront media, and richer analytics (trends over time).
+- ⚠️ **Depends on P4:** the order dashboard only shows orders once checkout binds an order to a restaurant (`restaurant_id`) — that wiring is Phase 4.
+- **Exit:** a verified vendor self-manages a storefront, menu, prices and availability without engineering help ✅.
 
 ### P4 · Ordering & payments, done right — *Weeks 11–16* 🟢 **MVP milestone**
 - Server-verified Paystack flow with webhooks; correct minor-unit amounts.

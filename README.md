@@ -104,6 +104,24 @@ GitHub Action) at that endpoint with the `INGEST_SECRET` header.
 Query restaurants: `GET /api/restaurants?lat=&lng=&radius=&q=` (nearest-first via
 `$near`; top-rated when no coordinates) and `GET /api/restaurants/:id`.
 
+## Vendor portal
+
+A verified vendor (an admin-approved `vendor` account) self-manages a storefront
+at `/vendor`:
+
+- **Claim** — search and claim an unowned restaurant listing (`/vendor/claim`).
+- **Menu** — add/edit/remove items with category, price, per-item discount and a
+  sold-out toggle (`/vendor/menu`).
+- **Settings** — open/closed, accepting-orders, prep time, delivery fee and a
+  promotion (`/vendor/settings`).
+- **Orders** — accept / reject / mark preparing / ready, driven by a validated
+  order state machine ([src/lib/orderStatus.ts](src/lib/orderStatus.ts)).
+- **Overview** — basic analytics (orders, pending, revenue, menu count).
+
+Every vendor API enforces an active-vendor check and per-restaurant ownership
+([src/lib/vendor.ts](src/lib/vendor.ts)). Order visibility depends on Phase 4
+binding each checkout order to a `restaurant_id`.
+
 ## Scripts
 
 | Script | What it does |
