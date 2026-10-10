@@ -4,6 +4,7 @@ import React from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import ProductCard from "@/components/ProductCard";
 import { getRestaurantModel } from "@/models/restaurant";
+import { effectiveItemPrice, isItemOrderable } from "@/lib/pricing";
 import mongoose from "mongoose";
 
 export const dynamic = "force-dynamic";
@@ -26,12 +27,14 @@ const MealDetails = async ({ params }: MealPageProps) => {
 
   const { name, category, rating, imageUrl, menu } = meal;
 
-  const products = (menu ?? []).map((item, index) => ({
-    id: item.externalId ?? String(index),
-    name: item.name,
-    price: item.price.toString(),
-    image: item.image ?? "/istockphoto-1277719283-612x612.jpg",
-  }));
+  const products = (menu ?? [])
+    .filter((item) => isItemOrderable(item))
+    .map((item, index) => ({
+      id: item.id ?? item.externalId ?? String(index),
+      name: item.name,
+      price: effectiveItemPrice(item).toString(),
+      image: item.image ?? "/istockphoto-1277719283-612x612.jpg",
+    }));
 
   const generatedRating = (value: number) => {
     const stars = Array(5)
