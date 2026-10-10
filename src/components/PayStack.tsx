@@ -1,29 +1,14 @@
 import React from 'react';
 import { PaystackButton } from 'react-paystack';
-import { useAppDispatch, useAppSelector } from '@/lib/hook';
-import { addToBought, clearCart } from '@/lib/slice';
+import { toMinorUnits } from '@/lib/money';
 
 interface PaystackPaymentProps {
   email: string;
+  /** Amount in major currency units (e.g. cedis). Converted to pesewas here. */
   amount: number;
   reference: string;
   onSuccess: (response: any) => void;
   onClose: () => void;
-}
-
-interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  image:string;
-}
-
-interface RootState {
-  cart: {
-    cartItems: CartItem[];
-    totalCost: number;
-  };
 }
 
 interface PaystackButtonProps {
@@ -44,57 +29,38 @@ interface PaystackButtonProps {
   currency: string;
 }
 
-const PaystackPayment: React.FC<PaystackPaymentProps> = ({ email, amount, reference, onSuccess, onClose }) => {
-  const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY!;
-  const dispatch = useAppDispatch();
-  const cartItems = useAppSelector((state: RootState) => state.cart.cartItems);
-
-  console.log(cartItems)
+const PaystackPayment: React.FC<PaystackPaymentProps> = ({
+  email,
+  amount,
+  reference,
+  onSuccess,
+  onClose,
+}) => {
+  const publicKey = process.env.NEXT_PUBLIC_PAYSTACK_KEY;
 
   if (!publicKey) {
-    console.error("Paystack public key is not defined. Please check your environment variables.");
+    console.error(
+      'Paystack public key (NEXT_PUBLIC_PAYSTACK_KEY) is not set. Check your environment variables.'
+    );
+    return null;
   }
 
-  const handlePaymentSuccess = (response: any) => {
-    console.log("Payment successful!");
-    console.log(response)
-    const cartItemsCopy = Array.from(cartItems)
-    if(response){
-      dispatch(addToBought(cartItemsCopy))
-    }
-    // Dispatch the action to add items to the boughtItems list
-    dispatch(addToBought(cartItems));
-    console.log(cartItems)
-
-    // Clear the cart after adding items to boughtItems
-    dispatch(clearCart());
-  };
-
+  // Paystack expects the amount in the smallest currency unit (pesewas for GHS).
   const componentProps: PaystackButtonProps = {
     email,
-    amount: amount,
+    amount: toMinorUnits(amount),
     currency: 'GHS',
     metadata: {
-      custom_fields: [
-        {
-          display_name: "Mobile Number",
-          variable_name: "mobile_number",
-          value: "+233556947112",
-        }
-      ]
+      custom_fields: [],
     },
     publicKey,
-    text: "Pay Now",
-    onSuccess: handlePaymentSuccess,
+    text: 'Pay Now',
+    onSuccess,
     onClose,
     reference,
   };
 
-  return (
-    <div>
-      <PaystackButton {...componentProps} />
-    </div>
-  );
+  return <PaystackButton {...componentProps} />;
 };
 
 export default PaystackPayment;
