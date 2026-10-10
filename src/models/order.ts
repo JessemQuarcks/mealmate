@@ -1,4 +1,5 @@
 import mongoose, { Document, Model } from "mongoose";
+import { ORDER_STATUSES, INITIAL_STATUS, OrderStatus } from "@/lib/orderStatus";
 
 interface IOrderProduct {
   id: string;
@@ -18,6 +19,7 @@ export interface IOrder extends Document {
   products: IOrderProduct[];
   total_amount: number;
   order_date: Date;
+  status: OrderStatus;
 }
 
 const OrderProductSchema = new mongoose.Schema<IOrderProduct>({
@@ -34,8 +36,9 @@ const OrderSchema = new mongoose.Schema<IOrder>(
     products: { type: [OrderProductSchema], required: true },
     order_date: { type: Date, default: Date.now },
     total_amount: { type: Number, required: true },
-    restaurant_id: { type: String },
+    restaurant_id: { type: String, index: true },
     restaurant_name: { type: String },
+    status: { type: String, enum: ORDER_STATUSES, default: INITIAL_STATUS, index: true },
   },
   {
     timestamps: true,
