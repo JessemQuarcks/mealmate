@@ -1,38 +1,38 @@
 import mongodbConnect from "@/utils/mongoConnect";
-import mongoose, {Model, Document, } from "mongoose";
+import mongoose, { Model, Document } from "mongoose";
 
 interface IRestaurants extends Document {
-    id: number;
-    name: string;
+  id: number;
+  name: string;
 }
 
 const restaurantsSchema = new mongoose.Schema<IRestaurants>(
-    {
-       id: {
-        type: Number,
-        required: [true, "Please add restaurant Id"]
-       },
-
-       name: {
-        type: String,
-       },
+  {
+    id: {
+      type: Number,
+      required: [true, "Please add restaurant Id"],
     },
-    {
-        timestamps: true,
-    }
-)
+    name: {
+      type: String,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 let Restaurants: Model<IRestaurants>;
 
 const initializeModel = async (): Promise<Model<IRestaurants> | null> => {
   const conn = await mongodbConnect();
   if (conn) {
-    Restaurants = conn.models.Products || conn.model<IRestaurants>("Restaurants", restaurantsSchema);
+    Restaurants =
+      (conn.models.Restaurants as Model<IRestaurants>) ||
+      conn.model<IRestaurants>("Restaurants", restaurantsSchema);
     return Restaurants;
-  } else {
-    console.error("Failed to connect to database");
-    return null;
   }
+  console.error("Failed to connect to database");
+  return null;
 };
 
 export const getRestaurantsModel = async (): Promise<Model<IRestaurants> | null> => {
