@@ -70,6 +70,40 @@ db.users.updateOne({ email: "you@example.com" }, { $set: { role: "admin" } })
 
 Then sign out/in and open `/admin`.
 
+## Restaurant data & ingestion
+
+Restaurants live in MongoDB with a GeoJSON `location` and a `2dsphere` index, so
+the app serves them by real proximity. Ingestion sources are pluggable
+([src/lib/ingestion/](src/lib/ingestion/)):
+
+- **local** — normalises the legacy `src/components/data.ts` seed (127 records),
+  repairing its mojibake encoding. Use this to populate a fresh database.
+- **google** — Google Places Nearby Search; needs `GOOGLE_PLACES_API_KEY` and a
+  location. (Review Google's caching terms before enabling scheduled refresh.)
+
+Trigger a run via `POST /api/admin/ingest` — authorised by an admin session, or
+by `Authorization: Bearer <INGEST_SECRET>` for a scheduled job:
+
+```bash
+# Seed from the local file (admin session or secret required)
+curl -X POST http://localhost:3000/api/admin/ingest \
+  -H "Authorization: Bearer $INGEST_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"source":"local"}'
+
+# Refresh from Google Places around a point
+curl -X POST http://localhost:3000/api/admin/ingest \
+  -H "Authorization: Bearer $INGEST_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"source":"google","lat":6.6732,"lng":-1.5654,"radiusMeters":5000}'
+```
+
+For **scheduled refresh**, point a cron (external scheduler or a scheduled
+GitHub Action) at that endpoint with the `INGEST_SECRET` header.
+
+Query restaurants: `GET /api/restaurants?lat=&lng=&radius=&q=` (nearest-first via
+`$near`; top-rated when no coordinates) and `GET /api/restaurants/:id`.
+
 ## Scripts
 
 | Script | What it does |
