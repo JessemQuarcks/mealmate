@@ -9,7 +9,7 @@ interface PropsType {
   desc: string;
   rating: number | string;
   price: string;
-  id: number;
+  id: number | string;
 }
 
 const MealCard: React.FC<PropsType> = ({
