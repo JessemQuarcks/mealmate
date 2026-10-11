@@ -31,7 +31,7 @@ consoles (Google Cloud, Firebase) and restricted before any production use.
 | `GOOGLE_ID`, `GOOGLE_SECRET` | Google OAuth sign-in |
 | `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` | Google Maps (client, restrict by referrer) |
 | `NEXT_PUBLIC_PAYSTACK_KEY` | Paystack public key |
-| `PAYSTACK_SECRET_KEY` | Paystack secret (server-side verification, Phase 4) |
+| `PAYSTACK_SECRET_KEY` | Paystack secret — server-side verification, refunds and webhook signature |
 
 ### 3. Run
 
@@ -119,8 +119,43 @@ at `/vendor`:
 - **Overview** — basic analytics (orders, pending, revenue, menu count).
 
 Every vendor API enforces an active-vendor check and per-restaurant ownership
-([src/lib/vendor.ts](src/lib/vendor.ts)). Order visibility depends on Phase 4
-binding each checkout order to a `restaurant_id`.
+([src/lib/vendor.ts](src/lib/vendor.ts)). Each checkout order is bound to a
+`restaurant_id`, so it shows up in the owning vendor's order dashboard.
+
+## Ordering & payments
+
+Prices are **never** trusted from the browser. Checkout is a two-step,
+server-verified flow:
+
+1. **Initialise** — `POST /api/checkout` with `{ restaurant_id, items:[{id,
+   quantity}], tip?, delivery_address }`. The server loads the restaurant,
+   rejects it if closed, re-prices the cart against the live menu
+   ([src/lib/cart.ts](src/lib/cart.ts)), computes the full breakdown — subtotal,
+   delivery, service fee, tax, tip ([src/lib/fees.ts](src/lib/fees.ts)) — and
+   creates a `pending` order with a minted payment reference. It returns the
+   reference and the exact minor-unit amount to charge.
+2. **Verify** — after Paystack reports success in the browser, `POST
+   /api/checkout/verify` independently verifies the transaction with Paystack
+   and reconciles the charged amount against what the order expected
+   ([src/lib/paystack/](src/lib/paystack/)); only then is the payment marked
+   `paid`. A signed **webhook** (`POST /api/payments/webhook`) is the backstop if
+   the browser never returns.
+
+Amounts are always integers in minor units at the Paystack boundary
+([src/lib/money.ts](src/lib/money.ts)). An order carries two independent state
+machines — fulfilment ([src/lib/orderStatus.ts](src/lib/orderStatus.ts)) and
+payment ([src/lib/paymentStatus.ts](src/lib/paymentStatus.ts)).
+
+Other order endpoints:
+
+- `GET /api/orders` — the signed-in user's order history (`/history`).
+- `GET /api/orders/:id` — a single order, owner-scoped.
+- `POST /api/orders/:id/cancel` — customer cancels while still cancellable.
+- `POST /api/vendor/orders/:id/refund` — vendor/admin full refund of a paid order.
+- `GET|PUT|DELETE /api/cart` — the server-synced, single-vendor cart.
+
+> Register your webhook in the Paystack dashboard as
+> `{NEXTAUTH_URL}/api/payments/webhook`.
 
 ## Scripts
 
@@ -145,9 +180,9 @@ every push and pull request. Add `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` and
 ```
 src/
   app/            App Router pages and API routes
-    api/          restaurants, products, orders endpoints
+    api/          restaurants, checkout, orders, cart, payments, vendor endpoints
   components/     UI components
-  lib/            store, hooks, http helpers, money utils
+  lib/            store, hooks, http helpers, money/fees, paystack/ client
   models/         Mongoose models
   utils/          mongo connection
 ```
