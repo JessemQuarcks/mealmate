@@ -1,38 +1,21 @@
 import Order from "@/models/order";
 import mongodbConnect from "@/utils/mongoConnect";
-import { fail, logger, ok, parseBody, withErrorHandling } from "@/lib/http";
+import { fail, ok, withErrorHandling } from "@/lib/http";
 import { requireRole } from "@/lib/session";
-import { z } from "zod";
 
-const orderProductSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  image: z.string(),
-  price: z.number().nonnegative(),
-  quantity: z.number().int().positive(),
-});
-
-const createOrderSchema = z.object({
-  products: z.array(orderProductSchema).min(1, "An order needs at least one item"),
-  total_amount: z.number().nonnegative(),
-  restaurant_id: z.string().optional(),
-  restaurant_name: z.string().optional(),
-});
-
-export const POST = withErrorHandling(async (req) => {
-  const { user, response } = await requireRole();
-  if (response) return response;
-
-  // TODO(P4): verify the Paystack transaction server-side before persisting.
-  const { data, error } = await parseBody(req, createOrderSchema);
-  if (error) return error;
-
-  const conn = await mongodbConnect();
-  if (!conn) return fail("Database is not available", 503);
-
-  const saved = await Order.create({ ...data, user_id: user.id });
-  logger.info("Order created", { id: saved._id, user: user.id, total: saved.total_amount });
-  return ok(saved, 201);
+/**
+ * Creating an order directly is no longer allowed: it trusted a
+ * client-supplied `total_amount`, which let a tampered browser under-pay.
+ * Orders are now created by POST /api/checkout, which re-prices the cart on
+ * the server, and confirmed by POST /api/checkout/verify once Paystack
+ * verification succeeds. This endpoint is kept only to return a clear error
+ * to any old client still calling it.
+ */
+export const POST = withErrorHandling(async () => {
+  return fail(
+    "Direct order creation is disabled. Use POST /api/checkout, then /api/checkout/verify.",
+    410
+  );
 });
 
 export const GET = withErrorHandling(async () => {
