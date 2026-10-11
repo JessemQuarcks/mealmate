@@ -37,6 +37,9 @@ export const VENDOR_SETTABLE: OrderStatus[] = [
   "ready",
 ];
 
+/** States a courier is allowed to move an order into (Phase 5 delivery). */
+export const COURIER_SETTABLE: OrderStatus[] = ["out_for_delivery", "delivered"];
+
 export function canTransition(from: OrderStatus, to: OrderStatus): boolean {
   return TRANSITIONS[from]?.includes(to) ?? false;
 }
@@ -44,4 +47,19 @@ export function canTransition(from: OrderStatus, to: OrderStatus): boolean {
 /** Validate a vendor-initiated status change. */
 export function vendorCanSet(from: OrderStatus, to: OrderStatus): boolean {
   return VENDOR_SETTABLE.includes(to) && canTransition(from, to);
+}
+
+/** Validate a courier-initiated status change. */
+export function courierCanSet(from: OrderStatus, to: OrderStatus): boolean {
+  return COURIER_SETTABLE.includes(to) && canTransition(from, to);
+}
+
+/** An order is ready for a courier to pick up once the vendor marks it ready. */
+export function isAwaitingPickup(status: OrderStatus): boolean {
+  return status === "ready";
+}
+
+/** Delivery is finished at these terminal states. */
+export function isDeliveryComplete(status: OrderStatus): boolean {
+  return status === "delivered";
 }

@@ -1,5 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { canTransition, vendorCanSet } from "./orderStatus";
+import {
+  canTransition,
+  vendorCanSet,
+  courierCanSet,
+  isAwaitingPickup,
+  isDeliveryComplete,
+} from "./orderStatus";
 
 describe("canTransition", () => {
   it("allows legal transitions", () => {
@@ -25,5 +31,28 @@ describe("vendorCanSet", () => {
     // Delivery states belong to the courier (Phase 5).
     expect(vendorCanSet("ready", "out_for_delivery")).toBe(false);
     expect(vendorCanSet("out_for_delivery", "delivered")).toBe(false);
+  });
+});
+
+describe("courierCanSet", () => {
+  it("permits the delivery leg", () => {
+    expect(courierCanSet("ready", "out_for_delivery")).toBe(true);
+    expect(courierCanSet("out_for_delivery", "delivered")).toBe(true);
+  });
+  it("forbids vendor-only states and illegal jumps", () => {
+    expect(courierCanSet("placed", "accepted")).toBe(false);
+    expect(courierCanSet("ready", "delivered")).toBe(false);
+    expect(courierCanSet("preparing", "out_for_delivery")).toBe(false);
+  });
+});
+
+describe("delivery predicates", () => {
+  it("marks a ready order as awaiting pickup", () => {
+    expect(isAwaitingPickup("ready")).toBe(true);
+    expect(isAwaitingPickup("preparing")).toBe(false);
+  });
+  it("recognises a completed delivery", () => {
+    expect(isDeliveryComplete("delivered")).toBe(true);
+    expect(isDeliveryComplete("out_for_delivery")).toBe(false);
   });
 });
