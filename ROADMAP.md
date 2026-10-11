@@ -125,12 +125,14 @@ Ordered by dependency, not strictly by calendar; several overlap (see §4). Dura
 - ⚠️ **Depends on P4:** the order dashboard only shows orders once checkout binds an order to a restaurant (`restaurant_id`) — that wiring is Phase 4.
 - **Exit:** a verified vendor self-manages a storefront, menu, prices and availability without engineering help ✅.
 
-### P4 · Ordering & payments, done right — *Weeks 11–16* 🟢 **MVP milestone**
-- Server-verified Paystack flow with webhooks; correct minor-unit amounts.
-- Orders bound to user, address, vendor and payment; full status state machine.
-- Fees, tips, taxes; refunds and cancellations.
-- Server-synced cart; working, real order history.
-- **Exit:** a real paid order flows from cart to a confirmed, verified record visible to client and vendor.
+### P4 · Ordering & payments, done right — *Weeks 11–16* 🟢 **MVP milestone · largely complete**
+- ✅ Server-verified Paystack flow: `POST /api/checkout` re-prices the cart on the server and opens a pending order; `POST /api/checkout/verify` verifies the transaction and reconciles the exact minor-unit amount before marking it paid (`src/lib/paystack/*`, `src/lib/money.ts`).
+- ✅ Signed webhook backstop (`POST /api/payments/webhook`) confirms orders on `charge.success` even if the browser never returns, with a constant-time HMAC-SHA512 signature check.
+- ✅ Orders bound to user, delivery address, vendor (`restaurant_id`) and a verified payment subdocument; fulfilment **and** payment state machines (`src/lib/orderStatus.ts`, `src/lib/paymentStatus.ts`).
+- ✅ Full money breakdown — subtotal, delivery, service fee, tax, tip (`src/lib/fees.ts`) — plus customer cancellations (`/api/orders/:id/cancel`) and vendor/admin refunds (`/api/vendor/orders/:id/refund`).
+- ✅ Server-synced, single-vendor cart (`src/models/cart.ts`, `/api/cart`); real per-user order history with live status (`/history`). Direct `POST /api/orders` is disabled so no order can be created without server pricing.
+- ⬜ **Remaining:** vendor-visible payment/refund UI, reconciliation reporting, and partial refunds (the API refunds in full today).
+- **Exit:** a real paid order flows from cart to a confirmed, verified record visible to client and vendor ✅.
 
 ### P5 · Delivery & live tracking — *Weeks 16–22*
 - Courier role, assignment/dispatch, order-event timeline.
