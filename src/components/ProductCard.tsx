@@ -16,9 +16,11 @@ interface Product {
 
 interface ProductCardProps {
   product: Product;
+  /** Restaurant this item belongs to, so the cart can bind to one vendor. */
+  restaurantId?: string;
 }
 
-const ProductCardAdditon: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCardAdditon: React.FC<ProductCardProps> = ({ product, restaurantId }) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [itemAlreadyInCart, setItemAlreadyInCart] = useState<boolean>(false);
 
@@ -49,6 +51,7 @@ const ProductCardAdditon: React.FC<ProductCardProps> = ({ product }) => {
         price: parseFloat(product.price),
         name: product.name,
         quantity, // Pass the quantity from state
+        restaurantId, // Bind the cart to this vendor
     }));
 };
 

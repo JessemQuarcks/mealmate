@@ -26,6 +26,7 @@ const MealDetails = async ({ params }: MealPageProps) => {
   if (!meal) notFound();
 
   const { name, category, rating, imageUrl, menu } = meal;
+  const restaurantId = String((meal as { _id: unknown })._id);
 
   const products = (menu ?? [])
     .filter((item) => isItemOrderable(item))
@@ -62,7 +63,7 @@ const MealDetails = async ({ params }: MealPageProps) => {
           {products.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard key={product.id} product={product} restaurantId={restaurantId} />
               ))}
             </div>
           ) : (

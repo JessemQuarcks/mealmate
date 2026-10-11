@@ -24,14 +24,21 @@ interface CartState {
     itemAlreadyInCart: boolean;
     totalCost: number;
     boughtItems:CartItem[];
+    // A cart belongs to exactly one restaurant; checkout is per-vendor.
+    restaurantId: string | null;
 }
+
+// addToCart may carry the restaurant the item belongs to, so the cart can be
+// bound to a single vendor (Phase 4).
+type AddToCartPayload = CartItem & { restaurantId?: string };
 
 const initialState: CartState = {
     cartItems: [],
     quantity: 0,
     itemAlreadyInCart: false,
     totalCost: 0,
-    boughtItems:[]
+    boughtItems:[],
+    restaurantId: null,
 
 };
 
@@ -56,8 +63,14 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState: loadCartFromStorage(),
     reducers: {
-        addToCart: (state, action: PayloadAction<CartItem>) => {
-            const { id, image, price, name, quantity } = action.payload;
+        addToCart: (state, action: PayloadAction<AddToCartPayload>) => {
+            const { id, image, price, name, quantity, restaurantId } = action.payload;
+            // Switching restaurants empties the cart: a cart is single-vendor.
+            if (restaurantId && state.restaurantId && state.restaurantId !== restaurantId) {
+                state.cartItems = [];
+                state.quantity = 0;
+            }
+            if (restaurantId) state.restaurantId = restaurantId;
             const existingItem = state.cartItems.find((item) => item.id === id);
             if (existingItem) {
                 // Update quantity if item already exists
@@ -85,8 +98,9 @@ const cartSlice = createSlice({
         clearCart: (state) => {
             state.cartItems = [];
             state.quantity = 0;
+            state.restaurantId = null;
             saveCartToStorage(state); // Save the cleared state to local storage
-        }, 
+        },
         
         increaseItemQty: (state, action: PayloadAction<string>) => {
             const id = action.payload;
@@ -124,4 +138,5 @@ export const { addToCart, removeFromCart, clearCart, increaseItemQty, decreaseIt
 export const cartItems = (state: any) => state.cart.cartItems;
 export const totalCost = (state: any) => state.cart.totalCost;
 export const boughtItems = (state:any)=> state.cart.boughtItems;
+export const cartRestaurantId = (state: any) => state.cart.restaurantId;
 export default cartSlice.reducer;
