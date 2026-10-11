@@ -35,6 +35,15 @@ interface IPayment {
   verifiedAt?: Date;
 }
 
+/** Record of a refund issued against the order's payment. */
+interface IRefund {
+  /** Amount refunded, in minor units. */
+  amountMinor: number;
+  reference?: string;
+  reason?: string;
+  refundedAt: Date;
+}
+
 export interface IOrder extends Document {
   /** Owner of the order (the signed-in client). */
   user_id?: string;
@@ -54,6 +63,9 @@ export interface IOrder extends Document {
   currency: string;
   delivery_address?: IDeliveryAddress;
   payment?: IPayment;
+  refund?: IRefund;
+  cancelled_at?: Date;
+  cancel_reason?: string;
   order_date: Date;
   status: OrderStatus;
 }
@@ -95,6 +107,16 @@ const PaymentSchema = new mongoose.Schema<IPayment>(
   { _id: false }
 );
 
+const RefundSchema = new mongoose.Schema<IRefund>(
+  {
+    amountMinor: { type: Number, required: true },
+    reference: String,
+    reason: String,
+    refundedAt: { type: Date, required: true },
+  },
+  { _id: false }
+);
+
 const OrderSchema = new mongoose.Schema<IOrder>(
   {
     user_id: { type: String, index: true },
@@ -109,6 +131,9 @@ const OrderSchema = new mongoose.Schema<IOrder>(
     currency: { type: String, default: "GHS", required: true },
     delivery_address: { type: DeliveryAddressSchema },
     payment: { type: PaymentSchema },
+    refund: { type: RefundSchema },
+    cancelled_at: { type: Date },
+    cancel_reason: { type: String },
     restaurant_id: { type: String, index: true },
     restaurant_name: { type: String },
     status: { type: String, enum: ORDER_STATUSES, default: INITIAL_STATUS, index: true },
