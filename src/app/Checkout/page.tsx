@@ -1,12 +1,19 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import { useAppSelector, useAppDispatch } from '@/lib/hook';
-import { calculateTotal, removeFromCart, addToBought, clearCart } from '@/lib/slice';
+import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import PaystackPayment from '../../components/PayStack';
+import { useSession } from 'next-auth/react';
 import { FiTrash2 } from 'react-icons/fi';
+import { useAppSelector, useAppDispatch } from '@/lib/hook';
+import {
+  calculateTotal,
+  removeFromCart,
+  clearCart,
+  cartRestaurantId,
+} from '@/lib/slice';
 import { logger } from '@/lib/http';
+import PaystackPayment from '../../components/PayStack';
+import { initCheckout, verifyPayment, CheckoutInit } from '@/lib/checkoutClient';
 
 interface CartItem {
   id: string;
@@ -20,111 +27,194 @@ interface RootState {
   cart: {
     cartItems: CartItem[];
     totalCost: number;
-    boughtItems: CartItem[];
   };
 }
 
 const CheckOutComponent: React.FC = () => {
   const cartItems = useAppSelector((state: RootState) => state.cart.cartItems);
   const totalCartCost = useAppSelector((state: RootState) => state.cart.totalCost) || 0;
+  const restaurantId = useAppSelector(cartRestaurantId);
+  const { data: session } = useSession();
   const dispatch = useAppDispatch();
+
+  const [line1, setLine1] = useState('');
+  const [city, setCity] = useState('');
+  const [tip, setTip] = useState(0);
+  const [checkout, setCheckout] = useState<CheckoutInit | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [confirmed, setConfirmed] = useState(false);
+  const [busy, setBusy] = useState(false);
 
   useEffect(() => {
     dispatch(calculateTotal());
   }, [cartItems, dispatch]);
 
-  // Persist the order only after a successful payment, with the full payload the
-  // orders API now validates (products + total_amount).
-  // TODO(P4): verify `response.reference` server-side before trusting success.
-  const persistOrder = async (items: CartItem[], total: number) => {
+  // Step 1: ask the server to price the cart and open a pending order.
+  const handleContinue = async () => {
+    setError(null);
+    if (!restaurantId) {
+      setError('Add items from a restaurant before checking out.');
+      return;
+    }
+    if (!line1.trim()) {
+      setError('A delivery address is required.');
+      return;
+    }
+    setBusy(true);
     try {
-      const res = await fetch('/api/orders', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ products: items, total_amount: total }),
+      const init = await initCheckout({
+        restaurant_id: restaurantId,
+        items: cartItems.map((i) => ({ id: i.id, quantity: i.quantity })),
+        tip: tip > 0 ? tip : undefined,
+        delivery_address: { line1: line1.trim(), city: city.trim() || undefined },
       });
-      if (!res.ok) {
-        const body = await res.json().catch(() => null);
-        throw new Error(body?.errors?.join(', ') || 'Failed to save order');
-      }
-      return (await res.json()).data;
-    } catch (error) {
-      logger.error('Could not persist order', error);
-      return null;
+      setCheckout(init);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Could not start checkout.');
+    } finally {
+      setBusy(false);
     }
   };
 
-  const handleSuccess = async (response: any) => {
-    const itemsSnapshot = [...cartItems];
-    const totalSnapshot = totalCartCost;
-    await persistOrder(itemsSnapshot, totalSnapshot);
-    dispatch(addToBought(itemsSnapshot));
-    dispatch(clearCart());
+  // Step 2: Paystack succeeded in the browser — confirm it server-side.
+  const handleSuccess = async () => {
+    if (!checkout) return;
+    try {
+      await verifyPayment(checkout.reference);
+      setConfirmed(true);
+      dispatch(clearCart());
+    } catch (e) {
+      logger.error('Payment verification failed', e);
+      setError(
+        e instanceof Error ? e.message : 'We could not confirm your payment. Please contact support.'
+      );
+    }
   };
 
-  const handleClose = () => {
-    logger.info('Payment dialog closed by user');
-  };
+  const handleClose = () => logger.info('Payment dialog closed by user');
+  const handleRemoveFromCart = (id: string) => dispatch(removeFromCart(id));
 
-  const handleRemoveFromCart = (id: string) => {
-    dispatch(removeFromCart(id));
-  };
+  if (confirmed) {
+    return (
+      <div className="max-w-screen-md mx-auto p-8 text-center">
+        <h1 className="text-2xl font-bold mb-2">Payment confirmed 🎉</h1>
+        <p className="text-gray-600">
+          Your order is in. Track its progress under{' '}
+          <a href="/history" className="text-blue-600 underline">
+            Order History
+          </a>
+          .
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <div className="lg:flex max-w-screen-2xl mx-auto">
-      <div className="flex-grow m-5 shadow-sm">
-        <div>
-          {cartItems && cartItems.length > 0 ? (
-            <div className="place-items-center justify-items-center">
-              {cartItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="h-200 w-200 place-content-center place-items-center flex gap-x-10 py-3"
-                >
-                  <div className="flex flex-row items-center ml-1 gap-x-10">
-                    <div className="text-2xl font-extrabold">{item.name}</div>
-                    <div className="flex-col">
-                      <div className="text-lg">
-                        Price: <b>GHS {item.price}</b>
-                      </div>
-                      <div>Quantity: {item.quantity}</div>
-                    </div>
-                  </div>
-                  <div className="flex items-center">
-                    <button
-                      aria-label={`Remove ${item.name} from cart`}
-                      onClick={() => handleRemoveFromCart(item.id)}
-                    >
-                      <FiTrash2 className="text-red-600" size={24} />
-                    </button>
-                  </div>
+    <div className="max-w-screen-md mx-auto p-5">
+      <h1 className="text-3xl border-b pb-4 text-center mb-5">Your Cart</h1>
+
+      {cartItems && cartItems.length > 0 ? (
+        <div className="space-y-3">
+          {cartItems.map((item) => (
+            <div
+              key={item.id}
+              className="flex items-center justify-between gap-4 p-3 border rounded-lg"
+            >
+              <div>
+                <div className="text-lg font-bold">{item.name}</div>
+                <div className="text-sm text-gray-600">
+                  GHS {item.price} × {item.quantity}
                 </div>
-              ))}
+              </div>
+              <button
+                aria-label={`Remove ${item.name} from cart`}
+                onClick={() => handleRemoveFromCart(item.id)}
+              >
+                <FiTrash2 className="text-red-600" size={22} />
+              </button>
+            </div>
+          ))}
+
+          <div className="text-right text-lg">
+            Items total: <b>GHS {totalCartCost}</b>
+          </div>
+
+          {!checkout ? (
+            <div className="mt-6 space-y-4 border-t pt-6">
+              <h2 className="text-xl font-semibold">Delivery details</h2>
+              <input
+                className="w-full border rounded-md px-3 py-2"
+                placeholder="Delivery address *"
+                value={line1}
+                onChange={(e) => setLine1(e.target.value)}
+              />
+              <input
+                className="w-full border rounded-md px-3 py-2"
+                placeholder="City (optional)"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+              <label className="block">
+                <span className="text-sm text-gray-600">Tip (GHS)</span>
+                <input
+                  type="number"
+                  min={0}
+                  className="w-full border rounded-md px-3 py-2"
+                  value={tip}
+                  onChange={(e) => setTip(Math.max(0, Number(e.target.value) || 0))}
+                />
+              </label>
+
+              {!session?.user?.email && (
+                <p className="text-amber-600 text-sm">
+                  Please{' '}
+                  <a href="/signin?callbackUrl=/Checkout" className="underline">
+                    sign in
+                  </a>{' '}
+                  to pay for your order.
+                </p>
+              )}
+
+              <button
+                disabled={busy || !session?.user?.email}
+                onClick={handleContinue}
+                className="w-full bg-blue-600 disabled:bg-gray-400 text-white py-2 rounded-lg"
+              >
+                {busy ? 'Preparing…' : 'Continue to payment'}
+              </button>
             </div>
           ) : (
-            <p className="text-center">Your cart is empty.</p>
+            <div className="mt-6 space-y-3 border-t pt-6">
+              <h2 className="text-xl font-semibold">Payment</h2>
+              <ul className="text-sm text-gray-700 space-y-1">
+                <li className="flex justify-between"><span>Subtotal</span><span>GHS {checkout.totals.subtotal}</span></li>
+                <li className="flex justify-between"><span>Delivery</span><span>GHS {checkout.totals.deliveryFee}</span></li>
+                <li className="flex justify-between"><span>Service fee</span><span>GHS {checkout.totals.serviceFee}</span></li>
+                {checkout.totals.tax > 0 && (
+                  <li className="flex justify-between"><span>Tax</span><span>GHS {checkout.totals.tax}</span></li>
+                )}
+                {checkout.totals.tip > 0 && (
+                  <li className="flex justify-between"><span>Tip</span><span>GHS {checkout.totals.tip}</span></li>
+                )}
+                <li className="flex justify-between font-bold border-t pt-1">
+                  <span>Total</span><span>GHS {checkout.totals.grandTotal}</span>
+                </li>
+              </ul>
+              <PaystackPayment
+                email={checkout.email}
+                amount={checkout.totals.grandTotal}
+                reference={checkout.reference}
+                onSuccess={handleSuccess}
+                onClose={handleClose}
+              />
+            </div>
           )}
         </div>
+      ) : (
+        <p className="text-center">Your cart is empty.</p>
+      )}
 
-        {cartItems && cartItems.length > 0 && (
-          <div className="flex flex-col items-center p-5 space-y-6 bg-white">
-            <div className="text-xl">
-              Total: <b>GHS {totalCartCost}</b>
-            </div>
-            <PaystackPayment
-              email="customer@example.com" // TODO(P1): use the authenticated user's email
-              amount={totalCartCost}
-              reference={`ref-${Date.now()}`}
-              onSuccess={handleSuccess}
-              onClose={handleClose}
-            />
-          </div>
-        )}
-
-        <div className="flex flex-col p-5 space-y-10 bg-white">
-          <h1 className="text-3xl border-b pb-4 text-center">Your Cart List</h1>
-        </div>
-      </div>
+      {error && <p className="mt-4 text-center text-red-600">{error}</p>}
     </div>
   );
 };
