@@ -44,6 +44,43 @@ interface IRefund {
   refundedAt: Date;
 }
 
+/** The courier assigned to deliver the order (Phase 5). */
+interface ICourier {
+  user_id: string;
+  name?: string;
+  phone?: string;
+  assignedAt: Date;
+}
+
+/** Courier's last reported position. GeoJSON order: [lng, lat]. */
+interface ICourierLocation {
+  type: "Point";
+  coordinates: [number, number];
+  updatedAt: Date;
+}
+
+/** A single entry in the order's event timeline. */
+interface IOrderEvent {
+  type: string;
+  at: Date;
+  note?: string;
+}
+
+/** Proof captured when the courier completes the delivery. */
+interface IProofOfDelivery {
+  note?: string;
+  photoUrl?: string;
+  deliveredAt: Date;
+}
+
+/** Per-leg ratings left by the customer after delivery. */
+interface IOrderRatings {
+  courier?: number;
+  restaurant?: number;
+  comment?: string;
+  ratedAt: Date;
+}
+
 export interface IOrder extends Document {
   /** Owner of the order (the signed-in client). */
   user_id?: string;
@@ -66,6 +103,12 @@ export interface IOrder extends Document {
   refund?: IRefund;
   cancelled_at?: Date;
   cancel_reason?: string;
+  // --- Delivery & live tracking (Phase 5) ---
+  courier?: ICourier;
+  courier_location?: ICourierLocation;
+  events: IOrderEvent[];
+  proof_of_delivery?: IProofOfDelivery;
+  ratings?: IOrderRatings;
   order_date: Date;
   status: OrderStatus;
 }
@@ -117,6 +160,53 @@ const RefundSchema = new mongoose.Schema<IRefund>(
   { _id: false }
 );
 
+const CourierSchema = new mongoose.Schema<ICourier>(
+  {
+    user_id: { type: String, required: true, index: true },
+    name: String,
+    phone: String,
+    assignedAt: { type: Date, required: true },
+  },
+  { _id: false }
+);
+
+const CourierLocationSchema = new mongoose.Schema<ICourierLocation>(
+  {
+    type: { type: String, enum: ["Point"], default: "Point" },
+    coordinates: { type: [Number], required: true },
+    updatedAt: { type: Date, required: true },
+  },
+  { _id: false }
+);
+
+const OrderEventSchema = new mongoose.Schema<IOrderEvent>(
+  {
+    type: { type: String, required: true },
+    at: { type: Date, required: true },
+    note: String,
+  },
+  { _id: false }
+);
+
+const ProofOfDeliverySchema = new mongoose.Schema<IProofOfDelivery>(
+  {
+    note: String,
+    photoUrl: String,
+    deliveredAt: { type: Date, required: true },
+  },
+  { _id: false }
+);
+
+const OrderRatingsSchema = new mongoose.Schema<IOrderRatings>(
+  {
+    courier: { type: Number, min: 1, max: 5 },
+    restaurant: { type: Number, min: 1, max: 5 },
+    comment: String,
+    ratedAt: { type: Date, required: true },
+  },
+  { _id: false }
+);
+
 const OrderSchema = new mongoose.Schema<IOrder>(
   {
     user_id: { type: String, index: true },
@@ -134,6 +224,11 @@ const OrderSchema = new mongoose.Schema<IOrder>(
     refund: { type: RefundSchema },
     cancelled_at: { type: Date },
     cancel_reason: { type: String },
+    courier: { type: CourierSchema },
+    courier_location: { type: CourierLocationSchema },
+    events: { type: [OrderEventSchema], default: [] },
+    proof_of_delivery: { type: ProofOfDeliverySchema },
+    ratings: { type: OrderRatingsSchema },
     restaurant_id: { type: String, index: true },
     restaurant_name: { type: String },
     status: { type: String, enum: ORDER_STATUSES, default: INITIAL_STATUS, index: true },
