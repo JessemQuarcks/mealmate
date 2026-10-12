@@ -1,10 +1,12 @@
 # MealMate
 
-A restaurant-led food marketplace: discover nearby restaurants, order, pay (Paystack) and track delivery. Built with Next.js 14 (App Router), TypeScript, MongoDB/Mongoose and Redux Toolkit.
+A restaurant-led food marketplace: discover nearby restaurants, order, pay (Paystack) and track delivery live. Built with Next.js 14 (App Router), TypeScript, MongoDB/Mongoose and Redux Toolkit.
 
 See [ROADMAP.md](./ROADMAP.md) for the gap analysis and the path to production.
 
 ## Getting started
+
+> **Node.js 24+** is required (see `.nvmrc`). With nvm: `nvm use`.
 
 ### 1. Install
 
@@ -157,6 +159,37 @@ Other order endpoints:
 > Register your webhook in the Paystack dashboard as
 > `{NEXTAUTH_URL}/api/payments/webhook`.
 
+## Delivery & live tracking
+
+Once a vendor marks an order **ready**, it enters courier dispatch:
+
+- **Courier console** (`/courier/dashboard`) — a verified courier sees paid,
+  ready, unclaimed orders and claims one. The claim is atomic, so two couriers
+  can't grab the same order. The courier then marks it picked up
+  (`out_for_delivery`) and delivered, capturing proof of delivery. Delivery
+  transitions are guarded by a courier-only state machine
+  ([src/lib/orderStatus.ts](src/lib/orderStatus.ts)).
+- **Live location** — with "Share my location" on, the console watches the
+  browser's geolocation and pings `POST /api/courier/orders/:id/location`.
+- **Customer tracking** (`/track/:id`) — polls `GET /api/orders/:id/track` for
+  status, the event timeline, the courier's position (plotted on a map) and a
+  derived distance + ETA ([src/lib/delivery.ts](src/lib/delivery.ts)). After
+  delivery the customer can rate the courier and restaurant.
+
+Every state change appends to an order **event timeline**
+([src/lib/orderEvents.ts](src/lib/orderEvents.ts)) so tracking shows full
+history. Live updates use HTTP polling today; WebSocket/push is the planned
+upgrade.
+
+Courier/tracking endpoints:
+
+- `GET /api/courier/orders` — dispatch feed (available + this courier's active).
+- `POST /api/courier/orders/:id/assign` — claim a ready order.
+- `PATCH /api/courier/orders/:id/status` — picked up / delivered (+ proof).
+- `POST /api/courier/orders/:id/location` — report courier position.
+- `GET /api/orders/:id/track` — customer tracking payload (status, ETA, events).
+- `POST /api/orders/:id/rate` — rate courier/restaurant after delivery.
+
 ## Scripts
 
 | Script | What it does |
@@ -180,9 +213,10 @@ every push and pull request. Add `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` and
 ```
 src/
   app/            App Router pages and API routes
-    api/          restaurants, checkout, orders, cart, payments, vendor endpoints
-  components/     UI components
-  lib/            store, hooks, http helpers, money/fees, paystack/ client
+    api/          restaurants, checkout, orders, cart, payments, vendor, courier endpoints
+    track/        customer live order-tracking screen
+  components/     UI components (ui/, courier/, tracking/, vendor/)
+  lib/            store, hooks, http helpers, money/fees, delivery, paystack/ client
   models/         Mongoose models
   utils/          mongo connection
 ```
