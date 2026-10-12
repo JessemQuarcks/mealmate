@@ -42,6 +42,7 @@ describe("requiredRolesForPath", () => {
     expect(requiredRolesForPath("/account")).toBeNull();
     expect(requiredRolesForPath("/Checkout")).toBeNull();
     expect(requiredRolesForPath("/history")).toBeNull();
+    expect(requiredRolesForPath("/track/abc123")).toBeNull();
   });
   it("maps role areas to roles", () => {
     expect(requiredRolesForPath("/admin")).toEqual(["admin"]);

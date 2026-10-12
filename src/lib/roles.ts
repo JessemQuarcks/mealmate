@@ -43,7 +43,8 @@ export function requiredRolesForPath(pathname: string): Role[] | null | undefine
   if (
     pathname.startsWith("/account") ||
     pathname.startsWith("/Checkout") ||
-    pathname.startsWith("/history")
+    pathname.startsWith("/history") ||
+    pathname.startsWith("/track")
   ) {
     return null; // any signed-in user
   }
