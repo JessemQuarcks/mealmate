@@ -1,41 +1,58 @@
 import { getRestaurantModel } from "@/models/restaurant";
 import { fail, ok, withErrorHandling } from "@/lib/http";
-import { clampRadius, nearbyFilter, parseCoordParam } from "@/lib/geo";
+import { nearbyFilter } from "@/lib/geo";
+import { haversineMeters } from "@/lib/delivery";
+import { rankRestaurants, RankSignals } from "@/lib/ranking";
+import {
+  parseRestaurantQuery,
+  buildRestaurantMongoFilter,
+  hasCoords,
+} from "@/lib/restaurantFilters";
 
 export const dynamic = "force-dynamic";
 
+interface GeoRestaurant extends RankSignals {
+  location?: { coordinates: [number, number] };
+}
+
 /**
- * Search restaurants. With `lat`/`lng` the results come back nearest-first via a
- * 2dsphere `$near` query; without coordinates it falls back to top-rated. `q`
- * filters by name/category text, and `radius` (metres) bounds the search.
+ * Search & discover restaurants. Supports text (`q`), `cuisine`, `maxPrice`
+ * (price level) and `openNow` filters, with `sort=rank|distance|rating`:
+ *  - `rank` (default): blended ranking score (src/lib/ranking.ts), distance-aware
+ *     when `lat`/`lng` are supplied.
+ *  - `distance`: nearest-first via the 2dsphere `$near` query.
+ *  - `rating`: top-rated first.
  */
 export const GET = withErrorHandling(async (req) => {
   const Restaurant = await getRestaurantModel();
   if (!Restaurant) return fail("Database is not available", 503);
 
-  const url = new URL(req.url);
-  const lat = parseCoordParam(url.searchParams.get("lat"));
-  const lng = parseCoordParam(url.searchParams.get("lng"));
-  const q = url.searchParams.get("q")?.trim();
-  const radius = clampRadius(Number(url.searchParams.get("radius")) || undefined);
-  const limit = Math.min(Number(url.searchParams.get("limit")) || 50, 100);
+  const p = parseRestaurantQuery(new URL(req.url).searchParams);
+  const filter = buildRestaurantMongoFilter(p);
+  const coords = hasCoords(p) ? { lat: p.lat, lng: p.lng } : null;
 
-  const filter: Record<string, unknown> = { status: "active" };
-  if (q) {
-    filter.$or = [
-      { name: { $regex: q, $options: "i" } },
-      { category: { $regex: q, $options: "i" } },
-    ];
+  // Pull a candidate set, then order it. For ranking we over-fetch a little so
+  // the score — not just proximity — decides the final top results.
+  const candidateLimit = p.sort === "rank" ? Math.min(p.limit * 2, 100) : p.limit;
+
+  const query = coords
+    ? Restaurant.find({ ...filter, ...nearbyFilter(coords.lng, coords.lat, p.radius) })
+    : Restaurant.find(filter).sort({ rating: -1, ratingCount: -1 });
+
+  const candidates = (await query.limit(candidateLimit).lean()) as GeoRestaurant[];
+
+  if (p.sort === "rank") {
+    const distanceOf = coords
+      ? (r: GeoRestaurant) =>
+          r.location?.coordinates
+            ? haversineMeters(
+                { lng: r.location.coordinates[0], lat: r.location.coordinates[1] },
+                coords
+              )
+            : undefined
+      : undefined;
+    return ok(rankRestaurants(candidates, distanceOf).slice(0, p.limit));
   }
 
-  let query;
-  if (lat !== undefined && lng !== undefined) {
-    // $near already returns results sorted by distance.
-    query = Restaurant.find({ ...filter, ...nearbyFilter(lng, lat, radius) });
-  } else {
-    query = Restaurant.find(filter).sort({ rating: -1, ratingCount: -1 });
-  }
-
-  const restaurants = await query.limit(limit).lean();
-  return ok(restaurants);
+  return ok(candidates.slice(0, p.limit));
 });
