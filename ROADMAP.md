@@ -134,11 +134,13 @@ Ordered by dependency, not strictly by calendar; several overlap (see §4). Dura
 - ⬜ **Remaining:** vendor-visible payment/refund UI, reconciliation reporting, and partial refunds (the API refunds in full today).
 - **Exit:** a real paid order flows from cart to a confirmed, verified record visible to client and vendor ✅.
 
-### P5 · Delivery & live tracking — *Weeks 16–22*
-- Courier role, assignment/dispatch, order-event timeline.
-- Live courier location over WebSockets/push; customer tracking screen with ETA.
-- Proof of delivery; per-leg ratings.
-- **Exit:** a customer watches an order progress and a courier move in real time until delivered.
+### P5 · Delivery & live tracking — *Weeks 16–22* 🟢 **largely complete**
+- ✅ Courier dispatch: a verified courier sees paid, ready, unclaimed orders and **claims** one atomically (no two couriers win the same order), then drives it through `out_for_delivery` → `delivered` via a courier-only state machine (`src/lib/courier.ts`, `courierCanSet` in `src/lib/orderStatus.ts`). The courier console lives at `/courier/dashboard`.
+- ✅ **Order-event timeline** recorded across the whole lifecycle — placed, paid, accepted/preparing/ready, assigned, picked up, delivered, cancelled (`src/lib/orderEvents.ts`) — surfaced on the customer tracking screen.
+- ✅ **Live location + ETA:** the courier shares location (browser geolocation watch) which pings `POST /api/courier/orders/:id/location`; the customer screen at `/track/:id` polls `GET /api/orders/:id/track` and shows status, a map with courier + drop-off markers, distance and a derived ETA (`src/lib/delivery.ts`). Transport is HTTP polling today; WebSocket/push is the planned upgrade.
+- ✅ **Proof of delivery** (note/photo + timestamp) captured when the courier marks delivered, and **per-leg ratings** (courier + restaurant) from the customer after delivery (`/api/orders/:id/rate`).
+- ⬜ **Remaining:** true push transport (WebSockets/SSE) instead of polling, courier earnings/history, photo upload for proof (URL today), and map route/polyline rendering.
+- **Exit:** a customer watches an order progress and a courier move until delivered ✅ (near-real-time via polling).
 
 ### P6 · Discovery, ranking & recommendations — *Weeks 18–24*
 - Search & filters (cuisine, price, distance, open now).
