@@ -27,7 +27,8 @@ const NavbarComponent = () => {
       <div className="container">
         <div className="flex w-fit gap-10 mx-auto font-medium py-4 text-blackish">
           <Link className="navbar_link relative" href="/home">HOME</Link>
-          <Link className="navbar_link relative" href="/discover">DISCOVER</Link>
+          <Link className="navbar_link relative" href="/browse">BROWSE</Link>
+          <Link className="navbar_link relative" href="/discover">MAP</Link>
           <Link className="navbar_link relative" href="/history">HISTORY</Link>
           <Link className="navbar_link relative" href="/help">HELP</Link>
           {roleLink && (

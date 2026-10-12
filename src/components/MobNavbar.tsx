@@ -48,8 +48,11 @@ const MobNavbarComponent = () => {
             <Link className="navbar_link relative py-2" href='/home' onClick={toggleSidebar}>
               HOME
             </Link>
+            <Link className="navbar_link relative py-2" href='/browse' onClick={toggleSidebar}>
+              BROWSE
+            </Link>
             <Link className="navbar_link relative py-2" href='/discover' onClick={toggleSidebar}>
-              DISCOVER
+              MAP
             </Link>
             <Link className="navbar_link relative py-2" href='/history' onClick={toggleSidebar}>
               HISTORY
