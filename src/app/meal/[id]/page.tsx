@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import ProductCard from "@/components/ProductCard";
+import RestaurantReviews from "@/components/RestaurantReviews";
 import { getRestaurantModel } from "@/models/restaurant";
 import { effectiveItemPrice, isItemOrderable } from "@/lib/pricing";
 import mongoose from "mongoose";
@@ -69,6 +70,11 @@ const MealDetails = async ({ params }: MealPageProps) => {
           ) : (
             <p className="text-center text-gray-500">This restaurant hasn&apos;t added a menu yet.</p>
           )}
+        </div>
+
+        <div className="mt-10 w-full container mx-auto p-4">
+          <h3 className="text-xl text-center font-semibold mb-4"><b>Reviews</b></h3>
+          <RestaurantReviews restaurantId={restaurantId} />
         </div>
       </div>
     </div>
