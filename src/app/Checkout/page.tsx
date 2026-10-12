@@ -98,13 +98,17 @@ const CheckOutComponent: React.FC = () => {
     return (
       <div className="max-w-screen-md mx-auto p-8 text-center">
         <h1 className="text-2xl font-bold mb-2">Payment confirmed 🎉</h1>
-        <p className="text-gray-600">
-          Your order is in. Track its progress under{' '}
-          <a href="/history" className="text-blue-600 underline">
-            Order History
+        <p className="text-gray-600 mb-6">Your order is in. Follow it live from here.</p>
+        <div className="flex gap-3 justify-center">
+          {checkout && (
+            <a href={`/track/${checkout.order_id}`} className="btn-primary">
+              Track your order
+            </a>
+          )}
+          <a href="/history" className="btn-outline">
+            Order history
           </a>
-          .
-        </p>
+        </div>
       </div>
     );
   }

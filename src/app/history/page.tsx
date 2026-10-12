@@ -105,6 +105,14 @@ const OrderHistoryComponent: React.FC = () => {
                   {order.currency ?? "GHS"} {order.total_amount}
                 </span>
               </div>
+              {!["cancelled", "rejected"].includes(order.status) && (
+                <a
+                  href={`/track/${order._id}`}
+                  className="mt-3 inline-block text-accent text-sm font-medium underline"
+                >
+                  {order.status === "delivered" ? "View details & rate →" : "Track order →"}
+                </a>
+              )}
             </li>
           ))}
         </ul>
