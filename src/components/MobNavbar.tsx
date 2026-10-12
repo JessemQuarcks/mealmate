@@ -45,13 +45,16 @@ const MobNavbarComponent = () => {
           </div>
           <div className="flex flex-col items-start pl-4">
             
+            <Link className="navbar_link relative py-2" href='/home' onClick={toggleSidebar}>
+              HOME
+            </Link>
             <Link className="navbar_link relative py-2" href='/discover' onClick={toggleSidebar}>
               DISCOVER
             </Link>
-            <Link className="navbar_link relative py-2" href='#' onClick={toggleSidebar}>
-              NEARBY
+            <Link className="navbar_link relative py-2" href='/history' onClick={toggleSidebar}>
+              HISTORY
             </Link>
-            <Link className="navbar_link relative py-2" href='#' onClick={toggleSidebar}>
+            <Link className="navbar_link relative py-2" href='/help' onClick={toggleSidebar}>
               HELP
             </Link>
           </div>
