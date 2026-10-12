@@ -171,15 +171,20 @@ Once a vendor marks an order **ready**, it enters courier dispatch:
   ([src/lib/orderStatus.ts](src/lib/orderStatus.ts)).
 - **Live location** — with "Share my location" on, the console watches the
   browser's geolocation and pings `POST /api/courier/orders/:id/location`.
-- **Customer tracking** (`/track/:id`) — polls `GET /api/orders/:id/track` for
-  status, the event timeline, the courier's position (plotted on a map) and a
-  derived distance + ETA ([src/lib/delivery.ts](src/lib/delivery.ts)). After
-  delivery the customer can rate the courier and restaurant.
+- **Customer tracking** (`/track/:id`) — subscribes to a **Server-Sent Events**
+  stream (`GET /api/orders/:id/track/stream`) for push updates, falling back to
+  polling `GET /api/orders/:id/track`. Shows status, the event timeline, the
+  courier's position (plotted on a map) and a derived distance + ETA
+  ([src/lib/delivery.ts](src/lib/delivery.ts)). After delivery the customer can
+  rate the courier and restaurant.
 
 Every state change appends to an order **event timeline**
 ([src/lib/orderEvents.ts](src/lib/orderEvents.ts)) so tracking shows full
-history. Live updates use HTTP polling today; WebSocket/push is the planned
-upgrade.
+history. The tracking payload is built once in
+[src/lib/trackPayload.ts](src/lib/trackPayload.ts) and shared by the stream and
+the polling endpoint. SSE is used over raw WebSockets because it needs no custom
+server; the full courier flow is covered by
+[src/test/courierFlow.test.ts](src/test/courierFlow.test.ts).
 
 Courier/tracking endpoints:
 
@@ -188,7 +193,27 @@ Courier/tracking endpoints:
 - `PATCH /api/courier/orders/:id/status` — picked up / delivered (+ proof).
 - `POST /api/courier/orders/:id/location` — report courier position.
 - `GET /api/orders/:id/track` — customer tracking payload (status, ETA, events).
+- `GET /api/orders/:id/track/stream` — the same payload pushed over SSE.
 - `POST /api/orders/:id/rate` — rate courier/restaurant after delivery.
+
+## Discovery, ranking & recommendations
+
+The **/browse** page is the discovery surface: debounced search with cuisine,
+max-price, open-now and sort controls, plus optional "use my location" for
+distance-aware results and "Order again" / "Trending now" rails.
+
+- **Search & filters** — `GET /api/restaurants` takes `q`, `cuisine`,
+  `maxPrice`, `openNow` and `sort=rank|distance|rating`
+  ([src/lib/restaurantFilters.ts](src/lib/restaurantFilters.ts)).
+- **Ranking** — the default `rank` sort scores each restaurant 0–1 by rating
+  (confidence-weighted), open/accepting-orders, prep speed, delivery fee, live
+  discount and distance ([src/lib/ranking.ts](src/lib/ranking.ts)).
+- **Reviews** — `GET /api/restaurants/:id/reviews` aggregates the ratings
+  customers leave on delivered orders (average + recent comments), shown on the
+  restaurant page and fed back as a ranking signal.
+- **Recommendations** — `GET /api/recommendations` returns the signed-in user's
+  reorder list (distinct recent restaurants) and trending restaurants (most
+  ordered in the last 30 days).
 
 ## Scripts
 

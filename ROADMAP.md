@@ -137,16 +137,19 @@ Ordered by dependency, not strictly by calendar; several overlap (see §4). Dura
 ### P5 · Delivery & live tracking — *Weeks 16–22* 🟢 **largely complete**
 - ✅ Courier dispatch: a verified courier sees paid, ready, unclaimed orders and **claims** one atomically (no two couriers win the same order), then drives it through `out_for_delivery` → `delivered` via a courier-only state machine (`src/lib/courier.ts`, `courierCanSet` in `src/lib/orderStatus.ts`). The courier console lives at `/courier/dashboard`.
 - ✅ **Order-event timeline** recorded across the whole lifecycle — placed, paid, accepted/preparing/ready, assigned, picked up, delivered, cancelled (`src/lib/orderEvents.ts`) — surfaced on the customer tracking screen.
-- ✅ **Live location + ETA:** the courier shares location (browser geolocation watch) which pings `POST /api/courier/orders/:id/location`; the customer screen at `/track/:id` polls `GET /api/orders/:id/track` and shows status, a map with courier + drop-off markers, distance and a derived ETA (`src/lib/delivery.ts`). Transport is HTTP polling today; WebSocket/push is the planned upgrade.
+- ✅ **Live location + ETA:** the courier shares location (browser geolocation watch) which pings `POST /api/courier/orders/:id/location`; the customer screen at `/track/:id` streams `GET /api/orders/:id/track/stream` over **Server-Sent Events** (push), falling back to polling `GET /api/orders/:id/track`, and shows status, a map with courier + drop-off markers, distance and a derived ETA (`src/lib/delivery.ts`, shared payload in `src/lib/trackPayload.ts`).
 - ✅ **Proof of delivery** (note/photo + timestamp) captured when the courier marks delivered, and **per-leg ratings** (courier + restaurant) from the customer after delivery (`/api/orders/:id/rate`).
-- ⬜ **Remaining:** true push transport (WebSockets/SSE) instead of polling, courier earnings/history, photo upload for proof (URL today), and map route/polyline rendering.
-- **Exit:** a customer watches an order progress and a courier move until delivered ✅ (near-real-time via polling).
+- ✅ The full claim → pickup → location → track → deliver → rate flow is covered by an integration test over the real route handlers (`src/test/courierFlow.test.ts`).
+- ⬜ **Remaining:** raw WebSockets for bidirectional needs (SSE covers tracking today), courier earnings/history, photo upload for proof (URL today), and map route/polyline rendering.
+- **Exit:** a customer watches an order progress and a courier move until delivered ✅ (real-time via SSE push, polling fallback).
 
-### P6 · Discovery, ranking & recommendations — *Weeks 18–24*
-- Search & filters (cuisine, price, distance, open now).
-- Review system feeding a ranking weighted by speed, price, discounts, availability, reviews.
-- History-based recommendations, reorder, trending, nearby surfacing.
-- **Exit:** restaurants compete on real signals; returning users get relevant, personalised suggestions.
+### P6 · Discovery, ranking & recommendations — *Weeks 18–24* 🟢 **largely complete**
+- ✅ **Search & filters** on `GET /api/restaurants`: text (`q`), `cuisine`, `maxPrice`, `openNow`, and `sort=rank|distance|rating` (`src/lib/restaurantFilters.ts`), surfaced on the new `/browse` page with optional "use my location".
+- ✅ **Ranking engine** (`src/lib/ranking.ts`): a tested 0–1 score weighting rating (confidence-adjusted by rating count), open/accepting-orders, prep speed, delivery fee, live discount and distance — the default sort for discovery.
+- ✅ **Review system:** customer order ratings feed `GET /api/restaurants/:id/reviews` (average + recent comments), shown on the restaurant page; restaurant rating is also a ranking signal.
+- ✅ **History-based recommendations:** `GET /api/recommendations` returns reorder (distinct recent restaurants) and trending (most-ordered in 30 days), shown as rails on `/browse`.
+- ⬜ **Remaining:** collaborative/ML personalisation beyond reorder+trending, richer review moderation, and feeding live prep/delivery timing back into the speed signal.
+- **Exit:** restaurants compete on real signals ✅ and returning users get relevant, personalised suggestions ✅.
 
 ### P7 · Admin console — *Weeks 22–26*
 - Vendor/courier approval queue; user, order, dispute management.
