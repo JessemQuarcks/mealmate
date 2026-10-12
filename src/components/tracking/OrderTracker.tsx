@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { APIProvider, Map, AdvancedMarker } from "@vis.gl/react-google-maps";
 import StatusBadge from "@/components/ui/StatusBadge";
 import { describeEvent } from "@/lib/orderEvents";
@@ -27,7 +27,14 @@ const MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 const OrderTracker: React.FC<{ orderId: string }> = ({ orderId }) => {
   const [data, setData] = useState<TrackData | null>(null);
   const [error, setError] = useState<string | null>(null);
+  // Latest status without re-subscribing the stream each render.
+  const statusRef = useRef<string | null>(null);
+  statusRef.current = data?.status ?? null;
 
+  const isTerminal = (s: string | null) =>
+    s === "delivered" || s === "cancelled" || s === "rejected";
+
+  // Fallback polling (used only when SSE is unavailable or drops mid-delivery).
   const refresh = useCallback(async () => {
     try {
       const res = await fetch(`/api/orders/${orderId}/track`, { cache: "no-store" });
@@ -40,15 +47,46 @@ const OrderTracker: React.FC<{ orderId: string }> = ({ orderId }) => {
     }
   }, [orderId]);
 
+  // Prefer the SSE push stream; fall back to polling if it's unsupported or errors.
   useEffect(() => {
-    refresh();
-    // Stop polling once the order reaches a terminal state.
-    const t = setInterval(() => {
-      if (data && ["delivered", "cancelled", "rejected"].includes(data.status)) return;
+    let es: EventSource | null = null;
+    let pollTimer: ReturnType<typeof setInterval> | null = null;
+
+    const startPolling = () => {
+      if (pollTimer) return;
       refresh();
-    }, POLL_MS);
-    return () => clearInterval(t);
-  }, [refresh, data]);
+      pollTimer = setInterval(refresh, POLL_MS);
+    };
+
+    if (typeof window !== "undefined" && "EventSource" in window) {
+      es = new EventSource(`/api/orders/${orderId}/track/stream`);
+      es.onmessage = (e) => {
+        try {
+          setData(JSON.parse(e.data));
+          setError(null);
+        } catch {
+          /* ignore malformed frame */
+        }
+      };
+      es.addEventListener("notfound", () => {
+        setError("Order not found");
+        es?.close();
+      });
+      es.onerror = () => {
+        es?.close();
+        es = null;
+        // A clean close after delivery is expected; only poll if still in flight.
+        if (!isTerminal(statusRef.current)) startPolling();
+      };
+    } else {
+      startPolling();
+    }
+
+    return () => {
+      es?.close();
+      if (pollTimer) clearInterval(pollTimer);
+    };
+  }, [orderId, refresh]);
 
   if (error) return <p className="text-red-600">{error}</p>;
   if (!data) return <p className="text-gray-500">Loading tracking…</p>;
