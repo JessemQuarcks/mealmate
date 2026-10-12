@@ -8,6 +8,7 @@ import { verifyTransaction } from "@/lib/paystack/verify";
 import { reconcilePayment } from "@/lib/paystack/reconcile";
 import { canTransitionPayment, PaymentStatus } from "@/lib/paymentStatus";
 import { isValidReference } from "@/lib/paystack/reference";
+import { buildEvent, ORDER_EVENTS } from "@/lib/orderEvents";
 
 export const dynamic = "force-dynamic";
 
@@ -77,6 +78,7 @@ export const POST = withErrorHandling(async (req) => {
 
   order.payment.status = "paid";
   order.payment.verifiedAt = new Date();
+  order.events.push(buildEvent(ORDER_EVENTS.paid));
   await order.save();
 
   // Payment settled: empty the server cart so it isn't re-ordered.

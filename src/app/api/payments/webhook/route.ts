@@ -6,6 +6,7 @@ import mongodbConnect from "@/utils/mongoConnect";
 import { fail, logger, ok } from "@/lib/http";
 import { reconcilePayment } from "@/lib/paystack/reconcile";
 import { canTransitionPayment, PaymentStatus } from "@/lib/paymentStatus";
+import { buildEvent, ORDER_EVENTS } from "@/lib/orderEvents";
 
 export const dynamic = "force-dynamic";
 
@@ -84,6 +85,7 @@ export async function POST(req: Request): Promise<NextResponse> {
 
   order.payment.status = "paid";
   order.payment.verifiedAt = new Date();
+  order.events.push(buildEvent(ORDER_EVENTS.paid));
   await order.save();
   if (order.user_id) {
     await Cart.findOneAndUpdate({ user_id: order.user_id }, { restaurant_id: undefined, items: [] });

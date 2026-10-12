@@ -5,6 +5,15 @@ import mongodbConnect from "@/utils/mongoConnect";
 import { fail, logger, ok, parseBody, withErrorHandling } from "@/lib/http";
 import { requireActiveVendor } from "@/lib/vendor";
 import { ORDER_STATUSES, vendorCanSet, OrderStatus } from "@/lib/orderStatus";
+import { buildEvent, ORDER_EVENTS } from "@/lib/orderEvents";
+
+/** Map a vendor-set status onto its timeline event type. */
+const STATUS_EVENT: Partial<Record<OrderStatus, string>> = {
+  accepted: ORDER_EVENTS.accepted,
+  rejected: ORDER_EVENTS.rejected,
+  preparing: ORDER_EVENTS.preparing,
+  ready: ORDER_EVENTS.ready,
+};
 
 export const dynamic = "force-dynamic";
 
@@ -45,6 +54,8 @@ export const PATCH = withErrorHandling(async (req) => {
   }
 
   order.status = data.status;
+  const eventType = STATUS_EVENT[data.status];
+  if (eventType) order.events.push(buildEvent(eventType));
   await order.save();
 
   logger.info("Order status updated", { order: order.id, status: data.status, by: user.id });

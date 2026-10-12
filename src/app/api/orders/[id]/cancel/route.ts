@@ -4,6 +4,7 @@ import mongodbConnect from "@/utils/mongoConnect";
 import { fail, logger, ok, parseBody, withErrorHandling } from "@/lib/http";
 import { requireRole } from "@/lib/session";
 import { canTransition, OrderStatus } from "@/lib/orderStatus";
+import { buildEvent, ORDER_EVENTS } from "@/lib/orderEvents";
 
 export const dynamic = "force-dynamic";
 
@@ -40,6 +41,7 @@ export const POST = withErrorHandling(async (req) => {
   order.status = "cancelled";
   order.cancelled_at = new Date();
   if (data.reason) order.cancel_reason = data.reason;
+  order.events.push(buildEvent(ORDER_EVENTS.cancelled, data.reason));
   await order.save();
 
   logger.info("Order cancelled by customer", { order: order.id, user: user.id });

@@ -8,6 +8,7 @@ import { priceCart } from "@/lib/cart";
 import { computeOrderTotals } from "@/lib/fees";
 import { toMinorUnits } from "@/lib/money";
 import { buildPaymentReference } from "@/lib/paystack/reference";
+import { buildEvent, ORDER_EVENTS } from "@/lib/orderEvents";
 
 export const dynamic = "force-dynamic";
 
@@ -103,6 +104,7 @@ export const POST = withErrorHandling(async (req) => {
       amountMinor,
       currency: CURRENCY,
     },
+    events: [buildEvent(ORDER_EVENTS.placed)],
   });
 
   logger.info("Checkout initialised", {
