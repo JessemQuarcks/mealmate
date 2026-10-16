@@ -41,6 +41,23 @@ consoles (Google Cloud, Firebase) and restricted before any production use.
 npm run dev     # start the dev server at http://localhost:3000
 ```
 
+## Design & theming
+
+The UI is built on a green token-based design system defined in
+[src/app/globals.css](src/app/globals.css) and [tailwind.config.ts](tailwind.config.ts):
+colors are RGB-channel CSS variables (`--bg`, `--surface`, `--fg`, `--muted`,
+`--line`, `--brand`) exposed as Tailwind classes (`bg-surface`, `text-fg`,
+`text-muted`, `border-line`, `text-brand`), so one set of classes works in both
+themes. Light/dark is handled by [ThemeProvider](src/app/ThemeProvider.tsx) +
+a no-flash init script in the layout and the sun/moon
+[ThemeToggle](src/components/ThemeToggle.tsx) (default dark, persisted to
+localStorage). The animated landing lives in
+[src/components/landing/](src/components/landing/) (3D `CardRing`, scroll
+`Reveal`, live featured picks); chrome is the floating-pill
+[SiteHeader](src/components/SiteHeader.tsx) and [Footer](src/components/Footer.tsx).
+Account self-service is at `/account` and `/account/settings` (name, phone and
+saved delivery addresses via `GET`/`PATCH /api/account/profile`).
+
 ## Authentication & roles
 
 Auth uses NextAuth (App Router) with two providers:
