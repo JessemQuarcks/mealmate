@@ -7,31 +7,32 @@
    [data-theme="light"] flips to a clean white surface. The
    ThemeProvider sets data-theme on <html>.
    ============================================================ */
+/* Colors are RGB channel triplets so Tailwind's `/opacity` modifier works. */
 :root,
 :root[data-theme="dark"] {
-  --bg: #05090a;
-  --surface: #0c1413;
-  --surface-2: #121d1b;
-  --fg: #eaf5ee;
-  --muted: #8ba699;
-  --line: #1e2d29;
-  --brand: #22c55e;
-  --brand-strong: #16a34a;
-  --brand-soft: #0e3a24;
+  --bg: 5 9 10;
+  --surface: 12 20 19;
+  --surface-2: 18 29 27;
+  --fg: 234 245 238;
+  --muted: 139 166 153;
+  --line: 30 45 41;
+  --brand: 34 197 94;
+  --brand-strong: 22 163 74;
+  --brand-soft: 14 58 36;
   --brand-glow: rgba(34, 197, 94, 0.45);
   --grid: rgba(34, 197, 94, 0.06);
 }
 
 :root[data-theme="light"] {
-  --bg: #f6faf7;
-  --surface: #ffffff;
-  --surface-2: #eef5f0;
-  --fg: #0a1410;
-  --muted: #5c7268;
-  --line: #e2ece6;
-  --brand: #16a34a;
-  --brand-strong: #15803d;
-  --brand-soft: #dcfce7;
+  --bg: 246 250 247;
+  --surface: 255 255 255;
+  --surface-2: 238 245 240;
+  --fg: 10 20 16;
+  --muted: 92 114 104;
+  --line: 226 236 230;
+  --brand: 22 163 74;
+  --brand-strong: 21 128 61;
+  --brand-soft: 220 252 231;
   --brand-glow: rgba(22, 163, 74, 0.3);
   --grid: rgba(22, 163, 74, 0.05);
 }
@@ -41,8 +42,8 @@ html {
 }
 
 body {
-  background-color: var(--bg);
-  color: var(--fg);
+  background-color: rgb(var(--bg));
+  color: rgb(var(--fg));
 }
 
 @layer components {
@@ -103,7 +104,7 @@ body {
     width: 100%;
     left: 0;
     bottom: -6px;
-    background-color: var(--brand);
+    background-color: rgb(var(--brand));
     scale: 0;
     transform-origin: left;
     transition: scale 0.3s ease;
@@ -115,7 +116,7 @@ body {
 
 @layer utilities {
   .text-gradient {
-    background: linear-gradient(100deg, var(--brand) 0%, #86efac 50%, var(--brand) 100%);
+    background: linear-gradient(100deg, rgb(var(--brand)) 0%, #86efac 50%, rgb(var(--brand)) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

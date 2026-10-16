@@ -1,11 +1,5 @@
-import Hero from "@/components/Hero";
-import NewProducts from "@/components/NewProducts";
+import Landing from "@/components/landing/Landing";
 
 export default function Home() {
-  return (
-    <main>
-      <Hero />
-      <NewProducts/>
-      </main>
-  );
+  return <Landing />;
 }

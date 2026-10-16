@@ -14,21 +14,21 @@ const config: Config = {
         padding: "1.25rem",
       },
       colors: {
-        // Token-driven palette so light/dark both work from one set of classes.
-        bg: "var(--bg)",
-        surface: "var(--surface)",
-        "surface-2": "var(--surface-2)",
-        fg: "var(--fg)",
-        muted: "var(--muted)",
-        line: "var(--line)",
+        // Token-driven palette (RGB channels) so /opacity works in both themes.
+        bg: "rgb(var(--bg) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        "surface-2": "rgb(var(--surface-2) / <alpha-value>)",
+        fg: "rgb(var(--fg) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
+        line: "rgb(var(--line) / <alpha-value>)",
         brand: {
-          DEFAULT: "var(--brand)",
-          strong: "var(--brand-strong)",
-          soft: "var(--brand-soft)",
+          DEFAULT: "rgb(var(--brand) / <alpha-value>)",
+          strong: "rgb(var(--brand-strong) / <alpha-value>)",
+          soft: "rgb(var(--brand-soft) / <alpha-value>)",
         },
         // Legacy aliases kept so existing class names resolve to the new green.
-        accent: "var(--brand)",
-        blackish: "var(--fg)",
+        accent: "rgb(var(--brand) / <alpha-value>)",
+        blackish: "rgb(var(--fg) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
