@@ -98,7 +98,7 @@ const CheckOutComponent: React.FC = () => {
     return (
       <div className="max-w-screen-md mx-auto p-8 text-center">
         <h1 className="text-2xl font-bold mb-2">Payment confirmed 🎉</h1>
-        <p className="text-gray-600 mb-6">Your order is in. Follow it live from here.</p>
+        <p className="text-muted mb-6">Your order is in. Follow it live from here.</p>
         <div className="flex gap-3 justify-center">
           {checkout && (
             <a href={`/track/${checkout.order_id}`} className="btn-primary">
@@ -122,11 +122,11 @@ const CheckOutComponent: React.FC = () => {
           {cartItems.map((item) => (
             <div
               key={item.id}
-              className="flex items-center justify-between gap-4 p-3 border rounded-lg"
+              className="flex items-center justify-between gap-4 rounded-xl border border-line bg-surface p-3"
             >
               <div>
                 <div className="text-lg font-bold">{item.name}</div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-muted">
                   GHS {item.price} × {item.quantity}
                 </div>
               </div>
@@ -147,23 +147,23 @@ const CheckOutComponent: React.FC = () => {
             <div className="mt-6 space-y-4 border-t pt-6">
               <h2 className="text-xl font-semibold">Delivery details</h2>
               <input
-                className="w-full border rounded-md px-3 py-2"
+                className="input"
                 placeholder="Delivery address *"
                 value={line1}
                 onChange={(e) => setLine1(e.target.value)}
               />
               <input
-                className="w-full border rounded-md px-3 py-2"
+                className="input"
                 placeholder="City (optional)"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
               />
               <label className="block">
-                <span className="text-sm text-gray-600">Tip (GHS)</span>
+                <span className="text-sm text-muted">Tip (GHS)</span>
                 <input
                   type="number"
                   min={0}
-                  className="w-full border rounded-md px-3 py-2"
+                  className="input"
                   value={tip}
                   onChange={(e) => setTip(Math.max(0, Number(e.target.value) || 0))}
                 />
@@ -182,7 +182,7 @@ const CheckOutComponent: React.FC = () => {
               <button
                 disabled={busy || !session?.user?.email}
                 onClick={handleContinue}
-                className="w-full bg-blue-600 disabled:bg-gray-400 text-white py-2 rounded-lg"
+                className="btn-primary w-full py-3"
               >
                 {busy ? 'Preparing…' : 'Continue to payment'}
               </button>
@@ -190,7 +190,7 @@ const CheckOutComponent: React.FC = () => {
           ) : (
             <div className="mt-6 space-y-3 border-t pt-6">
               <h2 className="text-xl font-semibold">Payment</h2>
-              <ul className="text-sm text-gray-700 space-y-1">
+              <ul className="text-sm text-muted space-y-1">
                 <li className="flex justify-between"><span>Subtotal</span><span>GHS {checkout.totals.subtotal}</span></li>
                 <li className="flex justify-between"><span>Delivery</span><span>GHS {checkout.totals.deliveryFee}</span></li>
                 <li className="flex justify-between"><span>Service fee</span><span>GHS {checkout.totals.serviceFee}</span></li>

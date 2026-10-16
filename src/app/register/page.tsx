@@ -54,57 +54,64 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="max-w-md mx-auto my-12 p-6 border rounded-lg shadow-sm">
-      <h1 className="text-2xl font-bold mb-6 text-center">Create your account</h1>
-
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-1">Name</label>
-          <input id="name" required value={name} onChange={(e) => setName(e.target.value)}
-            className="w-full border rounded-lg p-2" />
-        </div>
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
-          <input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)}
-            className="w-full border rounded-lg p-2" />
-        </div>
-        <div>
-          <label htmlFor="password" className="block text-sm font-medium mb-1">Password</label>
-          <input id="password" type="password" required minLength={8} value={password}
-            onChange={(e) => setPassword(e.target.value)} className="w-full border rounded-lg p-2" />
-          <p className="text-xs text-gray-500 mt-1">At least 8 characters.</p>
+    <div className="container my-16 flex justify-center">
+      <div className="glass w-full max-w-md p-8">
+        <div className="mb-6 text-center">
+          <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-brand text-xl font-bold text-black">
+            M
+          </span>
+          <h1 className="mt-3 font-display text-2xl font-bold">Create your account</h1>
+          <p className="text-sm text-muted">Join Mealmate in a few seconds.</p>
         </div>
 
-        <fieldset>
-          <legend className="block text-sm font-medium mb-2">I am signing up as</legend>
-          <div className="space-y-2">
-            {ROLE_OPTIONS.map((opt) => (
-              <label key={opt.value}
-                className={`flex items-start gap-3 border rounded-lg p-3 cursor-pointer ${role === opt.value ? "border-blue-600 bg-blue-50" : ""}`}>
-                <input type="radio" name="role" value={opt.value} checked={role === opt.value}
-                  onChange={() => setRole(opt.value)} className="mt-1" />
-                <span>
-                  <span className="font-medium block">{opt.label}</span>
-                  <span className="text-sm text-gray-500">{opt.hint}</span>
-                </span>
-              </label>
-            ))}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="name" className="mb-1 block text-sm text-muted">Name</label>
+            <input id="name" required value={name} onChange={(e) => setName(e.target.value)} className="input" />
           </div>
-        </fieldset>
+          <div>
+            <label htmlFor="email" className="mb-1 block text-sm text-muted">Email</label>
+            <input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="input" />
+          </div>
+          <div>
+            <label htmlFor="password" className="mb-1 block text-sm text-muted">Password</label>
+            <input id="password" type="password" required minLength={8} value={password}
+              onChange={(e) => setPassword(e.target.value)} className="input" />
+            <p className="mt-1 text-xs text-muted">At least 8 characters.</p>
+          </div>
 
-        {error && <p className="text-red-600 text-sm">{error}</p>}
-        {notice && <p className="text-green-700 text-sm">{notice}</p>}
+          <fieldset>
+            <legend className="mb-2 block text-sm text-muted">I am signing up as</legend>
+            <div className="space-y-2">
+              {ROLE_OPTIONS.map((opt) => (
+                <label key={opt.value}
+                  className={`flex cursor-pointer items-start gap-3 rounded-xl border p-3 transition-colors ${
+                    role === opt.value ? "border-brand bg-brand-soft/40" : "border-line hover:border-line"
+                  }`}>
+                  <input type="radio" name="role" value={opt.value} checked={role === opt.value}
+                    onChange={() => setRole(opt.value)} className="mt-1 accent-[color:rgb(var(--brand))]" />
+                  <span>
+                    <span className="block font-medium">{opt.label}</span>
+                    <span className="text-sm text-muted">{opt.hint}</span>
+                  </span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
 
-        <button type="submit" disabled={loading}
-          className="w-full bg-blue-600 text-white rounded-lg py-2 disabled:opacity-60">
-          {loading ? "Creating account…" : "Create account"}
-        </button>
-      </form>
+          {error && <p className="text-sm text-red-500">{error}</p>}
+          {notice && <p className="text-sm text-brand">{notice}</p>}
 
-      <p className="text-sm text-center mt-6">
-        Already have an account?{" "}
-        <Link href="/signin" className="text-blue-600 underline">Sign in</Link>
-      </p>
+          <button type="submit" disabled={loading} className="btn-primary w-full py-3">
+            {loading ? "Creating account…" : "Create account"}
+          </button>
+        </form>
+
+        <p className="mt-6 text-center text-sm text-muted">
+          Already have an account?{" "}
+          <Link href="/signin" className="font-medium text-brand">Sign in</Link>
+        </p>
+      </div>
     </div>
   );
 }
