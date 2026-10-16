@@ -1,6 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
+import { FiArrowRight, FiShoppingBag } from "react-icons/fi";
+import StatusBadge from "@/components/ui/StatusBadge";
 
 interface OrderProduct {
   id: string;
@@ -20,19 +23,8 @@ interface Order {
   createdAt?: string;
 }
 
-const STATUS_STYLES: Record<string, string> = {
-  placed: "bg-blue-100 text-blue-700",
-  accepted: "bg-indigo-100 text-indigo-700",
-  preparing: "bg-amber-100 text-amber-700",
-  ready: "bg-emerald-100 text-emerald-700",
-  out_for_delivery: "bg-emerald-100 text-emerald-700",
-  delivered: "bg-green-100 text-green-700",
-  cancelled: "bg-gray-200 text-gray-600",
-  rejected: "bg-red-100 text-red-700",
-};
-
-// Order history now comes from the server, scoped to the signed-in user, so it
-// follows the account across devices (replaces the old local boughtItems).
+// Order history comes from the server, scoped to the signed-in user, so it
+// follows the account across devices.
 const OrderHistoryComponent: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [state, setState] = useState<"loading" | "ready" | "error">("loading");
@@ -58,66 +50,75 @@ const OrderHistoryComponent: React.FC = () => {
   }, []);
 
   if (state === "loading") {
-    return <p className="p-5 max-w-screen-md mx-auto">Loading your orders…</p>;
+    return (
+      <div className="container my-10 max-w-2xl space-y-4">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <div key={i} className="h-28 animate-pulse rounded-2xl bg-surface-2" />
+        ))}
+      </div>
+    );
   }
   if (state === "error") {
     return (
-      <p className="p-5 max-w-screen-md mx-auto">
-        Could not load your orders. Please{" "}
-        <a href="/signin?callbackUrl=/history" className="text-blue-600 underline">
-          sign in
-        </a>{" "}
-        and try again.
-      </p>
+      <div className="container my-10 max-w-2xl">
+        <p className="text-muted">
+          Could not load your orders. Please{" "}
+          <Link href="/signin?callbackUrl=/history" className="text-brand underline">
+            sign in
+          </Link>{" "}
+          and try again.
+        </p>
+      </div>
     );
   }
 
   return (
-    <div className="p-5 max-w-screen-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Order History</h1>
+    <div className="container my-10 max-w-2xl">
+      <h1 className="section-title mb-6">Your orders</h1>
 
       {orders.length > 0 ? (
         <ul className="space-y-4">
           {orders.map((order) => (
-            <li key={order._id} className="p-4 border rounded-lg">
-              <div className="flex items-center justify-between">
+            <li key={order._id} className="card transition-all hover:border-brand/50">
+              <div className="flex items-center justify-between gap-3">
                 <p className="font-semibold">{order.restaurant_name || "Order"}</p>
-                <span
-                  className={`text-xs px-2 py-1 rounded-full ${
-                    STATUS_STYLES[order.status] ?? "bg-gray-100 text-gray-600"
-                  }`}
-                >
-                  {order.status.replace(/_/g, " ")}
-                </span>
+                <StatusBadge status={order.status} />
               </div>
-              <ul className="mt-2 text-sm text-gray-600">
+              <ul className="mt-2 text-sm text-muted">
                 {order.products.map((p) => (
                   <li key={p.id}>
                     {p.name} × {p.quantity}
                   </li>
                 ))}
               </ul>
-              <div className="mt-2 flex items-center justify-between text-sm">
-                <span className="text-gray-500">
-                  Payment: {order.payment?.status ?? "—"}
-                </span>
-                <span className="font-semibold">
+              <div className="mt-3 flex items-center justify-between border-t border-line pt-3 text-sm">
+                <span className="text-muted">Payment: {order.payment?.status ?? "—"}</span>
+                <span className="font-semibold text-fg">
                   {order.currency ?? "GHS"} {order.total_amount}
                 </span>
               </div>
               {!["cancelled", "rejected"].includes(order.status) && (
-                <a
+                <Link
                   href={`/track/${order._id}`}
-                  className="mt-3 inline-block text-accent text-sm font-medium underline"
+                  className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-brand"
                 >
-                  {order.status === "delivered" ? "View details & rate →" : "Track order →"}
-                </a>
+                  {order.status === "delivered" ? "View details & rate" : "Track order"}
+                  <FiArrowRight />
+                </Link>
               )}
             </li>
           ))}
         </ul>
       ) : (
-        <p>No orders found yet.</p>
+        <div className="card flex flex-col items-center gap-4 py-12 text-center">
+          <div className="grid h-14 w-14 place-items-center rounded-2xl bg-surface-2 text-brand">
+            <FiShoppingBag size={24} />
+          </div>
+          <p className="text-muted">No orders yet. Hungry?</p>
+          <Link href="/browse" className="btn-primary">
+            Browse restaurants
+          </Link>
+        </div>
       )}
     </div>
   );

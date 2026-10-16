@@ -75,7 +75,7 @@ const BrowseComponent: React.FC = () => {
   return (
     <div className="container my-8">
       <h1 className="section-title mb-1">Browse restaurants</h1>
-      <p className="text-gray-600 mb-6">Ranked by rating, speed, price, offers and distance.</p>
+      <p className="text-muted mb-6">Ranked by rating, speed, price, offers and distance.</p>
 
       {/* Recommendations */}
       {recs && (recs.reorder.length > 0 || recs.trending.length > 0) && (
@@ -92,27 +92,27 @@ const BrowseComponent: React.FC = () => {
       {/* Filters */}
       <div className="card mb-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-6 items-end">
         <label className="lg:col-span-2 text-sm">
-          <span className="text-gray-500">Search</span>
+          <span className="text-muted">Search</span>
           <input
-            className="w-full border rounded-md px-3 py-2"
+            className="input"
             placeholder="Name or cuisine…"
             value={q}
             onChange={(e) => setQ(e.target.value)}
           />
         </label>
         <label className="text-sm">
-          <span className="text-gray-500">Cuisine</span>
+          <span className="text-muted">Cuisine</span>
           <input
-            className="w-full border rounded-md px-3 py-2"
+            className="input"
             placeholder="e.g. local"
             value={cuisine}
             onChange={(e) => setCuisine(e.target.value)}
           />
         </label>
         <label className="text-sm">
-          <span className="text-gray-500">Max price</span>
+          <span className="text-muted">Max price</span>
           <select
-            className="w-full border rounded-md px-3 py-2"
+            className="input"
             value={maxPrice}
             onChange={(e) => setMaxPrice(Number(e.target.value))}
           >
@@ -124,9 +124,9 @@ const BrowseComponent: React.FC = () => {
           </select>
         </label>
         <label className="text-sm">
-          <span className="text-gray-500">Sort</span>
+          <span className="text-muted">Sort</span>
           <select
-            className="w-full border rounded-md px-3 py-2"
+            className="input"
             value={sort}
             onChange={(e) => setSort(e.target.value as Sort)}
           >
@@ -149,9 +149,9 @@ const BrowseComponent: React.FC = () => {
       {error && <p className="text-red-600 mb-4">{error}</p>}
 
       {loading ? (
-        <p className="text-gray-500">Loading restaurants…</p>
+        <p className="text-muted">Loading restaurants…</p>
       ) : results.length === 0 ? (
-        <p className="text-gray-500">No restaurants match those filters.</p>
+        <p className="text-muted">No restaurants match those filters.</p>
       ) : (
         <div className="grid grid-cols-1 place-items-center sm:place-items-start sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {results.map((r) => (
@@ -182,11 +182,11 @@ const Rail: React.FC<{
         <Link
           key={it.restaurant_id}
           href={`/meal/${it.restaurant_id}`}
-          className="shrink-0 rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm hover:border-accent"
+          className="shrink-0 rounded-xl border border-line bg-surface px-4 py-3 text-sm transition-colors hover:border-brand"
         >
           <span className="font-medium">{it.restaurant_name || "Restaurant"}</span>
           {typeof it.orders === "number" && (
-            <span className="ml-2 text-gray-400">{it.orders} orders</span>
+            <span className="ml-2 text-muted">{it.orders} orders</span>
           )}
         </Link>
       ))}
