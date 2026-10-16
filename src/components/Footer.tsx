@@ -2,54 +2,73 @@ import React from "react";
 import Link from "next/link";
 import { BsFacebook, BsInstagram, BsLinkedin, BsTwitterX } from "react-icons/bs";
 
-/** Site footer with quick links and socials. */
 const Footer = () => {
   return (
-    <footer className="mt-16 border-t border-gray-200 bg-gray-50">
-      <div className="container py-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="mt-24 border-t border-line bg-surface/40">
+      <div className="container grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="text-2xl text-blackish">
-            <b>Meal</b>mate
+          <div className="flex items-center gap-2 font-display text-2xl font-extrabold">
+            <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand text-black">M</span>
+            Meal<span className="text-brand">mate</span>
+          </div>
+          <p className="mt-3 max-w-xs text-sm text-muted">
+            Discover nearby restaurants, order, pay and watch your delivery arrive —
+            all in one beautifully fast place.
           </p>
-          <p className="mt-2 text-sm text-gray-500">
-            Discover nearby restaurants, order, pay and track delivery — all in one place.
-          </p>
         </div>
 
-        <div>
-          <h3 className="font-semibold text-blackish mb-3">Explore</h3>
-          <ul className="space-y-2 text-sm text-gray-600">
-            <li><Link href="/home" className="hover:text-accent">Home</Link></li>
-            <li><Link href="/discover" className="hover:text-accent">Discover</Link></li>
-            <li><Link href="/history" className="hover:text-accent">Order history</Link></li>
-          </ul>
-        </div>
+        <FooterCol
+          title="Explore"
+          links={[
+            ["Home", "/home"],
+            ["Browse", "/browse"],
+            ["Map", "/discover"],
+            ["Your orders", "/history"],
+          ]}
+        />
+        <FooterCol
+          title="For partners"
+          links={[
+            ["Vendor portal", "/vendor/dashboard"],
+            ["Courier app", "/courier/dashboard"],
+            ["Help & FAQ", "/help"],
+          ]}
+        />
 
         <div>
-          <h3 className="font-semibold text-blackish mb-3">For partners</h3>
-          <ul className="space-y-2 text-sm text-gray-600">
-            <li><Link href="/vendor/dashboard" className="hover:text-accent">Vendor portal</Link></li>
-            <li><Link href="/courier/dashboard" className="hover:text-accent">Courier app</Link></li>
-            <li><Link href="/help" className="hover:text-accent">Help &amp; FAQ</Link></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="font-semibold text-blackish mb-3">Follow us</h3>
+          <h3 className="mb-3 font-semibold text-fg">Follow us</h3>
           <div className="flex gap-2">
             <span className="header_top_icon_wrapper"><BsFacebook /></span>
             <span className="header_top_icon_wrapper"><BsTwitterX /></span>
             <span className="header_top_icon_wrapper"><BsInstagram /></span>
             <span className="header_top_icon_wrapper"><BsLinkedin /></span>
           </div>
+          <Link href="/browse" className="btn-primary mt-5 inline-flex">
+            Start ordering
+          </Link>
         </div>
       </div>
 
-      <div className="border-t border-gray-200 py-4 text-center text-xs text-gray-400">
-        © {new Date().getFullYear()} MealMate. All rights reserved.
+      <div className="border-t border-line py-5 text-center text-xs text-muted">
+        © {new Date().getFullYear()} Mealmate. Crafted with care.
       </div>
     </footer>
   );
 };
+
+const FooterCol: React.FC<{ title: string; links: [string, string][] }> = ({ title, links }) => (
+  <div>
+    <h3 className="mb-3 font-semibold text-fg">{title}</h3>
+    <ul className="space-y-2 text-sm text-muted">
+      {links.map(([label, href]) => (
+        <li key={href}>
+          <Link href={href} className="transition-colors hover:text-brand">
+            {label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 export default Footer;
