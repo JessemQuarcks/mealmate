@@ -51,7 +51,7 @@ export default function ClaimRestaurant() {
 
   return (
     <div className="max-w-xl">
-      <p className="text-gray-600 mb-4">
+      <p className="text-muted mb-4">
         Find your restaurant below and claim it to manage its menu, prices and availability.
       </p>
       <form onSubmit={search} className="flex gap-2 mb-4">
@@ -61,25 +61,25 @@ export default function ClaimRestaurant() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
         />
-        <button type="submit" disabled={searching} className="bg-blue-600 text-white rounded-lg px-4 disabled:opacity-60">
+        <button type="submit" disabled={searching} className="bg-brand text-black rounded-lg px-4 disabled:opacity-60">
           {searching ? "…" : "Search"}
         </button>
       </form>
 
-      {message && <p className="text-sm mb-4 text-gray-700">{message}</p>}
+      {message && <p className="text-sm mb-4 text-muted">{message}</p>}
 
       <ul className="space-y-2">
         {results.map((r) => (
           <li key={r._id} className="border rounded-lg p-3 flex justify-between items-center">
             <div>
               <p className="font-medium">{r.name}</p>
-              <p className="text-sm text-gray-500">{r.category || r.address || ""}</p>
+              <p className="text-sm text-muted">{r.category || r.address || ""}</p>
             </div>
             {r.ownerUserId ? (
-              <span className="text-sm text-gray-400">Already claimed</span>
+              <span className="text-sm text-muted">Already claimed</span>
             ) : (
               <button disabled={busy === r._id} onClick={() => claim(r._id)}
-                className="text-blue-600 underline text-sm disabled:opacity-50">
+                className="text-brand underline text-sm disabled:opacity-50">
                 Claim
               </button>
             )}

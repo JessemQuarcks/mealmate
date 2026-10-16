@@ -32,7 +32,7 @@ export default function HelpPage() {
   return (
     <div className="max-w-2xl mx-auto my-12 px-4">
       <h1 className="section-title mb-2">Help &amp; FAQ</h1>
-      <p className="text-gray-600 mb-8">
+      <p className="text-muted mb-8">
         Quick answers to the things people ask most. Still stuck? Reach out from the
         social links in the footer.
       </p>
@@ -44,7 +44,7 @@ export default function HelpPage() {
               {item.q}
               <span className="text-accent group-open:rotate-45 transition-transform">+</span>
             </summary>
-            <p className="mt-3 text-sm text-gray-600">{item.a}</p>
+            <p className="mt-3 text-sm text-muted">{item.a}</p>
           </details>
         ))}
       </div>

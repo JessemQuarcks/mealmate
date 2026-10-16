@@ -57,7 +57,7 @@ const ProductCardAdditon: React.FC<ProductCardProps> = ({ product, restaurantId 
 
   return (
     <div
-      className="flex flex-col md:flex-row items-center  bg-white p-4 rounded-lg shadow-md w-full max-w-md mb-60"
+      className="flex flex-col md:flex-row items-center  bg-surface p-4 rounded-lg shadow-md w-full max-w-md mb-60"
       style={{ height: '180px' }}
     >
       <div className="w-full md:w-1/2 h-full">
@@ -72,19 +72,19 @@ const ProductCardAdditon: React.FC<ProductCardProps> = ({ product, restaurantId 
       </div>
       <div className="w-full md:w-1/2 flex flex-col items-center md:items-start justify-center p-4">
         <h4 className="text-lg font-medium mt-2">{product.name}</h4>
-        <p className="text-gray-600 mt-1">{product.price}</p>
+        <p className="text-muted mt-1">{product.price}</p>
         <div className="flex items-center mt-2">
           <input 
             type="number"
             value={quantity}
             onChange={handleQuantityChange}
             min="1"
-            className="w-16 text-center border border-gray-300 rounded-md py-1 px-2"
+            className="w-16 text-center border border-line rounded-md py-1 px-2"
           />
         </div>
         <button 
           disabled={itemAlreadyInCart} 
-          className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-lg"
+          className="btn-primary mt-2 disabled:opacity-60"
           onClick={handleAddToCart}
         >
           Add to Cart

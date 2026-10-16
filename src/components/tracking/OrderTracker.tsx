@@ -89,7 +89,7 @@ const OrderTracker: React.FC<{ orderId: string }> = ({ orderId }) => {
   }, [orderId, refresh]);
 
   if (error) return <p className="text-red-600">{error}</p>;
-  if (!data) return <p className="text-gray-500">Loading tracking…</p>;
+  if (!data) return <p className="text-muted">Loading tracking…</p>;
 
   const delivered = data.status === "delivered";
   const showMap = Boolean(MAPS_KEY && data.courier_location && data.destination);
@@ -98,12 +98,12 @@ const OrderTracker: React.FC<{ orderId: string }> = ({ orderId }) => {
     <div className="space-y-6">
       <div className="card flex items-center justify-between">
         <div>
-          <p className="text-sm text-gray-500">Order status</p>
+          <p className="text-sm text-muted">Order status</p>
           <StatusBadge status={data.status} className="mt-1 text-sm" />
         </div>
         {!delivered && data.eta_minutes != null && (
           <div className="text-right">
-            <p className="text-sm text-gray-500">Estimated arrival</p>
+            <p className="text-sm text-muted">Estimated arrival</p>
             <p className="text-2xl font-bold text-accent">~{data.eta_minutes} min</p>
           </div>
         )}
@@ -131,7 +131,7 @@ const OrderTracker: React.FC<{ orderId: string }> = ({ orderId }) => {
       )}
 
       {data.courier && (
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-muted">
           Courier: <b>{data.courier.name}</b>
           {data.distance_meters != null && !delivered && (
             <> · {(data.distance_meters / 1000).toFixed(1)} km away</>
@@ -147,12 +147,12 @@ const OrderTracker: React.FC<{ orderId: string }> = ({ orderId }) => {
               <span className="mt-1 h-2 w-2 rounded-full bg-accent shrink-0" />
               <div>
                 <p className="text-sm font-medium">{describeEvent(e.type)}</p>
-                {e.note && <p className="text-xs text-gray-500">{e.note}</p>}
-                <p className="text-xs text-gray-400">{new Date(e.at).toLocaleString()}</p>
+                {e.note && <p className="text-xs text-muted">{e.note}</p>}
+                <p className="text-xs text-muted">{new Date(e.at).toLocaleString()}</p>
               </div>
             </li>
           ))}
-          {data.events.length === 0 && <li className="text-sm text-gray-500">No updates yet.</li>}
+          {data.events.length === 0 && <li className="text-sm text-muted">No updates yet.</li>}
         </ol>
       </div>
 

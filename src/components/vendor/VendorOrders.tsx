@@ -20,8 +20,8 @@ const ACTIONS: Record<string, { label: string; to: string; style: string }[]> = 
     { label: "Accept", to: "accepted", style: "text-green-700" },
     { label: "Reject", to: "rejected", style: "text-red-700" },
   ],
-  accepted: [{ label: "Start preparing", to: "preparing", style: "text-blue-700" }],
-  preparing: [{ label: "Mark ready", to: "ready", style: "text-blue-700" }],
+  accepted: [{ label: "Start preparing", to: "preparing", style: "text-brand" }],
+  preparing: [{ label: "Mark ready", to: "ready", style: "text-brand" }],
 };
 
 export default function VendorOrders() {
@@ -79,9 +79,9 @@ export default function VendorOrders() {
         <div key={o._id} className="border rounded-lg p-4">
           <div className="flex justify-between items-center mb-2">
             <span className="font-medium capitalize">{o.status.replace(/_/g, " ")}</span>
-            <span className="text-gray-600">GHS {o.total_amount}</span>
+            <span className="text-muted">GHS {o.total_amount}</span>
           </div>
-          <ul className="text-sm text-gray-700 mb-3">
+          <ul className="text-sm text-muted mb-3">
             {o.products.map((p, i) => (
               <li key={i}>{p.quantity} × {p.name}</li>
             ))}

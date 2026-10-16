@@ -11,7 +11,7 @@ export default async function AdminPage() {
   return (
     <div className="max-w-4xl mx-auto my-12 px-4">
       <h1 className="text-2xl font-bold mb-2">Admin console</h1>
-      <p className="text-gray-600 mb-6">
+      <p className="text-muted mb-6">
         Verify vendors and couriers, and manage account access.
       </p>
       <AdminUsersTable />

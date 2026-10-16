@@ -55,8 +55,8 @@ const MealDetails = async ({ params }: MealPageProps) => {
             <Image src={imageUrl} alt={name} className="rounded-lg" fill sizes="100" />
           </div>
         )}
-        <h2 className="text-black text-2xl text-center md:text-4xl font-bold mt-4">{name}</h2>
-        {category && <p className="text-gray-700 text-base md:text-lg mt-2">{category}</p>}
+        <h2 className="text-fg text-2xl text-center md:text-4xl font-bold mt-4">{name}</h2>
+        {category && <p className="text-muted text-base md:text-lg mt-2">{category}</p>}
         <div>{generatedRating(Math.round(rating ?? 0))}</div>
 
         <div className="mt-4 w-full container mx-auto p-4">
@@ -68,7 +68,7 @@ const MealDetails = async ({ params }: MealPageProps) => {
               ))}
             </div>
           ) : (
-            <p className="text-center text-gray-500">This restaurant hasn&apos;t added a menu yet.</p>
+            <p className="text-center text-muted">This restaurant hasn&apos;t added a menu yet.</p>
           )}
         </div>
 

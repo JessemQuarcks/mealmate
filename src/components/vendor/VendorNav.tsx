@@ -19,7 +19,7 @@ export default function VendorNav() {
           key={l.href}
           href={l.href}
           className={`px-3 py-1.5 rounded-lg text-sm ${
-            pathname === l.href ? "bg-blue-600 text-white" : "hover:bg-gray-100"
+            pathname === l.href ? "bg-brand text-black" : "hover:bg-surface-2"
           }`}
         >
           {l.label}

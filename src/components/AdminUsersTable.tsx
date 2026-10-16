@@ -61,7 +61,7 @@ export default function AdminUsersTable() {
   return (
     <div className="overflow-x-auto border rounded-lg">
       <table className="w-full text-sm">
-        <thead className="bg-gray-50 text-left">
+        <thead className="bg-surface-2 text-left">
           <tr>
             <th className="p-3">Name</th>
             <th className="p-3">Email</th>

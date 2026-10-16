@@ -34,7 +34,7 @@ export default function VendorOverview() {
     return (
       <div className="border rounded-lg p-6 text-center">
         <p className="mb-3">You don&apos;t manage any restaurants yet.</p>
-        <Link href="/vendor/claim" className="bg-blue-600 text-white rounded-lg px-4 py-2 inline-block">
+        <Link href="/vendor/claim" className="bg-brand text-black rounded-lg px-4 py-2 inline-block">
           Claim your listing
         </Link>
       </div>
@@ -54,7 +54,7 @@ export default function VendorOverview() {
       {cards.map((c) => (
         <div key={c.label} className="border rounded-lg p-4">
           <div className="text-2xl font-bold">{c.value}</div>
-          <div className="text-sm text-gray-500">{c.label}</div>
+          <div className="text-sm text-muted">{c.label}</div>
         </div>
       ))}
     </div>

@@ -52,7 +52,7 @@ export default function MenuManager() {
   if (restaurants.length === 0)
     return (
       <p>
-        You don&apos;t manage any restaurants yet. <a href="/vendor/claim" className="text-blue-600 underline">Claim a listing</a> first.
+        You don&apos;t manage any restaurants yet. <a href="/vendor/claim" className="text-brand underline">Claim a listing</a> first.
       </p>
     );
 
@@ -96,7 +96,7 @@ export default function MenuManager() {
             </label>
             <button onClick={() => remove(i)} className="text-red-600 text-sm sm:col-span-1">Remove</button>
             {(item.discountPercent ?? 0) > 0 && (
-              <p className="text-xs text-gray-500 sm:col-span-12">
+              <p className="text-xs text-muted sm:col-span-12">
                 Sells for GHS {effectiveItemPrice({ price: item.price, discountPercent: item.discountPercent })}
               </p>
             )}
@@ -106,10 +106,10 @@ export default function MenuManager() {
 
       <div className="flex items-center gap-3 mt-4">
         <button onClick={add} className="border rounded-lg px-4 py-2">+ Add item</button>
-        <button onClick={save} disabled={saving} className="bg-blue-600 text-white rounded-lg px-4 py-2 disabled:opacity-60">
+        <button onClick={save} disabled={saving} className="bg-brand text-black rounded-lg px-4 py-2 disabled:opacity-60">
           {saving ? "Saving…" : "Save menu"}
         </button>
-        {message && <span className="text-sm text-gray-600">{message}</span>}
+        {message && <span className="text-sm text-muted">{message}</span>}
       </div>
     </div>
   );

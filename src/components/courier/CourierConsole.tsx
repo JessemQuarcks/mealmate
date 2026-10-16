@@ -99,7 +99,7 @@ const CourierConsole: React.FC = () => {
           </label>
         </div>
         {feed.active.length === 0 ? (
-          <p className="text-gray-500 text-sm">No active deliveries. Claim one below.</p>
+          <p className="text-muted text-sm">No active deliveries. Claim one below.</p>
         ) : (
           <ul className="space-y-3">
             {feed.active.map((o) => (
@@ -109,7 +109,7 @@ const CourierConsole: React.FC = () => {
                     <span className="font-semibold">{o.restaurant_name || "Order"}</span>
                     <StatusBadge status={o.status} />
                   </div>
-                  <p className="text-sm text-gray-600">Deliver to: {addr(o)}</p>
+                  <p className="text-sm text-muted">Deliver to: {addr(o)}</p>
                 </div>
                 <div className="flex gap-2">
                   {o.status === "ready" && (
@@ -140,14 +140,14 @@ const CourierConsole: React.FC = () => {
       <section>
         <h2 className="section-title text-xl mb-3">Available pickups</h2>
         {feed.available.length === 0 ? (
-          <p className="text-gray-500 text-sm">Nothing ready to pick up right now.</p>
+          <p className="text-muted text-sm">Nothing ready to pick up right now.</p>
         ) : (
           <ul className="space-y-3">
             {feed.available.map((o) => (
               <li key={o._id} className="card flex items-center justify-between gap-4">
                 <div>
                   <div className="font-semibold">{o.restaurant_name || "Order"}</div>
-                  <p className="text-sm text-gray-600">
+                  <p className="text-sm text-muted">
                     {o.products.length} item{o.products.length === 1 ? "" : "s"} · to {addr(o)}
                   </p>
                 </div>

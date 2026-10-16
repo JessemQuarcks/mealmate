@@ -58,7 +58,7 @@ export default function StorefrontSettings() {
   if (restaurants.length === 0)
     return (
       <p>
-        You don&apos;t manage any restaurants yet. <a href="/vendor/claim" className="text-blue-600 underline">Claim a listing</a> first.
+        You don&apos;t manage any restaurants yet. <a href="/vendor/claim" className="text-brand underline">Claim a listing</a> first.
       </p>
     );
 
@@ -109,10 +109,10 @@ export default function StorefrontSettings() {
       </fieldset>
 
       <div className="flex items-center gap-3">
-        <button onClick={save} disabled={saving} className="bg-blue-600 text-white rounded-lg px-4 py-2 disabled:opacity-60">
+        <button onClick={save} disabled={saving} className="bg-brand text-black rounded-lg px-4 py-2 disabled:opacity-60">
           {saving ? "Saving…" : "Save settings"}
         </button>
-        {message && <span className="text-sm text-gray-600">{message}</span>}
+        {message && <span className="text-sm text-muted">{message}</span>}
       </div>
     </div>
   );
