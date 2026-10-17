@@ -11,6 +11,7 @@ import {
 import CardRing from "@/components/landing/CardRing";
 import Reveal from "@/components/landing/Reveal";
 import FeaturedRestaurants from "@/components/landing/FeaturedRestaurants";
+import LandingDiscovery from "@/components/landing/LandingDiscovery";
 
 const RING_IMAGES = [
   "/juicy-cheeseburger.webp",
@@ -93,6 +94,8 @@ const Landing: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <LandingDiscovery />
 
       {/* Featured */}
       <section className="container py-16">
