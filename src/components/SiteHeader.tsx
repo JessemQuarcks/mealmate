@@ -34,14 +34,19 @@ const SiteHeaderComponent: React.FC = () => {
 
   const role = (session?.user as { role?: string } | undefined)?.role;
   const accountHref = session?.user ? "/account" : "/signin";
-  const roleLink =
-    role === "vendor"
-      ? { href: "/vendor/dashboard", label: "Vendor" }
+  // Admins (incl. superadmins elevated to admin) get every area; others get theirs.
+  const roleLinks =
+    role === "admin"
+      ? [
+          { href: "/admin", label: "Admin" },
+          { href: "/vendor/dashboard", label: "Vendor" },
+          { href: "/courier/dashboard", label: "Deliver" },
+        ]
+      : role === "vendor"
+      ? [{ href: "/vendor/dashboard", label: "Vendor" }]
       : role === "courier"
-      ? { href: "/courier/dashboard", label: "Deliver" }
-      : role === "admin"
-      ? { href: "/admin", label: "Admin" }
-      : null;
+      ? [{ href: "/courier/dashboard", label: "Deliver" }]
+      : [];
 
   const isActive = (href: string) => pathname === href || pathname?.startsWith(href + "/");
 
@@ -95,11 +100,15 @@ const SiteHeaderComponent: React.FC = () => {
             <FiUser size={16} />
             {session?.user ? "Account" : "Sign in"}
           </Link>
-          {roleLink && (
-            <Link href={roleLink.href} className="hidden lg:inline-flex btn-primary">
-              {roleLink.label}
+          {roleLinks.map((rl, i) => (
+            <Link
+              key={rl.href}
+              href={rl.href}
+              className={`hidden lg:inline-flex ${i === 0 ? "btn-primary" : "btn-outline"}`}
+            >
+              {rl.label}
             </Link>
-          )}
+          ))}
           {/* Mobile menu button */}
           <button
             className="lg:hidden grid h-10 w-10 place-items-center rounded-full border border-line bg-surface/60 text-fg"
@@ -148,15 +157,16 @@ const SiteHeaderComponent: React.FC = () => {
               <FiUser size={20} />
               {session?.user ? "Account" : "Sign in"}
             </Link>
-            {roleLink && (
+            {roleLinks.map((rl) => (
               <Link
-                href={roleLink.href}
+                key={rl.href}
+                href={rl.href}
                 onClick={() => setOpen(false)}
-                className="btn-primary mt-2 w-full"
+                className="btn-outline mt-1 w-full"
               >
-                Go to {roleLink.label}
+                {rl.label} area
               </Link>
-            )}
+            ))}
           </nav>
         </div>
       )}

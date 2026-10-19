@@ -8,12 +8,16 @@ export default async function AccountPage() {
   const user = await getSessionUser();
   if (!user) redirect("/signin?callbackUrl=/account");
 
-  const roleHomes: Record<string, string> = {
-    vendor: "/vendor/dashboard",
-    admin: "/admin",
-    courier: "/courier/dashboard",
+  const AREAS: Record<string, { href: string; label: string }[]> = {
+    admin: [
+      { href: "/admin", label: "Admin console" },
+      { href: "/vendor/dashboard", label: "Vendor portal" },
+      { href: "/courier/dashboard", label: "Courier app" },
+    ],
+    vendor: [{ href: "/vendor/dashboard", label: "Vendor portal" }],
+    courier: [{ href: "/courier/dashboard", label: "Courier app" }],
   };
-  const roleHome = roleHomes[user.role];
+  const areas = AREAS[user.role] ?? [];
   const initial = (user.name || user.email || "?").charAt(0).toUpperCase();
 
   return (
@@ -56,10 +60,17 @@ export default async function AccountPage() {
         </Link>
       </div>
 
-      {roleHome && (
-        <Link href={roleHome} className="btn-outline mt-5 inline-flex capitalize">
-          Go to your {user.role} area <FiArrowRight />
-        </Link>
+      {areas.length > 0 && (
+        <div className="mt-6">
+          <h3 className="mb-2 text-sm font-semibold text-muted">Your areas</h3>
+          <div className="flex flex-wrap gap-2">
+            {areas.map((a) => (
+              <Link key={a.href} href={a.href} className="btn-outline">
+                {a.label} <FiArrowRight />
+              </Link>
+            ))}
+          </div>
+        </div>
       )}
 
       <div className="mt-8">

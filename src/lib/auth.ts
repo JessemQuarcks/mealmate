@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { getUserModel } from "@/models/user";
 import { DEFAULT_ROLE, Role, AccountStatus } from "@/lib/roles";
+import { isSuperadminEmail } from "@/lib/superadmin";
 import { logger } from "@/lib/http";
 
 export const authOptions: NextAuthOptions = {
@@ -96,6 +97,14 @@ export const authOptions: NextAuthOptions = {
       }
       if (!token.role) token.role = DEFAULT_ROLE;
       if (!token.status) token.status = "active";
+
+      // Superadmins are elevated to admin on every session, so a single account
+      // (e.g. the project owner) can access every role area.
+      if (user?.email) token.email = user.email;
+      if (isSuperadminEmail(token.email)) {
+        token.role = "admin";
+        token.status = "active";
+      }
       return token;
     },
 
