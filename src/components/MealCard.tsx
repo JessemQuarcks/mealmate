@@ -25,6 +25,10 @@ const MealCard: React.FC<PropsType> = ({ img, title, desc, rating, price, id }) 
         <img
           src={img}
           alt={title}
+          width={320}
+          height={176}
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />

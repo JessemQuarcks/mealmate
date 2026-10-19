@@ -25,10 +25,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${sora.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <script
-          async
-          src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&loading=async`}
-        />
+        {/* The Google Maps SDK is loaded on demand by APIProvider on the pages
+            that need it (map, tracking) — not globally — so it never blocks
+            first paint on pages that don't use a map. */}
       </head>
       <body className="font-sans antialiased">
         <Providers>

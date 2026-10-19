@@ -26,7 +26,15 @@ const CardRing: React.FC<{ images: string[]; radius?: number }> = ({ images, rad
               style={{ transform: `rotateY(${i * angle}deg) translateZ(${radius}px)` }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={src} alt="" className="h-full w-full object-cover" loading="lazy" />
+              <img
+                src={src}
+                alt=""
+                width={200}
+                height={260}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover"
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
               <div className="absolute inset-0 ring-1 ring-inset ring-white/5" />
             </div>
