@@ -89,6 +89,14 @@ db.users.updateOne({ email: "you@example.com" }, { $set: { role: "admin" } })
 
 Then sign out/in and open `/admin`.
 
+### Superadmins (all-role access)
+
+Emails in the `SUPERADMIN_EMAILS` allowlist ([src/lib/superadmin.ts](src/lib/superadmin.ts),
+the project owner included by default) are elevated to `admin` + `active` on
+every sign-in. Because `admin` is a role superset, one such account reaches the
+admin, vendor and courier areas (linked from the header and `/account`) and
+still orders as a client — handy for testing every role from one login.
+
 ## Restaurant data & ingestion
 
 Restaurants live in MongoDB with a GeoJSON `location` and a `2dsphere` index, so
@@ -119,6 +127,16 @@ curl -X POST http://localhost:3000/api/admin/ingest \
 
 For **scheduled refresh**, point a cron (external scheduler or a scheduled
 GitHub Action) at that endpoint with the `INGEST_SECRET` header.
+
+**Location-driven ingestion.** The discover map calls `POST /api/discovery/sync`
+with the user's coordinates when they enter a new area. If that area is sparse
+(and `GOOGLE_PLACES_API_KEY` is set) it scrapes nearby restaurants from Google
+Places **once** — deduped per ~5 km grid cell with a cooldown
+([src/lib/ingestion/coverage.ts](src/lib/ingestion/coverage.ts),
+[CoverageCell](src/models/coverageCell.ts)) — so results are genuinely nearby,
+not hardcoded. The client fires this only after moving ~2.5 km
+([src/lib/useLocationSync.ts](src/lib/useLocationSync.ts)). The local seed is
+kept as a last-resort fallback so discovery is never an empty page.
 
 Query restaurants: `GET /api/restaurants?lat=&lng=&radius=&q=` (nearest-first via
 `$near`; top-rated when no coordinates) and `GET /api/restaurants/:id`.
