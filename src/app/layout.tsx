@@ -30,9 +30,14 @@ export default function RootLayout({
             first paint on pages that don't use a map. */}
       </head>
       <body className="font-sans antialiased">
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
         <Providers>
           <SiteHeader />
-          <main className="min-h-[70vh]">{children}</main>
+          <main id="main" className="min-h-[70vh]">
+            {children}
+          </main>
           <Footer />
         </Providers>
       </body>

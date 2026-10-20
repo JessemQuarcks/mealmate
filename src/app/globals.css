@@ -46,6 +46,31 @@ body {
   color: rgb(var(--fg));
 }
 
+/* Visible keyboard focus everywhere (mouse clicks stay ring-free). */
+:focus-visible {
+  outline: 2px solid rgb(var(--brand));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip-to-content link: off-screen until focused. */
+.skip-link {
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  transform: translateY(-150%);
+  transition: transform 0.2s;
+  background-color: rgb(var(--brand));
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 @layer components {
   .header_top_icon_wrapper {
     @apply grid place-items-center rounded-lg p-[7px] text-[14px] cursor-pointer

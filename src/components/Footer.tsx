@@ -49,8 +49,13 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="border-t border-line py-5 text-center text-xs text-muted">
-        © {new Date().getFullYear()} Mealmate. Crafted with care.
+      <div className="flex flex-col items-center gap-2 border-t border-line py-5 text-center text-xs text-muted sm:flex-row sm:justify-between">
+        <span>© {new Date().getFullYear()} Mealmate. Crafted with care.</span>
+        <span className="flex gap-4">
+          <Link href="/terms" className="hover:text-brand">Terms</Link>
+          <Link href="/privacy" className="hover:text-brand">Privacy</Link>
+          <Link href="/help" className="hover:text-brand">Help</Link>
+        </span>
       </div>
     </footer>
   );
