@@ -293,6 +293,15 @@ database. The section is guarded by the admin layout and middleware; sub-pages:
 every push and pull request. Add `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` and
 `NEXT_PUBLIC_PAYSTACK_KEY` as repository secrets so the build step has them.
 
+## Operations
+
+See [RUNBOOK.md](./RUNBOOK.md) for deploy, backups, rollback and on-call. In
+short: `GET /api/health` is the DB probe for uptime monitors; `LOG_SINK_URL`
+forwards warn/error logs to your monitoring service; sensitive endpoints are
+rate-limited ([src/lib/rateLimit.ts](src/lib/rateLimit.ts)) and baseline security
+headers are set in [next.config.mjs](next.config.mjs); admins reconcile stuck
+payments from the console (`/api/admin/reconciliation`, re-verify on an order).
+
 ## Project layout
 
 ```

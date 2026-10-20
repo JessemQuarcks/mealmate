@@ -177,12 +177,26 @@ Ordered by dependency, not strictly by calendar; several overlap (see §4). Dura
 - **Exit:** operators run the marketplace — approvals, disputes, refunds, fees,
   moderation and payouts — without database access ✅.
 
-### P8 · Hardening, QA & launch — *Weeks 25–28*
-- Load, security and payment-reconciliation testing; accessibility pass.
-- Legal: terms, privacy, data-source licensing, vendor agreements.
-- Observability, on-call, backups, rollback plan.
-- Pilot in one city, then general availability.
-- **Exit:** the platform meets launch quality bars and operates reliably in a live pilot market.
+### P8 · Hardening, QA & launch — *Weeks 25–28* 🟡 **in progress**
+- ✅ **Security hardening:** per-IP rate limiting on register/checkout/dispute/sync
+  (`src/lib/rateLimit.ts`, tested) and baseline security headers + no `X-Powered-By`
+  (`next.config.mjs`).
+- ✅ **Payment reconciliation:** admin snapshot of pending/paid/failed/refunded, a
+  stale-pending queue and an admin re-verify action
+  (`/api/admin/reconciliation`, `/api/admin/orders/:id/verify`,
+  `src/lib/reconciliation.ts`, tested).
+- ✅ **Observability:** `GET /api/health` (DB probe), a pluggable `LOG_SINK_URL`
+  for warn/error logs, and error-reference ids on 500s.
+- ✅ **Accessibility pass:** skip-to-content link, visible `:focus-visible` ring,
+  `main` landmark, reduced-motion support.
+- ✅ **Legal + ops docs:** `/terms` and `/privacy` (templates, with a data-source
+  note) and an operations [RUNBOOK.md](./RUNBOOK.md) (deploy, backups, rollback,
+  on-call).
+- ⬜ **Remaining (ops/human):** load & security pen-testing, a tuned
+  Content-Security-Policy, finalised legal copy + vendor agreements, Redis-backed
+  rate limiting, a formal on-call/paging rotation, and the single-city pilot.
+- **Exit:** the platform meets launch quality bars and operates reliably in a live
+  pilot market — engineering hardening in place ✅; pilot + sign-offs ⬜.
 
 ---
 
