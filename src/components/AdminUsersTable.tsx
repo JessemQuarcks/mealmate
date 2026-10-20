@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useMemo, useState, useCallback } from "react";
 
 interface AdminUser {
   _id: string;
@@ -9,11 +9,14 @@ interface AdminUser {
   status: string;
 }
 
+const ROLES = ["client", "vendor", "courier", "admin"];
+
 export default function AdminUsersTable() {
   const [users, setUsers] = useState<AdminUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [busyId, setBusyId] = useState<string | null>(null);
+  const [query, setQuery] = useState("");
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -34,13 +37,13 @@ export default function AdminUsersTable() {
     load();
   }, [load]);
 
-  const updateStatus = async (userId: string, status: string) => {
+  const patch = async (userId: string, update: { status?: string; role?: string }) => {
     setBusyId(userId);
     try {
       const res = await fetch("/api/admin/users", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, status }),
+        body: JSON.stringify({ userId, ...update }),
       });
       if (!res.ok) {
         const body = await res.json();
@@ -54,65 +57,95 @@ export default function AdminUsersTable() {
     }
   };
 
-  if (loading) return <p>Loading users…</p>;
-  if (error) return <p className="text-red-600">{error}</p>;
-  if (users.length === 0) return <p>No users yet.</p>;
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return users;
+    return users.filter(
+      (u) => u.email.toLowerCase().includes(q) || (u.name ?? "").toLowerCase().includes(q)
+    );
+  }, [users, query]);
+
+  const statusClass = (s: string) =>
+    s === "active"
+      ? "bg-green-100 text-green-700"
+      : s === "pending"
+      ? "bg-yellow-100 text-yellow-700"
+      : "bg-red-100 text-red-700";
 
   return (
-    <div className="overflow-x-auto border rounded-lg">
-      <table className="w-full text-sm">
-        <thead className="bg-surface-2 text-left">
-          <tr>
-            <th className="p-3">Name</th>
-            <th className="p-3">Email</th>
-            <th className="p-3">Role</th>
-            <th className="p-3">Status</th>
-            <th className="p-3">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((u) => (
-            <tr key={u._id} className="border-t">
-              <td className="p-3">{u.name || "—"}</td>
-              <td className="p-3">{u.email}</td>
-              <td className="p-3 capitalize">{u.role}</td>
-              <td className="p-3">
-                <span
-                  className={`px-2 py-0.5 rounded-full text-xs capitalize ${
-                    u.status === "active"
-                      ? "bg-green-100 text-green-700"
-                      : u.status === "pending"
-                      ? "bg-yellow-100 text-yellow-700"
-                      : "bg-red-100 text-red-700"
-                  }`}
-                >
-                  {u.status}
-                </span>
-              </td>
-              <td className="p-3 space-x-2">
-                {u.status !== "active" && (
-                  <button
-                    disabled={busyId === u._id}
-                    onClick={() => updateStatus(u._id, "active")}
-                    className="text-green-700 underline disabled:opacity-50"
-                  >
-                    Approve
-                  </button>
-                )}
-                {u.status !== "suspended" && (
-                  <button
-                    disabled={busyId === u._id}
-                    onClick={() => updateStatus(u._id, "suspended")}
-                    className="text-red-700 underline disabled:opacity-50"
-                  >
-                    Suspend
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div>
+      <input
+        className="input mb-4 max-w-sm"
+        placeholder="Search by name or email…"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
+
+      {error && <p className="mb-3 text-red-500">{error}</p>}
+      {loading ? (
+        <div className="h-40 animate-pulse rounded-2xl bg-surface-2" />
+      ) : filtered.length === 0 ? (
+        <p className="text-muted">No matching users.</p>
+      ) : (
+        <div className="overflow-x-auto rounded-2xl border border-line">
+          <table className="w-full text-sm">
+            <thead className="bg-surface-2 text-left text-muted">
+              <tr>
+                <th className="p-3">Name</th>
+                <th className="p-3">Email</th>
+                <th className="p-3">Role</th>
+                <th className="p-3">Status</th>
+                <th className="p-3">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((u) => (
+                <tr key={u._id} className="border-t border-line">
+                  <td className="p-3">{u.name || "—"}</td>
+                  <td className="p-3">{u.email}</td>
+                  <td className="p-3">
+                    <select
+                      className="input py-1"
+                      value={u.role}
+                      disabled={busyId === u._id}
+                      onChange={(e) => patch(u._id, { role: e.target.value })}
+                    >
+                      {ROLES.map((r) => (
+                        <option key={r} value={r}>
+                          {r}
+                        </option>
+                      ))}
+                    </select>
+                  </td>
+                  <td className="p-3">
+                    <span className={`badge capitalize ${statusClass(u.status)}`}>{u.status}</span>
+                  </td>
+                  <td className="space-x-3 p-3">
+                    {u.status !== "active" && (
+                      <button
+                        disabled={busyId === u._id}
+                        onClick={() => patch(u._id, { status: "active" })}
+                        className="font-medium text-brand disabled:opacity-50"
+                      >
+                        Approve
+                      </button>
+                    )}
+                    {u.status !== "suspended" && (
+                      <button
+                        disabled={busyId === u._id}
+                        onClick={() => patch(u._id, { status: "suspended" })}
+                        className="font-medium text-red-500 disabled:opacity-50"
+                      >
+                        Suspend
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 }
