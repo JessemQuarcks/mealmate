@@ -4,6 +4,7 @@ import mongodbConnect from "@/utils/mongoConnect";
 import { fail, logger, ok, parseBody, withErrorHandling } from "@/lib/http";
 import { requireRole } from "@/lib/session";
 import { buildEvent, ORDER_EVENTS } from "@/lib/orderEvents";
+import { enforceRateLimit } from "@/lib/rateLimit";
 
 export const dynamic = "force-dynamic";
 
@@ -22,6 +23,9 @@ const disputeSchema = z.object({
  * One open dispute at a time; an admin resolves it from the console.
  */
 export const POST = withErrorHandling(async (req) => {
+  const limited = enforceRateLimit(req, "dispute", { limit: 10, windowMs: 60_000 });
+  if (limited) return limited;
+
   const { user, response } = await requireRole();
   if (response) return response;
 

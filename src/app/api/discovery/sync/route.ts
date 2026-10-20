@@ -10,6 +10,7 @@ import {
   decideIngestion,
   COVERAGE_RADIUS_METERS,
 } from "@/lib/ingestion/coverage";
+import { enforceRateLimit } from "@/lib/rateLimit";
 
 export const dynamic = "force-dynamic";
 
@@ -28,6 +29,9 @@ const syncSchema = z.object({
  * so a page is never empty. Signed-in users only, to protect the scrape quota.
  */
 export const POST = withErrorHandling(async (req) => {
+  const limited = enforceRateLimit(req, "discovery-sync", { limit: 20, windowMs: 60_000 });
+  if (limited) return limited;
+
   const { response } = await requireRole();
   if (response) return response;
 

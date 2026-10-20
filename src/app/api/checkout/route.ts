@@ -10,6 +10,7 @@ import { toMinorUnits } from "@/lib/money";
 import { buildPaymentReference } from "@/lib/paystack/reference";
 import { buildEvent, ORDER_EVENTS } from "@/lib/orderEvents";
 import { getPlatformSettings } from "@/lib/settings";
+import { enforceRateLimit } from "@/lib/rateLimit";
 
 export const dynamic = "force-dynamic";
 
@@ -37,6 +38,9 @@ const checkoutSchema = z.object({
  * price is trusted.
  */
 export const POST = withErrorHandling(async (req) => {
+  const limited = enforceRateLimit(req, "checkout", { limit: 15, windowMs: 60_000 });
+  if (limited) return limited;
+
   const { user, response } = await requireRole();
   if (response) return response;
 

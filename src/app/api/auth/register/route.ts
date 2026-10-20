@@ -3,6 +3,7 @@ import { z } from "zod";
 import { getUserModel } from "@/models/user";
 import { fail, logger, ok, parseBody, withErrorHandling } from "@/lib/http";
 import { SELF_ASSIGNABLE_ROLES } from "@/lib/roles";
+import { enforceRateLimit } from "@/lib/rateLimit";
 
 const registerSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -13,6 +14,9 @@ const registerSchema = z.object({
 });
 
 export const POST = withErrorHandling(async (req) => {
+  const limited = enforceRateLimit(req, "register", { limit: 5, windowMs: 60_000 });
+  if (limited) return limited;
+
   const { data, error } = await parseBody(req, registerSchema);
   if (error) return error;
 
