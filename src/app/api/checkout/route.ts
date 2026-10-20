@@ -9,13 +9,9 @@ import { computeOrderTotals } from "@/lib/fees";
 import { toMinorUnits } from "@/lib/money";
 import { buildPaymentReference } from "@/lib/paystack/reference";
 import { buildEvent, ORDER_EVENTS } from "@/lib/orderEvents";
+import { getPlatformSettings } from "@/lib/settings";
 
 export const dynamic = "force-dynamic";
-
-/** Platform fee policy. Kept here so checkout and any quote endpoint agree. */
-const SERVICE_FEE_PERCENT = 5;
-const TAX_PERCENT = 0; // VAT/NHIL handling arrives with the tax work; 0 for now.
-const CURRENCY = "GHS";
 
 const checkoutSchema = z.object({
   restaurant_id: z.string().min(1),
@@ -68,10 +64,14 @@ export const POST = withErrorHandling(async (req) => {
   const priced = priceCart(data.items, restaurant.menu);
   if (!priced.ok) return fail(priced.reason, 422);
 
+  // Fees are admin-configurable platform settings (Phase 7), not hardcoded.
+  const settings = await getPlatformSettings();
+  const CURRENCY = settings.currency;
+
   const totals = computeOrderTotals(priced.subtotal, {
     deliveryFee: restaurant.deliveryFee,
-    serviceFeePercent: SERVICE_FEE_PERCENT,
-    taxPercent: TAX_PERCENT,
+    serviceFeePercent: settings.serviceFeePercent,
+    taxPercent: settings.taxPercent,
     tip: data.tip,
   });
 

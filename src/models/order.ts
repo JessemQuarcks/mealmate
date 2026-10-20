@@ -81,6 +81,17 @@ interface IOrderRatings {
   ratedAt: Date;
 }
 
+/** A customer-raised dispute, resolved or rejected by an admin (Phase 7). */
+interface IDispute {
+  status: "open" | "resolved" | "rejected";
+  reason: string;
+  note?: string;
+  raisedBy: string;
+  raisedAt: Date;
+  resolvedBy?: string;
+  resolvedAt?: Date;
+}
+
 export interface IOrder extends Document {
   /** Owner of the order (the signed-in client). */
   user_id?: string;
@@ -109,6 +120,7 @@ export interface IOrder extends Document {
   events: IOrderEvent[];
   proof_of_delivery?: IProofOfDelivery;
   ratings?: IOrderRatings;
+  dispute?: IDispute;
   order_date: Date;
   status: OrderStatus;
 }
@@ -207,6 +219,19 @@ const OrderRatingsSchema = new mongoose.Schema<IOrderRatings>(
   { _id: false }
 );
 
+const DisputeSchema = new mongoose.Schema<IDispute>(
+  {
+    status: { type: String, enum: ["open", "resolved", "rejected"], required: true },
+    reason: { type: String, required: true },
+    note: String,
+    raisedBy: { type: String, required: true },
+    raisedAt: { type: Date, required: true },
+    resolvedBy: String,
+    resolvedAt: Date,
+  },
+  { _id: false }
+);
+
 const OrderSchema = new mongoose.Schema<IOrder>(
   {
     user_id: { type: String, index: true },
@@ -229,6 +254,7 @@ const OrderSchema = new mongoose.Schema<IOrder>(
     events: { type: [OrderEventSchema], default: [] },
     proof_of_delivery: { type: ProofOfDeliverySchema },
     ratings: { type: OrderRatingsSchema },
+    dispute: { type: DisputeSchema },
     restaurant_id: { type: String, index: true },
     restaurant_name: { type: String },
     status: { type: String, enum: ORDER_STATUSES, default: INITIAL_STATUS, index: true },
@@ -237,6 +263,9 @@ const OrderSchema = new mongoose.Schema<IOrder>(
     timestamps: true,
   }
 );
+
+// Admin dispute queue filters by dispute status.
+OrderSchema.index({ "dispute.status": 1 });
 
 const Order: Model<IOrder> =
   (mongoose.models.Order as Model<IOrder>) ||
