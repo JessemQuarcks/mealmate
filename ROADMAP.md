@@ -151,11 +151,31 @@ Ordered by dependency, not strictly by calendar; several overlap (see §4). Dura
 - ⬜ **Remaining:** collaborative/ML personalisation beyond reorder+trending, richer review moderation, and feeding live prep/delivery timing back into the speed signal.
 - **Exit:** restaurants compete on real signals ✅ and returning users get relevant, personalised suggestions ✅.
 
-### P7 · Admin console — *Weeks 22–26*
-- Vendor/courier approval queue; user, order, dispute management.
-- Catalogue/data-quality moderation; fees, promotions, payout oversight.
-- Operational metrics dashboard.
-- **Exit:** operators run the marketplace — approvals, disputes, payouts — without database access.
+### P7 · Admin console — *Weeks 22–26* 🟢 **largely complete**
+- ✅ **Operator shell** at `/admin` (admin-guarded layout + sub-nav) with an
+  **operational metrics dashboard** (`GET /api/admin/metrics`): users by
+  role/status, orders by status, GMV + platform revenue on paid orders, 7/30-day
+  volume, open disputes, live vs hidden restaurants.
+- ✅ **User management** (`/admin/users`): approval queue, search, role changes,
+  suspend — on `GET/PATCH /api/admin/users`.
+- ✅ **Order & dispute management** (`/admin/orders`, `/admin/orders/:id`): filter
+  by status/payment/dispute/text, inspect the full breakdown + timeline, issue
+  **refunds** (`POST /api/admin/orders/:id/refund`, full or partial) and
+  **resolve/reject disputes** with an optional refund
+  (`PATCH /api/admin/orders/:id/dispute`). Customers "report a problem" from
+  tracking (`POST /api/orders/:id/dispute`).
+- ✅ **Catalogue moderation** (`/admin/restaurants`): hide/unhide (hidden drop
+  from discovery), delivery-fee/promotion overrides, and a seed trigger
+  (`GET/PATCH /api/admin/restaurants`).
+- ✅ **Fees & payouts**: admin-configurable service/tax fees
+  (`/admin/settings`, read by checkout) and **payout oversight**
+  (`/admin/payouts`): owed-per-vendor (tested `computeVendorPayouts`) net of a
+  **Payout ledger** with mark-as-paid.
+- ⬜ **Remaining:** payout statement export/emails, dispute SLAs/notifications, a
+  granular admin audit log (beyond the structured logger), and promotion
+  scheduling.
+- **Exit:** operators run the marketplace — approvals, disputes, refunds, fees,
+  moderation and payouts — without database access ✅.
 
 ### P8 · Hardening, QA & launch — *Weeks 25–28*
 - Load, security and payment-reconciliation testing; accessibility pass.

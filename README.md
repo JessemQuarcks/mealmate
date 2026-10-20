@@ -250,6 +250,31 @@ distance-aware results and "Order again" / "Trending now" rails.
   reorder list (distinct recent restaurants) and trending restaurants (most
   ordered in the last 30 days).
 
+## Admin console
+
+Admins (and superadmins) run the marketplace from `/admin` without touching the
+database. The section is guarded by the admin layout and middleware; sub-pages:
+
+- **Overview** — operational metrics (`GET /api/admin/metrics`): users by
+  role/status, orders by status, GMV + platform revenue, 7/30-day volume, open
+  disputes, live vs hidden restaurants.
+- **Users** (`/admin/users`) — approval queue, search, role changes, suspend
+  (`GET/PATCH /api/admin/users`).
+- **Orders** (`/admin/orders`, `/admin/orders/:id`) — filter by
+  status/payment/dispute/text; inspect the breakdown + timeline; issue refunds
+  (`POST /api/admin/orders/:id/refund`) and resolve/reject disputes with an
+  optional refund (`PATCH /api/admin/orders/:id/dispute`). Customers raise a
+  dispute from tracking via `POST /api/orders/:id/dispute`.
+- **Catalogue** (`/admin/restaurants`) — hide/unhide restaurants (hidden ones
+  leave discovery), delivery-fee/promotion overrides, and a local-seed trigger
+  (`GET/PATCH /api/admin/restaurants`).
+- **Payouts** (`/admin/payouts`) — owed per vendor (food + tips on delivered,
+  paid, un-refunded orders; `src/lib/payouts.ts`) net of a `Payout` ledger, with
+  mark-as-paid (`GET/POST /api/admin/payouts`).
+- **Settings** (`/admin/settings`) — platform service-fee %, tax % and currency
+  (`GET/PATCH /api/admin/settings`); checkout reads these via
+  `getPlatformSettings()` instead of hardcoded constants.
+
 ## Scripts
 
 | Script | What it does |
