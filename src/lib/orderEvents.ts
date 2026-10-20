@@ -23,6 +23,10 @@ export const ORDER_EVENTS = {
   pickedUp: "courier.picked_up",
   delivered: "courier.delivered",
   cancelled: "order.cancelled",
+  disputeOpened: "dispute.opened",
+  disputeResolved: "dispute.resolved",
+  disputeRejected: "dispute.rejected",
+  refunded: "payment.refunded",
 } as const;
 
 /** Build a timeline event with a timestamp (defaults to now). */
@@ -41,6 +45,10 @@ const LABELS: Record<string, string> = {
   [ORDER_EVENTS.pickedUp]: "Picked up — on the way",
   [ORDER_EVENTS.delivered]: "Delivered",
   [ORDER_EVENTS.cancelled]: "Cancelled",
+  [ORDER_EVENTS.disputeOpened]: "Problem reported",
+  [ORDER_EVENTS.disputeResolved]: "Dispute resolved",
+  [ORDER_EVENTS.disputeRejected]: "Dispute rejected",
+  [ORDER_EVENTS.refunded]: "Refunded",
 };
 
 /** Human label for an event type, falling back to the raw type. */

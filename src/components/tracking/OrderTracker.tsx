@@ -159,6 +159,62 @@ const OrderTracker: React.FC<{ orderId: string }> = ({ orderId }) => {
       {delivered && (
         <RatingForm orderId={orderId} alreadyProof={data.proof_of_delivery} onRated={refresh} />
       )}
+
+      {(delivered || data.status === "out_for_delivery") && (
+        <ReportProblem orderId={orderId} />
+      )}
+    </div>
+  );
+};
+
+const ReportProblem: React.FC<{ orderId: string }> = ({ orderId }) => {
+  const [open, setOpen] = useState(false);
+  const [reason, setReason] = useState("");
+  const [done, setDone] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const submit = async () => {
+    setError(null);
+    try {
+      const res = await fetch(`/api/orders/${orderId}/dispute`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ reason }),
+      });
+      const body = await res.json();
+      if (!res.ok || !body.success) throw new Error(body.errors?.join(", ") || "Could not submit");
+      setDone(true);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Could not submit");
+    }
+  };
+
+  if (done) return <p className="text-sm text-muted">Thanks — our team will review your report.</p>;
+
+  return (
+    <div>
+      {!open ? (
+        <button className="text-sm text-muted underline hover:text-brand" onClick={() => setOpen(true)}>
+          Report a problem with this order
+        </button>
+      ) : (
+        <div className="card space-y-3">
+          <h3 className="font-semibold">Report a problem</h3>
+          <input
+            className="input"
+            placeholder="What went wrong? (e.g. missing item, late)"
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+          />
+          {error && <p className="text-sm text-red-500">{error}</p>}
+          <div className="flex gap-2">
+            <button className="btn-primary" disabled={reason.trim().length < 3} onClick={submit}>
+              Submit report
+            </button>
+            <button className="btn-ghost" onClick={() => setOpen(false)}>Cancel</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
