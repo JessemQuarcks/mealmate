@@ -80,6 +80,9 @@ const AdminOrderDetail: React.FC<{ orderId: string }> = ({ orderId }) => {
       })
     );
 
+  const reverify = () =>
+    act(() => fetch(`/api/admin/orders/${orderId}/verify`, { method: "POST" }));
+
   const resolveDispute = (status: "resolved" | "rejected") =>
     act(() =>
       fetch(`/api/admin/orders/${orderId}/dispute`, {
@@ -94,6 +97,7 @@ const AdminOrderDetail: React.FC<{ orderId: string }> = ({ orderId }) => {
 
   const cur = order.currency ?? "GHS";
   const paid = order.payment?.status === "paid";
+  const pending = order.payment?.status === "pending";
 
   return (
     <div className="space-y-5">
@@ -133,7 +137,7 @@ const AdminOrderDetail: React.FC<{ orderId: string }> = ({ orderId }) => {
       )}
 
       {/* Actions */}
-      {(paid || order.dispute?.status === "open") && (
+      {(paid || pending || order.dispute?.status === "open") && (
         <div className="card space-y-3">
           <h3 className="font-semibold">Actions</h3>
           <textarea
@@ -144,6 +148,11 @@ const AdminOrderDetail: React.FC<{ orderId: string }> = ({ orderId }) => {
           />
           {error && <p className="text-sm text-red-500">{error}</p>}
           <div className="flex flex-wrap items-center gap-3">
+            {pending && (
+              <button className="btn-outline" disabled={busy} onClick={reverify}>
+                Re-verify payment
+              </button>
+            )}
             {paid && (
               <button className="btn-outline" disabled={busy} onClick={refund}>
                 Refund order
