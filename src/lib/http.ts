@@ -1,14 +1,49 @@
 import { NextResponse } from "next/server";
 import { ZodError, ZodSchema } from "zod";
 
+type LogLevel = "info" | "warn" | "error";
+
 /**
- * Minimal structured logger. Swap the sink for a real service (e.g. Sentry,
- * Datadog) in Phase 0's monitoring task without touching call sites.
+ * Forward warn/error logs to an external sink when `LOG_SINK_URL` is set
+ * (a webhook — Sentry, Datadog, Logtail, a Slack incoming webhook, …). Best
+ * effort and fire-and-forget: observability must never break a request.
+ */
+function forwardToSink(level: LogLevel, msg: string, meta?: unknown): void {
+  const url = process.env.LOG_SINK_URL;
+  if (!url || level === "info") return;
+  try {
+    void fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        level,
+        msg,
+        meta: meta instanceof Error ? { message: meta.message, stack: meta.stack } : meta,
+        service: "mealmate",
+        at: new Date().toISOString(),
+      }),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    /* never throw from logging */
+  }
+}
+
+/**
+ * Structured logger with a pluggable sink. Console always; warn/error also go
+ * to `LOG_SINK_URL` when configured, so production has real monitoring without
+ * changing any call site.
  */
 export const logger = {
   info: (msg: string, meta?: unknown) => console.log(`[info] ${msg}`, meta ?? ""),
-  warn: (msg: string, meta?: unknown) => console.warn(`[warn] ${msg}`, meta ?? ""),
-  error: (msg: string, meta?: unknown) => console.error(`[error] ${msg}`, meta ?? ""),
+  warn: (msg: string, meta?: unknown) => {
+    console.warn(`[warn] ${msg}`, meta ?? "");
+    forwardToSink("warn", msg, meta);
+  },
+  error: (msg: string, meta?: unknown) => {
+    console.error(`[error] ${msg}`, meta ?? "");
+    forwardToSink("error", msg, meta);
+  },
 };
 
 /** Consistent success envelope. */
@@ -58,8 +93,16 @@ export function withErrorHandling(
     try {
       return await handler(req);
     } catch (err) {
-      logger.error("Unhandled route error", err);
-      return fail("Something went wrong. Please try again.", 500);
+      // A short reference the user can quote to support; it ties their report
+      // to the logged error without leaking a stack trace.
+      const errorId = Math.random().toString(36).slice(2, 10);
+      logger.error("Unhandled route error", {
+        errorId,
+        method: req.method,
+        url: req.url,
+        err,
+      });
+      return fail(`Something went wrong. Please try again. (ref ${errorId})`, 500);
     }
   };
 }
